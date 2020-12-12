@@ -29,7 +29,7 @@ For a guide on how to contribute to the engine check our [contribution guideline
 
 ## Code of Conduct
 
-We value our community, here are the [rules.](Code of Conduct.md "AvianEngine Code of Conduct")
+We value our community, here are the [rules.](Code%20of%20Conduct.md "AvianEngine Code of Conduct")
 
 ## License
 
