@@ -25,7 +25,7 @@ Install [AvianCore](https://www.duckduckgo.com)
 
 ## Contribute to AvianEngine
 
-For a guide on how to contribute to the engine check our [contribution guidelines!](https://github.com/whenbellstoll/AvianEngine/Contributing.md "AvianEngine Contribution Guidelines")
+For a guide on how to contribute to the engine check our [contribution guidelines!](https://github.com/whenbellstoll/AvianEngine/blob/main/Contributing.md "AvianEngine Contribution Guidelines")
 
 ## Code of Conduct
 
