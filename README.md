@@ -34,8 +34,8 @@ For a guide on how to contribute to the engine check our [contribution guideline
 ## Community and Code of Conduct
 
 Avian doesn't end at just being an engine, we hope to foster an ever-growing game development community.
-The main channel of our community is currently the [Avian Developers Discord](https://discord.gg/QYHgdaZZH5)
-We value our community, here is our [pledge.](Code%20of%20Conduct.md "AvianEngine Code of Conduct")
+The main channel of our community is currently the [Avian Developers Discord](https://discord.gg/QYHgdaZZH5).
+We value our community, before interacting read our [Code of Conduct.](Code%20of%20Conduct.md "AvianEngine Code of Conduct")
 
 ## License
 
