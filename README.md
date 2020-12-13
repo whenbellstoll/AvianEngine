@@ -1,7 +1,11 @@
 # AvianEngine
-## A 2D Node-Based Game Engine
+## 2D node-based cross-platform game engine
 
 ## Currently getting our house in order, parts of the Readme may not be up to date or describe things currently in development
+
+Avian is a light-weight, extendable, easy to develop game engine.
+It provides all the basic tools that developers need without being so restricting that they cannot implement more robust features for their own games. 
+The little overhead Avian provides keeps performance high, but provides enough of base as to be powerful enough to make complex multi-platform games quickly.
 
 Avian as a Game Development Tool has two major components:
 * AvianCore 
@@ -15,7 +19,7 @@ It provides the different tools that help to define a game in terms of a visual 
 It saves a lot of time specifying countless coordinates needed in moving objects or in defining collision points by providing visual tools that will facilitate this. 
 The goals of this engine are to provide a straightforward, well documented, beginner friendly entry into game development, and the editor is engineered for this purpose.
 
-Refer to the Docs included in these folders to learn more functionality of both AvianEditor and AvianCore. 
+Refer to the Docs included in this repository to learn more functionality of both AvianEditor and AvianCore. 
 
 ## Installation
 
@@ -27,9 +31,11 @@ Install [AvianCore](https://www.duckduckgo.com)
 
 For a guide on how to contribute to the engine check our [contribution guidelines!](Contributing.md "AvianEngine Contribution Guidelines")
 
-## Code of Conduct
+## Community and Code of Conduct
 
-We value our community, here are the [rules.](Code%20of%20Conduct.md "AvianEngine Code of Conduct")
+Avian doesn't end at just being an engine, we hope to foster an ever-growing game development community.
+The main channel of our community is currently the [Avian Developers Discord](https://discord.gg/QYHgdaZZH5)
+We value our community, here is our [pledge.](Code%20of%20Conduct.md "AvianEngine Code of Conduct")
 
 ## License
 
