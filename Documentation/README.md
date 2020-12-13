@@ -4,7 +4,7 @@ Avian is an all-purpose 2D game engine.
 There are two major parts to this documentation, **AvianEditor** and **AvianCore**.
 
 ## AvianEditor
-AvianEditor is the actual tool that the users who develop games with interact with to develop games.
+AvianEditor is the actual tool that the users who develop games interact with.
 The documentation primarily serves users of the engine, with the goal of understanding the different tools in the editor.
 The documentation also goes into technical explaination of functions and objects found in AvianCore that developers would regularly use in making their games.
 
