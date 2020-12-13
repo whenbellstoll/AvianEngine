@@ -99,6 +99,8 @@ For new features, the unit tests should cover the newly added functionality, tes
 
 Feel free to contribute standalone pull requests to add new tests or improve existing tests as well.
 
+TODO: See our [Unit Testing Guide](https://www.duckduckgo.com) for more information on writing unit tests for Avian.
+
 ### Be nice to the Git history
 
 Try to make simple PRs that handle one specific topic. 
@@ -110,7 +112,9 @@ Those commits unnecessarily pollute the git history when coming from PRs.
 Also try to make commits that bring the engine from one stable state to another stable state. 
 For example, if your first commit has a bug that you fixed in the second commit, try to merge them together before making your pull request (see ``git rebase -i`` and relevant help about rebasing or amending commits on the Internet).
 
-This [Git style guide](https://github.com/agis-/git-style-guide) has some good practices to have in mind.
+The agis [Git style guide](https://github.com/agis-/git-style-guide) has some good practices to have in mind.
+
+TODO: See our [PR Workflow](https://www.duckduckgo.com) documentation for further information.
 
 ### Format your commit messages with readability in mind
 
@@ -144,15 +148,13 @@ Commits named "Update my_custom_class.cpp" won't be accepted.
 
 ## Communicating with developers
 
-The Avian Engine community has [several communication channels](https://www.duckduckgo.org), some used more for user-level discussions and support, others more for development discussions.
+The Avian Engine community has several communication channels, some used more for user-level discussions and support, others more for development discussions.
 
 To communicate with developers (e.g. to discuss a feature you want to implement or a bug you want to fix), the following channels can be used:
 
 * [GitHub issues](https://github.com/whenbellstoll/AvianEngine/issues): 
- * If there is an existing issue about a topic you want to discuss, just add a comment to it - all developers watch the repository and will get an email notification. 
-    You can also create a new issue - please keep in mind to create issues only to discuss quite specific points about the development, and not general user feedback or support requests.
-* [The Avian Developers Discord](): 
- * You will find most core developers there, so it's the go-to channel for direct chat about Engine development. 
-    Feel free to start discussing something there to get some early feedback before writing up a detailed proposal in a GitHub issue.
+    * If there is an existing issue about a topic you want to discuss, just add a comment to it - all developers watch the repository and will get an email notification. You can also create a new issue - please keep in mind to create issues only to discuss quite specific points about the development, and not general user feedback or support requests.
+* [The Avian Developers Discord](https://discord.gg/QYHgdaZZH5): 
+    * You will find core developers there, so it's the go-to channel for direct chat about development. Feel free to start discussing something there to get some early feedback before writing up a detailed proposal in a GitHub issue.
 
 Thanks for your interest in contributing!
