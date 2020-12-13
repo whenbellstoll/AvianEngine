@@ -1,3 +1,6 @@
-#Avian
+# Avian
 
-Your all purpose 2D engine!
+Your all-purpose 2D game engine!
+
+
+![Avian Core Architecture](/Core Docs/AvianArchitecture.png)
