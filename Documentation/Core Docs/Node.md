@@ -4,6 +4,9 @@ Node is the base class for a large portion of the classes in Avian, providing th
 It is especially integral to the List class, and is how most objects (GameNodes, Sprites, Sounds, MovementPatterns, etc.) are stored in the engine. 
 It also provides the virtual functions for serialization.
 
+![Avian Core Architecture](https://github.com/whenbellstoll/AvianEngine/blob/main/Documentation/Core%20Docs/AvianArchitecture.png?raw=true)
+Nearly all the classes that are inherited from Node are stored as Node in the engine.
+
 ## Fields:
 | Type    | Name      | Description |
 | :------------- | :----------: | -----------: |
