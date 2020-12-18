@@ -26,17 +26,17 @@ Many objects are stored in the List data structure in the engine, it's reccomend
 ## Functions:
 | Signature | Description | Return type | Return value | Arguments | 
 | :-------- | :---------: | :----------: | :-------: | ----------: |
-| node* Clone() | 
-| node* Head() |
-| node* Sentinel() |
-| bool EOList() |
-| void add( node * ) |
-| void add( node *, node * ) |
-| void del() |
-| void remove(node *) |
-| unsigned int Count() |
-| void Save(File &) |
-| void Load(File &) |
+| node* Clone() | Converts the list into a node for purposes of storage and reference | node pointer | The List casted as a node | None |
+| node* Head() | Method returning node that starts the list | node pointer | The starting node | None |
+| node* Sentinel() | Method returning node terminating the list | node pointer | The end node | None |
+| bool EOList() | Method to check if a node in the list is the Sentinel | bool | True if the node is the  sentinel, false otherwise | None |
+| void add( node * ) | Method to append a node to the end of the List | void | None | node pointer to add to the list |
+| void add( node *, node * ) | Method to insert a node into the List at a given node within the list | void | None | Node pointer to current element, node pointer to new element |
+| void del() | Method to delete the current data in the list | void | None | None |
+| void remove(node *) | Method to remove a specific node currently in the list | void | None | Node pointer to be removed |
+| unsigned int Count() | Method to get the count of the list | unsigned integer | The number of nodes in the list | None |
+| void Save(File &) | Method the serialize the state of the list into a file | void | None | File address being written to |
+| void Load(File &) | Method to retrieve a List object from a file | void | None | File address being read from |
 
 ## See Also
 [GameNode](GameNode.md)
