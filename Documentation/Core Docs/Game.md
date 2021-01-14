@@ -21,20 +21,11 @@
 
 # GameLoop
 
+## Function:
+| Signature | Description | Return type | Return value | Arguments | 
+| :-------- | :---------: | :----------: | :-------: | ----------: |
 
-## Fields:
-| Type    | Name      | Description |
-| :------------- | :----------: | -----------: |
-
-
-## Constuctors
-| Type | Arguments | Signature |
-| :--- | :-------: | --------: |
-
-
-## Operators
-| Type | Arguments | Signature |
-| :--- | :-------: | --------: |
+# Generator
 
 ## Functions:
 | Signature | Description | Return type | Return value | Arguments | 
