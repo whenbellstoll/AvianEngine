@@ -21,6 +21,12 @@ The goals of this engine are to provide a straightforward, well documented, begi
 
 Refer to the Docs included in this repository to learn more functionality of both AvianEditor and AvianCore. 
 
+## License
+
+AvianEngine is free and open source software distributed under the permissive [MIT License](LICENSE.txt "MIT License").
+No royalties, fees, or anything else for using the engine or its tools, nothing, the users' games are theirs. 
+Avian's development is fully independent, empowering users to help shape the engine to match their needs. 
+
 ## Installation
 
 Install [AvianEditor,](https://www.duckduckgo.com) installs both Editor and Core.
@@ -37,6 +43,4 @@ Avian doesn't end at just being an engine, we hope to foster an ever-growing gam
 The main channel of our community is currently the [Avian Developers Discord](https://discord.gg/QYHgdaZZH5).
 We value our community, before interacting read our [Code of Conduct.](Code%20of%20Conduct.md "AvianEngine Code of Conduct")
 
-## License
 
-AvianEngine is distributed under the [MIT License](LICENSE.txt)
