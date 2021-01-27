@@ -66,7 +66,7 @@ Otherwise, your bug report will be closed as it'll be considered too difficult t
 
 Now that you've read the guidelines, click the link below to create a bug report:
 
-- **[Report a bug](https://github.com/whenbellstoll/AvianEngine/issues/new?assignees=&labels=&template=bug_report.md&title=)**
+**[Report a bug](https://github.com/whenbellstoll/AvianEngine/issues/new?assignees=&labels=&template=bug_report.md&title=)**
 
 ## Contributing pull requests
 
