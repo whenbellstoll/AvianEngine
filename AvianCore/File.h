@@ -13,7 +13,7 @@ struct ID
 
 struct FRECT;
 
-class FUNCORE_API File
+class   File
 {
 	FILE * f;
 	bool read;
@@ -75,7 +75,7 @@ public:
 };
 
 
-class FUNCORE_API String
+class   String
 {
 	char * pc;
 public:
@@ -92,13 +92,13 @@ public:
 	
 	String & operator  =(const String &);
 	String & operator +=(const String &);
-	friend FUNCORE_API String operator+(const String &,const String &);
-	friend FUNCORE_API int    operator==(const String &,const String &);
-	friend FUNCORE_API int    operator!=(const String &,const String &);
-	friend FUNCORE_API int    operator==(const String &,const char *);
-	friend FUNCORE_API int    operator==(const char *,const String &);
-	friend FUNCORE_API int    operator!=(const String &,const char *);
-	friend FUNCORE_API int    operator!=(const char *,const String &);
+	friend   String operator+(const String &,const String &);
+	friend   int    operator==(const String &,const String &);
+	friend   int    operator!=(const String &,const String &);
+	friend   int    operator==(const String &,const char *);
+	friend   int    operator==(const char *,const String &);
+	friend   int    operator!=(const String &,const char *);
+	friend   int    operator!=(const char *,const String &);
 
 	void Load(File &);
 	void Save(File &);
@@ -130,7 +130,7 @@ public:
 		const char * cname::ClassName(){ return cr.name;}
 
 
-struct FUNCORE_API CREATE
+struct CREATE
 {
 	String name;
 	node * (*pCreateObject)();

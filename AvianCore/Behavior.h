@@ -21,7 +21,7 @@ public:
 	DYNCREATED
 };
 
-class FUNCORE_API Behavior:public node
+class Behavior:public node
 {
 	std::vector<Bnode> Bnodes;
 	std::vector<int> FunctionsIndexes;

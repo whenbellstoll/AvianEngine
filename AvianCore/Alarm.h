@@ -1,7 +1,7 @@
 #ifndef _ALARM_H_
 #define _ALARM_H_
 
-class FUNCORE_API Alarm:public node
+class Alarm: public node
 {
 protected:
 	int		id;			
@@ -53,7 +53,7 @@ public:
 };
 
 
-class FUNCORE_API AlarmPTR
+class   AlarmPTR
 {
 	Alarm *alarmPtr;
 	static Alarm * dummyAlarmPtr;
