@@ -11,15 +11,15 @@
 	void OnLoad(File &);
 	void SetDataPath();
 	
-	extern FUNCORE_API void (*LoadGameFileP)();
-    extern FUNCORE_API void (*ModeP)();
-	extern FUNCORE_API void (*FunP)();
-	extern FUNCORE_API void (*BuildLogicP)();
-	extern FUNCORE_API void (*OnGameStartP)();
-	extern FUNCORE_API void (*OnGameEndP)();
-	extern FUNCORE_API void (*OnSaveP)(File &);
-	extern FUNCORE_API void (*OnLoadP)(File &);
-	extern FUNCORE_API void (*SetDataPathP)();
+	extern   void (*LoadGameFileP)();
+    extern   void (*ModeP)();
+	extern   void (*FunP)();
+	extern   void (*BuildLogicP)();
+	extern   void (*OnGameStartP)();
+	extern   void (*OnGameEndP)();
+	extern   void (*OnSaveP)(File &);
+	extern   void (*OnLoadP)(File &);
+	extern   void (*SetDataPathP)();
 
 
 #endif

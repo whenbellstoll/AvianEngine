@@ -26,7 +26,7 @@
 #endif
 
 #ifdef ERROR_MESSAGES
-class FUNCORE_API Console  
+class   Console  
 {
 	Variable buffer;
 	void Display();
@@ -44,7 +44,7 @@ public:
 };
 
 
-struct FUNCORE_API UserError
+struct   UserError
 {
 	char objectName[256];
 	char objectType[256];

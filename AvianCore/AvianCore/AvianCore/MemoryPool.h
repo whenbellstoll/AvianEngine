@@ -3,7 +3,7 @@
 
 class MemoryPoolImp;
 
-class FUNCORE_API MemoryPool
+class   MemoryPool
 {
 	MemoryPoolImp * imp;
 	MemoryPool(const MemoryPool &);

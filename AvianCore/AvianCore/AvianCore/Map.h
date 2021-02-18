@@ -23,12 +23,12 @@ public:
 };
 
 class Alarm;
-extern FUNCORE_API FunRect zrect ;
+extern   FunRect zrect ;
 
 
 struct MapImp;
 
-class FUNCORE_API Map:public node
+class   Map:public node
 {
 public:
 	
@@ -175,7 +175,7 @@ public:
 
 };
 
-class FUNCORE_API MapPTR
+class   MapPTR
 {
 	Map *mapPtr;
 	static Map * dummyMapPtr;

@@ -1,13 +1,13 @@
 #ifndef _HEADERS_H_
 #define _HEADERS_H_
 
-#include "FunCore.h"
+#include "Core.h"
 #include "Constants.h" 
 #include "MemoryPool.h"
 #include "Array.h"
 #include "input.h"
 #include "DDUtil.h"
-#include "FunFile.h"
+#include "File.h"
 #include "node.h"
 #include "RandomNumbers.h"
 #include "ViewPort.h" 
@@ -19,7 +19,7 @@
 #include "MovementPattern.h"
 #include "SpriteList.h" 
 #include "Variable.h"
-#include "FunMap.h"							  
+#include "Map.h"							  
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Sprite.h"
@@ -48,7 +48,7 @@
 
 #include "Globals.h"
 #include "ParticleSystem.h"
-#include "FunMain.h"
+#include "Main.h"
 #include "Generator.h"
 
 

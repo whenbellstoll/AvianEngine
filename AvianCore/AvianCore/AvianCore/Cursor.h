@@ -1,7 +1,7 @@
 #ifndef _FUNCURSOR_H_
 #define _FUNCURSOR_H_
 
-class FUNCORE_API FunCursor: public node
+class   FunCursor: public node
 {
 private:
 	String name;

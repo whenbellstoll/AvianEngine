@@ -4,7 +4,7 @@
 
 struct SBImp;
 
-class FUNCORE_API SoundBase:public node    
+class   SoundBase:public node    
 {
 
 	WAVEFORMATEX* m_pwfx;      

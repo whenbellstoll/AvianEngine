@@ -1,7 +1,7 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 
-class FUNCORE_API List:public node
+class   List:public node
 {
 protected:
 

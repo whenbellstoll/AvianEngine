@@ -1,7 +1,7 @@
 #ifndef _SOUND_H_
 #define _SOUND_H_
 
-class FUNCORE_API Sound : public SoundBase  
+class   Sound : public SoundBase  
 {
 	int m_PlayPercentage;
 
@@ -20,7 +20,7 @@ public:
 	DYNCREATED
 };
 
-class FUNCORE_API SoundPTR
+class   SoundPTR
 {
 	Sound *soundPtr;
 	static Sound * dummySoundPtr;

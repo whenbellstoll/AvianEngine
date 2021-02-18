@@ -8,7 +8,7 @@ LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 void GetWindowDimension(int& ,int&);
 void Free();
 
-FUNCORE_API int APIENTRY FunMain(HINSTANCE hInstance,
+  int APIENTRY FunMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR     lpCmdLine,
                      int       nCmdShow);

@@ -3,7 +3,7 @@
 
 class NetworkComponent;
 
-class FUNCORE_API Game: public node
+class   Game: public node
 {
 	int replayExitKey;
 	unsigned int userFPS;
@@ -30,7 +30,7 @@ class FUNCORE_API Game: public node
 	bool navigation;
 	int currentNavigation;
 
-	friend FUNCORE_API int APIENTRY FunMain(HINSTANCE,HINSTANCE,LPSTR,int);
+	friend   int APIENTRY FunMain(HINSTANCE,HINSTANCE,LPSTR,int);
 
 public:
 	int    li;

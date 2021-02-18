@@ -1,7 +1,7 @@
 #ifndef _MOVEMENTPATTERN_H_
 #define _MOVEMENTPATTERN_H_
 
-class FUNCORE_API MovementPattern:public node
+class   MovementPattern:public node
 {
 	struct PatternVector{
 		float PunitX;

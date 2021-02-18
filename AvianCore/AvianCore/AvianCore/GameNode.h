@@ -6,7 +6,7 @@ struct KeyboardInputKeys{
 	};
 
 class ParticleSystem;
-class FUNCORE_API GameNode:public node
+class   GameNode:public node
 {
 protected:
 	int	id;

@@ -1,7 +1,7 @@
 #ifndef _PARTICLESYSTEM_H_
 #define _PARTICLESYSTEM_H_
 
-class FUNCORE_API Particle
+class   Particle
 {
 	ParticleSystem * m_ps;
 	float         m_x0;
@@ -81,7 +81,7 @@ public:
 };
 
 
-class FUNCORE_API ParticleSystem:public node
+class   ParticleSystem:public node
 {
 	std::vector<Particle> m_particles;
 	String       name;
@@ -148,7 +148,7 @@ public:
 	DYNCREATED
 };
 
-class FUNCORE_API ParticleSystemPTR
+class   ParticleSystemPTR
 {
 	ParticleSystem *particleSystemPTR;
 	static ParticleSystem * dummyParticleSystemPTR;

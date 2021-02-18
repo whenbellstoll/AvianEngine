@@ -13,9 +13,9 @@
 	void SetClippers();
 	void ToggleMode();
 	void SetBackgroundToBlack();
-	void FUNCORE_API SetMode(int w,int h,int d);
-	int  FUNCORE_API GetBmpWidth(char*);
-	int  FUNCORE_API GetBmpHeight(char*);
+	void   SetMode(int w,int h,int d);
+	int    GetBmpWidth(char*);
+	int    GetBmpHeight(char*);
 
 	extern bool IsLoading; 
 	void LoadingFunction();

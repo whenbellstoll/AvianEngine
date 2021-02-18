@@ -24,9 +24,9 @@ public:
 extern Random fRandom;
 extern Random iRandom;
 
-FUNCORE_API float RandFlt(float);
-FUNCORE_API unsigned int RandInt(unsigned int);
-FUNCORE_API void RandReset(unsigned int);
+  float RandFlt(float);
+  unsigned int RandInt(unsigned int);
+  void RandReset(unsigned int);
 
 
 

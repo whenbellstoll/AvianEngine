@@ -4,7 +4,7 @@
 
 struct SCImp;
 
-class FUNCORE_API SoundCard  
+class   SoundCard  
 {
 	SCImp * pSCImp;	
 	int m_nChannels;

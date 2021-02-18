@@ -16,7 +16,7 @@ enum TimerUnit
 };
 
 
-class FUNCORE_API Timer
+class   Timer
 {
 	bool             m_Run;
 	unsigned int     m_Unit;
@@ -41,7 +41,7 @@ public:
 	void Load(File &); 
 };
 
-class FUNCORE_API Edge
+class   Edge
 {
 	int           m_To;
 	int           m_Flag;
@@ -61,7 +61,7 @@ public:
 };
 
 class StateMachine;
-class FUNCORE_API State
+class   State
 {
 	std::vector<Edge>   m_Edges;
 	F_V_I_PV       m_StateFunction; 
@@ -80,7 +80,7 @@ public:
 	std::vector<Edge> & Edges();
 };
 
-class FUNCORE_API StateMachine
+class   StateMachine
 {
 protected:
 	std::vector<State> m_States;
@@ -96,7 +96,7 @@ public:
 	std::vector<State> & States();
 };
 
-class FUNCORE_API StateMachineTraverser : public node
+class   StateMachineTraverser : public node
 {
 protected:
 
@@ -126,7 +126,7 @@ public:
 };
 
 
-struct FUNCORE_API Position
+struct   Position
 {
 	float worldPositionX;
 	float worldPositionY;
@@ -175,7 +175,7 @@ public:
 
 class Sprite;
 class PathStateMachineTraverser;
-class FUNCORE_API PathStateMachine: public StateMachine
+class   PathStateMachine: public StateMachine
 {
 	SquareMatrix <int>   ShortestDistanceArray;
 	SquareMatrix <int>   ShortestPathNodesArray;
@@ -198,7 +198,7 @@ public:
 	void DisplayPath(COLORREF,Sprite *);
 };
 
-class FUNCORE_API PathStateMachineTraverser: public StateMachineTraverser
+class   PathStateMachineTraverser: public StateMachineTraverser
 {
 	bool shortestPath;
 	int  currentNode;

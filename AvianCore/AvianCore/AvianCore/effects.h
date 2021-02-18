@@ -3,7 +3,7 @@
 
 struct ScreenImp;
 
-class FUNCORE_API Screen
+class   Screen
 {
 	ScreenImp * pScreenImp;	
 	DWORD bitDepth;
@@ -35,7 +35,7 @@ public:
 
 struct GImp;
 
-class FUNCORE_API GammaRamp:public node
+class   GammaRamp:public node
 {
 	GImp * pGImp;
 	int effectNumber;
@@ -63,7 +63,7 @@ public:
 };
 
 
-class FUNCORE_API OpenClose:public node
+class   OpenClose:public node
 {
 	COLORREF color;
 	int effectNumber;
@@ -95,7 +95,7 @@ public:
 	DYNCREATED
 };
 
-class FUNCORE_API RandomDissolve:public node
+class   RandomDissolve:public node
 {
 	int d1,d2;
 	int nRects;

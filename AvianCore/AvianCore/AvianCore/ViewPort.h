@@ -1,13 +1,13 @@
 #ifndef _VIEWPORT_H_
 #define _VIEWPORT_H_
    
-struct FUNCORE_API DeltaScroll
+struct   DeltaScroll
 {
 	float dx;
 	float dy;
 };
 
-struct FUNCORE_API FRECT
+struct   FRECT
 {
 	float top,left,bottom,right;
 	operator RECT()
@@ -21,7 +21,7 @@ struct FUNCORE_API FRECT
 	}
 };
 
-class FUNCORE_API ViewPort:public node
+class   ViewPort:public node
 {
 	float worldWidth;
 	float worldHeight;

@@ -8,7 +8,7 @@ class Alarm;
 extern FunRect MummyRect;
 extern Random rnText;
 
-class FUNCORE_API Variable:public node
+class   Variable:public node
 {
 	enum{DOUBLE,POINTER,STRING} type;
 
@@ -237,128 +237,128 @@ public:
 	bool operator>=(const char *);
 
 	
-	friend FUNCORE_API bool operator==(char,Variable &);
-	friend FUNCORE_API bool operator==(unsigned char,Variable &);
-	friend FUNCORE_API bool operator==(int,Variable &);
-	friend FUNCORE_API bool operator==(unsigned int,Variable &);
-	friend FUNCORE_API bool operator==(float,Variable &);
-	friend FUNCORE_API bool operator==(const char *,Variable &);
-	friend FUNCORE_API bool operator==(void *,Variable &);
+	friend   bool operator==(char,Variable &);
+	friend   bool operator==(unsigned char,Variable &);
+	friend   bool operator==(int,Variable &);
+	friend   bool operator==(unsigned int,Variable &);
+	friend   bool operator==(float,Variable &);
+	friend   bool operator==(const char *,Variable &);
+	friend   bool operator==(void *,Variable &);
 	
-	friend FUNCORE_API bool operator!=(char,Variable &);
-	friend FUNCORE_API bool operator!=(unsigned char,Variable &);
-	friend FUNCORE_API bool operator!=(int,Variable &);
-	friend FUNCORE_API bool operator!=(unsigned int,Variable &);
-	friend FUNCORE_API bool operator!=(float,Variable &);
-	friend FUNCORE_API bool operator!=(const char *,Variable &);
-	friend FUNCORE_API bool operator!=(void *,Variable &);
+	friend   bool operator!=(char,Variable &);
+	friend   bool operator!=(unsigned char,Variable &);
+	friend   bool operator!=(int,Variable &);
+	friend   bool operator!=(unsigned int,Variable &);
+	friend   bool operator!=(float,Variable &);
+	friend   bool operator!=(const char *,Variable &);
+	friend   bool operator!=(void *,Variable &);
 	
-	friend FUNCORE_API bool operator<(char,Variable &);
-	friend FUNCORE_API bool operator<(unsigned char,Variable &);
-	friend FUNCORE_API bool operator<(int,Variable &);
-	friend FUNCORE_API bool operator<(unsigned int,Variable &);
-	friend FUNCORE_API bool operator<(float,Variable &);
-	friend FUNCORE_API bool operator<(const char *,Variable &);
+	friend   bool operator<(char,Variable &);
+	friend   bool operator<(unsigned char,Variable &);
+	friend   bool operator<(int,Variable &);
+	friend   bool operator<(unsigned int,Variable &);
+	friend   bool operator<(float,Variable &);
+	friend   bool operator<(const char *,Variable &);
 
-	friend FUNCORE_API bool operator<=(char,Variable &);
-	friend FUNCORE_API bool operator<=(unsigned char,Variable &);
-	friend FUNCORE_API bool operator<=(int,Variable &);
-	friend FUNCORE_API bool operator<=(unsigned int,Variable &);
-	friend FUNCORE_API bool operator<=(float,Variable &);
-	friend FUNCORE_API bool operator<=(const char *,Variable &);
+	friend   bool operator<=(char,Variable &);
+	friend   bool operator<=(unsigned char,Variable &);
+	friend   bool operator<=(int,Variable &);
+	friend   bool operator<=(unsigned int,Variable &);
+	friend   bool operator<=(float,Variable &);
+	friend   bool operator<=(const char *,Variable &);
 	
-	friend FUNCORE_API bool operator>(char,Variable &);
-	friend FUNCORE_API bool operator>(unsigned char,Variable &);
-	friend FUNCORE_API bool operator>(int,Variable &);
-	friend FUNCORE_API bool operator>(unsigned int,Variable &);
-	friend FUNCORE_API bool operator>(float,Variable &);
-	friend FUNCORE_API bool operator>(const char *,Variable &);
+	friend   bool operator>(char,Variable &);
+	friend   bool operator>(unsigned char,Variable &);
+	friend   bool operator>(int,Variable &);
+	friend   bool operator>(unsigned int,Variable &);
+	friend   bool operator>(float,Variable &);
+	friend   bool operator>(const char *,Variable &);
 	
-	friend FUNCORE_API bool operator>=(char,Variable &);
-	friend FUNCORE_API bool operator>=(unsigned char,Variable &);
-	friend FUNCORE_API bool operator>=(int,Variable &);
-	friend FUNCORE_API bool operator>=(unsigned int,Variable &);
-	friend FUNCORE_API bool operator>=(float,Variable &);
-	friend FUNCORE_API bool operator>=(const char *,Variable &);
+	friend   bool operator>=(char,Variable &);
+	friend   bool operator>=(unsigned char,Variable &);
+	friend   bool operator>=(int,Variable &);
+	friend   bool operator>=(unsigned int,Variable &);
+	friend   bool operator>=(float,Variable &);
+	friend   bool operator>=(const char *,Variable &);
 
 	Variable & operator+=(double);
-	friend FUNCORE_API Variable operator+(const Variable &,double);
-	friend FUNCORE_API Variable operator+(double,const Variable &);
+	friend   Variable operator+(const Variable &,double);
+	friend   Variable operator+(double,const Variable &);
 
 	Variable & operator+=(int);
-	friend FUNCORE_API Variable operator+(const Variable &,int);
-	friend FUNCORE_API Variable operator+(int,const Variable &);
+	friend   Variable operator+(const Variable &,int);
+	friend   Variable operator+(int,const Variable &);
 
 	Variable & operator+=(float);
-	friend FUNCORE_API Variable operator+(const Variable &,float);
-	friend FUNCORE_API Variable operator+(float,const Variable &);
+	friend   Variable operator+(const Variable &,float);
+	friend   Variable operator+(float,const Variable &);
 
 	Variable & operator+=(const char *);
-	friend FUNCORE_API Variable operator+(const Variable &,char *);
-	friend FUNCORE_API Variable operator+(const char *,const Variable &);
+	friend   Variable operator+(const Variable &,char *);
+	friend   Variable operator+(const char *,const Variable &);
 
 	Variable & operator+=(const Variable &);
-	friend FUNCORE_API Variable operator+(const Variable &,const Variable &);
+	friend   Variable operator+(const Variable &,const Variable &);
 
 	Variable & operator-=(double);
-	friend FUNCORE_API Variable operator-(const Variable &,double);
-	friend FUNCORE_API Variable operator-(double,const Variable &);
+	friend   Variable operator-(const Variable &,double);
+	friend   Variable operator-(double,const Variable &);
 
 	Variable & operator-=(int);
-	friend FUNCORE_API Variable operator-(const Variable &,int);
-	friend FUNCORE_API Variable operator-(int,const Variable &);
+	friend   Variable operator-(const Variable &,int);
+	friend   Variable operator-(int,const Variable &);
 
 	Variable & operator-=(float);
-	friend FUNCORE_API Variable operator-(const Variable &,float);
-	friend FUNCORE_API Variable operator-(float,const Variable &);
+	friend   Variable operator-(const Variable &,float);
+	friend   Variable operator-(float,const Variable &);
 
 	Variable & operator-=(const Variable &);
-	friend FUNCORE_API Variable operator-(const Variable &,const Variable &);
+	friend   Variable operator-(const Variable &,const Variable &);
 
 	Variable & operator*=(double);
-	friend FUNCORE_API Variable operator*(const Variable &,double);
-	friend FUNCORE_API Variable operator*(double,const Variable &);
+	friend   Variable operator*(const Variable &,double);
+	friend   Variable operator*(double,const Variable &);
 
 	Variable & operator*=(int);
-	friend FUNCORE_API Variable operator*(const Variable &,int);
-	friend FUNCORE_API Variable operator*(int,const Variable &);
+	friend   Variable operator*(const Variable &,int);
+	friend   Variable operator*(int,const Variable &);
 
 	Variable & operator*=(float);
-	friend FUNCORE_API Variable operator*(const Variable &,float);
-	friend FUNCORE_API Variable operator*(float,const Variable &);
+	friend   Variable operator*(const Variable &,float);
+	friend   Variable operator*(float,const Variable &);
 
 	Variable & operator*=(const Variable &);
-	friend FUNCORE_API Variable operator*(const Variable &,const Variable &);
+	friend   Variable operator*(const Variable &,const Variable &);
 
 	Variable & operator/=(double);
-	friend FUNCORE_API Variable operator/(const Variable &,double);
-	friend FUNCORE_API Variable operator/(double,const Variable &);
+	friend   Variable operator/(const Variable &,double);
+	friend   Variable operator/(double,const Variable &);
 
 	Variable & operator/=(int);
-	friend FUNCORE_API Variable operator/(const Variable &,int);
-	friend FUNCORE_API Variable operator/(int,const Variable &);
+	friend   Variable operator/(const Variable &,int);
+	friend   Variable operator/(int,const Variable &);
 
 	Variable & operator/=(float);
-	friend FUNCORE_API Variable operator/(const Variable &,float);
-	friend FUNCORE_API Variable operator/(float,const Variable &);
+	friend   Variable operator/(const Variable &,float);
+	friend   Variable operator/(float,const Variable &);
 
 	Variable & operator/=(const Variable &);
-	friend FUNCORE_API Variable operator/(const Variable &,const Variable &);
+	friend   Variable operator/(const Variable &,const Variable &);
 
 	Variable & operator%=(double);
-	friend FUNCORE_API Variable operator%(const Variable &,double);
-	friend FUNCORE_API Variable operator%(double,const Variable &);
+	friend   Variable operator%(const Variable &,double);
+	friend   Variable operator%(double,const Variable &);
 
 	Variable & operator%=(int);
-	friend FUNCORE_API Variable operator%(const Variable &,int);
-	friend FUNCORE_API Variable operator%(int,const Variable &);
+	friend   Variable operator%(const Variable &,int);
+	friend   Variable operator%(int,const Variable &);
 
 	Variable & operator%=(float);
-	friend FUNCORE_API Variable operator%(const Variable &,float);
-	friend FUNCORE_API Variable operator%(float,const Variable &);
+	friend   Variable operator%(const Variable &,float);
+	friend   Variable operator%(float,const Variable &);
 
 	Variable & operator%=(const Variable &);
-	friend FUNCORE_API Variable operator%(const Variable &,const Variable &);
+	friend   Variable operator%(const Variable &,const Variable &);
 
 	bool operator!();
 	operator double();
@@ -474,7 +474,7 @@ public:
 	DYNCREATED
 };
 
-class FUNCORE_API VariablePTR
+class   VariablePTR
 {
 	Variable *variablePtr;
 	static Variable * dummyVariablePtr;

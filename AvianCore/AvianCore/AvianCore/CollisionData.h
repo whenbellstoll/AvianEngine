@@ -3,7 +3,7 @@
 
 enum ClassType{ColSegment, ColCircle };
 
-class FUNCORE_API  CollisionData:public node
+class CollisionData:public node
 {
 public:
 	virtual ClassType Type() = 0;
@@ -12,7 +12,7 @@ public:
 
 class CollisionCircle;
 
-class FUNCORE_API CollisionSegment:public CollisionData
+class   CollisionSegment:public CollisionData
 {
 	float originX;
 	float originY;
@@ -67,7 +67,7 @@ public:
 	DYNCREATED
 };
 
-class FUNCORE_API CollisionCircle:public CollisionData
+class   CollisionCircle:public CollisionData
 {
 	float originX;
 	float originY;

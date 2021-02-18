@@ -1,7 +1,7 @@
 #ifndef _NODE_H_
 #define _NODE_H_
 
-class FUNCORE_API node
+class node
 {
 protected:
 

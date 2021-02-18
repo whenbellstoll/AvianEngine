@@ -4,7 +4,7 @@
 class Alarm;
 class MovementPattern;
 
-class FUNCORE_API Sprite:public node
+class   Sprite:public node
 {
 private:
 	int id;																		
@@ -482,7 +482,7 @@ public:
 
 
 
-class FUNCORE_API SpritePTR
+class   SpritePTR
 {
 	Sprite *spritePtr;
 	static Sprite * dummySpritePtr;
@@ -499,7 +499,7 @@ public:
 
 struct QueryImp;
 
-class FUNCORE_API Query
+class   Query
 {
 	QueryImp * p;
 public:

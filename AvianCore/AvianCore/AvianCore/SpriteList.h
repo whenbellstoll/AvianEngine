@@ -6,7 +6,7 @@ class Sound;
 struct FImp;
 
 
-class FUNCORE_API FrameElem
+class   FrameElem
 {
 public:
 	FrameElem();
@@ -65,7 +65,7 @@ public:
 	void   operator delete[](void *);
 };
 
-class FUNCORE_API AnimationElem
+class   AnimationElem
 {
 public:
 	AnimationElem();
@@ -80,7 +80,7 @@ public:
 	void   operator delete[](void *);
 };
 
-class FUNCORE_API SpriteElem
+class   SpriteElem
 {
 public:
 	SpriteElem();

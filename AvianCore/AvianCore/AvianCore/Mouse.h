@@ -33,7 +33,7 @@ struct MouseEvent
 
 struct MoImp;
 
-class FUNCORE_API Mouse
+class   Mouse
 {
 public:
 	unsigned int doubleClickAccuracy;

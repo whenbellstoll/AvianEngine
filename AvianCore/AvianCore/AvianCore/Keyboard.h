@@ -4,7 +4,7 @@
 
 struct KImp;
 
-class FUNCORE_API Keyboard
+class   Keyboard
 {
 
 	HWND hWnd;

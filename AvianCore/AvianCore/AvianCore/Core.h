@@ -3,12 +3,12 @@
 
 #ifdef FUNCORE
 	#ifdef FUNCORE_EXPORTS
-		#define FUNCORE_API __declspec(dllexport)
+		#define   __declspec(dllexport)
 	#else
-		#define FUNCORE_API __declspec(dllimport)
+		#define   __declspec(dllimport)
 	#endif
 #else 
-	#define FUNCORE_API
+	#define  
 #endif
 
 #endif

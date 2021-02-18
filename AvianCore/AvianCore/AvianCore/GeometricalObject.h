@@ -1,7 +1,7 @@
 #ifndef __GEOMETRYDRAWN_H__
 #define __GEOMETRYDRAWN_H__
 
-class FUNCORE_API GeometricsDrawn : public node
+class   GeometricsDrawn : public node
 {
 public:
 	GeometricsDrawn();

@@ -1,7 +1,7 @@
 #ifndef _STREAMEDSOUND_H_
 #define _STREAMEDSOUND_H_
 
-class FUNCORE_API StreamedSound : public SoundBase  
+class   StreamedSound : public SoundBase  
 {
     DWORD m_LastPlayPosition;
     DWORD m_MidBuffer;
@@ -27,7 +27,7 @@ public:
 	DYNCREATED
 };
 
-class FUNCORE_API StreamedSoundPTR
+class   StreamedSoundPTR
 {
 	StreamedSound *streamedSoundPtr;
 	static StreamedSound * dummyStreamedSoundPtr;

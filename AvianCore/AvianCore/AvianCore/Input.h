@@ -14,7 +14,7 @@ struct Key
 
 struct DImp;
 
-class FUNCORE_API DirectInput
+class   DirectInput
 {
 	static unsigned int References;
 	static HWND hWnd;
