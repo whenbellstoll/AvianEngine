@@ -1,9 +1,9 @@
 #ifndef __MYGAME_H__
 #define __MYGAME_H__
-
+#include "File.h"
 	void LoadGameFile();
 	void Mode();
-	void Fun();
+	void Avian();
     void BuildLogic();
 	void OnGameStart();
 	void OnGameEnd();
@@ -13,7 +13,7 @@
 	
 	extern   void (*LoadGameFileP)();
     extern   void (*ModeP)();
-	extern   void (*FunP)();
+	extern   void (*AvianP)();
 	extern   void (*BuildLogicP)();
 	extern   void (*OnGameStartP)();
 	extern   void (*OnGameEndP)();

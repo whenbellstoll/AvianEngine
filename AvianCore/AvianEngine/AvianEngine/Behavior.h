@@ -1,7 +1,7 @@
 #ifndef _BEHAVIOR_H_
 #define _BEHAVIOR_H_
-
-class Bnode :public node
+#include "Node.h"
+class Bnode : public node
 {
 public:
 	int          Index       ;

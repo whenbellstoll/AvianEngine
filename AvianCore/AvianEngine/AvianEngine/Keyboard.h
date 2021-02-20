@@ -15,7 +15,7 @@ class   Keyboard
 
 public:
 
-	DWORD replayFrame;
+	DWORD replayFrame; // A Windows "Double Word" data type, its basically a unsigned 32 bit integer, this keeps track of the inputs (all of them) on the last frame.
 	Keyboard(HWND,HINSTANCE);
 	~Keyboard();
 	bool IsPressed(unsigned char); 

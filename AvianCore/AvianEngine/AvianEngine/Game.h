@@ -2,6 +2,9 @@
 #define __GAME_H__
 
 class NetworkComponent;
+#include "File.h"
+#include "Behavior.h"
+#include "GameNode.h"
 
 class   Game: public node
 {
@@ -30,7 +33,7 @@ class   Game: public node
 	bool navigation;
 	int currentNavigation;
 
-	friend   int APIENTRY FunMain(HINSTANCE,HINSTANCE,LPSTR,int);
+	friend int Main(HINSTANCE,HINSTANCE,LPSTR,int);
 
 public:
 	int    li;
@@ -93,6 +96,7 @@ public:
 	friend   void UnknownStateMachine();
 
 	///Network
+	/*
 	NetworkComponent *pNetworkSession;
 	HRESULT HostNetworkSession(GUID,DWORD,LPCTSTR,LPCTSTR);
 	HRESULT JoinNetworkSession(GUID ,LPCTSTR ,DWORD ,LPCTSTR);
@@ -104,6 +108,7 @@ public:
 	bool ReceivedFromPlayers();
 	void ReceivedFromPlayers(bool);
 	_LISTDWORD HandleList;
+	*/
 	//Network
 };
 

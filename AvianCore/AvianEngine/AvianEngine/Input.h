@@ -13,11 +13,13 @@ struct Key
 };
 
 struct DImp;
-
+// Notes:
+// This DirectInput will need completely revised it's based off a DirectX 8 feature of the same name
+// This engine is not using DirectX so you will have to find another way to get the input
 class   DirectInput
 {
 	static unsigned int References;
-	static HWND hWnd;
+	static HWND hWnd; //Windows Environment Variable
 
 public:
 
