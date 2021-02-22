@@ -8,17 +8,20 @@ Game::~Game()
 {
 }
 
-void Game::Name(const char*)
+void Game::Name(const char* n)
 {
+	name = n;
 }
 
 const char* Game::Name(void)
 {
-	return nullptr;
+	return (const char*)name;
 }
 
 void Game::LevelNumber(int i)
 {
+	prevNumber = levelNumber;
+	levelNumber = i;
 }
 
 int Game::LevelNumber(void)
@@ -122,33 +125,41 @@ bool Game::IsFullScreen()
 
 Behavior& Game::GetCurrentLevelBehavior()
 {
-	// TODO: insert return statement here
+	GameNode* gn = Search(levelNumber);
+	return &gn->behavior;
 }
 
-void Game::ViewPortPosition(unsigned int, unsigned int, bool)
+void Game::ViewPortPosition(unsigned int ui, unsigned int uii, bool b)
 {
+	GameNode* gn = Search(levelNumber);
+	gn->ViewPortPosition(ui, uii, b);
 }
 
 unsigned int Game::ViewPortPositionX()
 {
-	return 0;
+	GameNode* gn = Search(levelNumber);
+	return gn->viewPort.WorldXPos();
 }
 
 unsigned int Game::ViewPortPositionY()
 {
-	return 0;
+	GameNode* gn = Search(levelNumber);
+	return gn->viewPort.WorldXPos();
 }
 
 void Game::StartRecording()
 {
+	//not yet
 }
 
 void Game::StopRecording()
 {
+	//not yet
 }
 
 void Game::ReplayExitKey(int)
 {
+	//not yet
 }
 
 void Game::Replay(bool)
@@ -176,54 +187,60 @@ void Game::LoadReplay()
 {
 }
 
-void Game::SaveGame(const char*)
+void Game::SaveGame(const char* n)
 {
+	File file = File(n, File::Mode::WRITE);
+	Search(levelNumber)->Save(&file);
 }
 
-void Game::LoadGame(const char*)
+void Game::LoadGame(const char* n)
 {
+	File file = File(n, File::Mode::READ);
+	file.Read(gameNodeList.Head());
 }
 
 void Game::SaveReplay(const char*)
 {
+	// not yet
 }
 
 void Game::LoadReplay(const char*, bool)
 {
+	// not yet
 }
 
 void Game::SaveScreenShot()
 {
+	// not yet
 }
 
 void Game::LoadReplay(const char*)
 {
+	// not yet
 }
 
 void Game::SaveReplayDialog()
 {
+	// not yet
+
 }
 
 void Game::LoadReplayDialog()
 {
+	// not yet
 }
 
 void Game::RealLoadGame()
 {
+	// not yet
 }
 
 void Game::RealSaveGame()
 {
-}
-
-void Game::SaveGameDialog()
-{
-}
-
-void Game::LoadGameDialog()
-{
+	//
 }
 
 void Game::LoadInputData(const char*)
 {
+	// not yet
 }

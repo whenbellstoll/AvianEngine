@@ -52,9 +52,9 @@
 	//-------------------------------------------------------------------------
 	bool CSCircleClipping(float,float,float,float,float,float,float);
 
-//	bool IntersectRectangles(const FunRect &,const FunRect &);
-	bool IntersectRectangles1(const FunRect &,const FunRect &);
-	bool IntersectRectangles2(FunRect &,const FunRect &,const FunRect &);
+//	bool IntersectRectangles(const Rect &,const Rect &);
+	bool IntersectRectangles1(const Rect &,const Rect &);
+	bool IntersectRectangles2(Rect &,const Rect &,const Rect &);
 	bool IntersectRectangles3(const FRECT & ,const FRECT & );
 	
 
