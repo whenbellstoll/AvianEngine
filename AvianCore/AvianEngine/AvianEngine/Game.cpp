@@ -71,7 +71,7 @@ bool Game::ShowCursor()
 
 const char* Game::LevelName()
 {
-	return nullptr;
+	return Search(levelNumber)->Name();
 }
 
 void Game::NextLevel()
@@ -164,6 +164,7 @@ void Game::ReplayExitKey(int)
 
 void Game::Replay(bool)
 {
+	//not yet
 }
 
 void Game::SaveGame()
@@ -181,10 +182,12 @@ bool Game::ReplayMode()
 
 void Game::SaveReplay()
 {
+	// not yet
 }
 
 void Game::LoadReplay()
 {
+	// not yet
 }
 
 void Game::SaveGame(const char* n)
