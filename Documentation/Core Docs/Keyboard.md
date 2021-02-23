@@ -41,12 +41,12 @@
 | Nothing() | Returns true if no key is pressed on the current frame | bool | True if no keys are pressed, otherwise false | None |
 | Any() | Returns true if any key is pressed, otherwise false. | bool | True if any key is pressed, otherwise false | None |
 | GetCharAsString() | Returns the current triggered key as string | const char * | The triggered key as a null terminated string, if no key then returns an empty string "" | None |
-| GetString(char * , unsigned int) | | | | |
-| TapCounter(unsigned char) | | | | |
-| HoldCounter(unsigned char) | | | | |
+| GetString(char * , unsigned int) | Assign a string keys the user types, cease when either enter or the max number is reached | unsigned int | 0 if empty, 1 if enter was pressed, 2 if full | Argument 1: The string to be filled Argument 2: The maximum length of the string |
+| TapCounter(unsigned char) | Returns how many frames have passed since a key was pressed to a max of 256 | unsigned int | How many frames since the key has been pressed | The desired key |
+| HoldCounter(unsigned char) | Returns how many frames a key has been held | unsigned int | How many frames the key has been held | The desired key |
 | StartReceivingData() | | void | | |
 | StopReceivingData() | | void | | |
-| Update(BYTE& keysPressed ) | Updates the state of the keys | unsigned int | returns success 1 or failure 0 | The keys that were pressed on the previous frame |
+| Update(unsigned char * & keysPressed ) | Updates the state of the keys | unsigned int | returns success 1 or failure 0 | The keys that were pressed on the previous frame |
 | Reset() | Set Keyboard to deafult state | void | None | None |
 
 
