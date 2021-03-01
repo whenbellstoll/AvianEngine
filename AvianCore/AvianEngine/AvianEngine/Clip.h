@@ -1,8 +1,26 @@
 #ifndef _CLIP_H_
 #define _CLIP_H_
 
-	enum{TOPC=0X01, BOTTOMC=0X02, RIGHTC=0X04, LEFTC=0X08};
+#include "ViewPort.h"
+#include "Constants.h"
+
+	enum {TOPC=0X01, BOTTOMC=0X02, RIGHTC=0X04, LEFTC=0X08};
 	typedef unsigned int outcode;
+
+	//-------------------------------------------------------------------------
+	//Definition:	The first four arguments of this function are the coordinates
+	//		of the ending points of the line 
+	//		The second four arguments are another line
+	//		This function test if the lines intersect
+	//Arguments:	Eight float
+	//Modifies what:None
+	//Functions calling this function:
+	//				Sprite::CheckMapCollision()
+	//Functions called by this function:
+	//				CompOutCode(float,float,float,float,float,float)
+	//Example:
+	//-------------------------------------------------------------------------
+	bool CSLineOnLine(float, float, float, float, float, float, float, float);
 
 	//-------------------------------------------------------------------------
 	//Definition:	The first four arguments of this function are the coordinates

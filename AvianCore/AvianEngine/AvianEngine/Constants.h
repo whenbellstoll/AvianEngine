@@ -214,14 +214,14 @@
 #define DEFAULT_CURSOR          2000
 #define ApplyingShortestPath()		pathStateMachine.ShortPath()
 
-struct FunRect{
+struct Rect{
 	LONG left;
 	LONG top;
 	LONG right;
 	LONG bottom;
 };
 
-struct FunPoint{
+struct Point{
 	LONG x;
 	LONG y;
 };
