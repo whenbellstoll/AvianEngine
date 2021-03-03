@@ -1,9 +1,9 @@
 #ifndef _MAP_H_
 #define _MAP_H_
 
-class WrappingAlgorithme
+class WrappingAlgorithm
 {
-	FunRect rect1,rect2,sourcerect,rect,sources[4],destinations[4],rect1cpy;          
+	Rect rect1,rect2,sourcerect,rect,sources[4],destinations[4],rect1cpy;          
 	int w1,w2,h1,h2,rect2x,rect2y,x,y,vpx,vpy,initvpx,initvpy;
 	bool InViewPort;
 	char type;
@@ -13,17 +13,17 @@ class WrappingAlgorithme
 public:
 
 	unsigned int ArraySize;
-	FunRect * Sources();
-	FunRect * Destinations();
-	WrappingAlgorithme();
-	WrappingAlgorithme(const FunRect & rc1,const FunRect & rc2,bool InViewPort,int x,int y);
+	Rect * Sources();
+	Rect * Destinations();
+	WrappingAlgorithm();
+	WrappingAlgorithm(const FunRect & rc1,const FunRect & rc2,bool InViewPort,int x,int y);
 	void Position(int,int);
 	void Load(File &);
 	void Save(File &);
 };
 
 class Alarm;
-extern   FunRect zrect ;
+extern   Rect zrect ;
 
 
 struct MapImp;
@@ -61,7 +61,7 @@ private:
     float           speedX;             
 	float           speedY;             
 	COLORREF		transparencyColor;	
-	FunRect rect,rect1d,s,d,drect;
+	Rect rect,rect1d,s,d,drect;
 	bool FollowV;
 	bool pauseMap;
 
