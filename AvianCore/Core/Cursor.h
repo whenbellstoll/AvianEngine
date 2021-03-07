@@ -1,7 +1,7 @@
 #ifndef _FUNCURSOR_H_
 #define _FUNCURSOR_H_
 
-class   FunCursor: public node
+class   Cursor: public node
 {
 private:
 	String name;
@@ -17,8 +17,8 @@ private:
 	void ShowBoundingBox(bool);
 
 public:
-	FunCursor();
-	~FunCursor();
+	Cursor();
+	~Cursor();
 	
 	const char * Name();
 	void         AddSpriteCursor(unsigned int = DEFAULT_CURSOR,unsigned int = 0,unsigned int = 0,bool = PRECISECOLLISION);
