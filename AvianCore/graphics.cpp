@@ -79,12 +79,14 @@ void InitOpenGL()
 
     // glfw window creation
     // --------------------
-    global.window = glfwCreateWindow(800, 800, "Avian Engine", NULL, NULL);
+    global.window = glfwCreateWindow(640, 480, "Avian Engine", NULL, NULL);
     if (global.window == NULL)
     {
         printf("Failed to create GLFW window\n");
         glfwTerminate();
     }
+    // We need to create the Keyboard at this point.
+    global.keyboard = Keyboard();
     glfwMakeContextCurrent(global.window);
     glfwSetKeyCallback(global.window, Input_Update);
 

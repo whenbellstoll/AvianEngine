@@ -12,7 +12,9 @@
 #include "mempack.h"
 #include "graphics.h"
 #include "Avian/SpriteFull.h"
-#include "input.h"
+#include "Avian/Keyboard.h"
+#include "Avian/Constants.h"
+#include "InputUpdate.h"
 
 struct Global
 {
@@ -24,7 +26,7 @@ struct Global
 	Mempack vboPack;
 	Mempack pboPack;
 
-	Keyboard keys;
+	Keyboard keyboard;
 };
 
 extern Global global;

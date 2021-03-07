@@ -24,12 +24,14 @@ int main()
     Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "duckInst");
     duckInst1->fe = &duckSprite;
 
+    int width, height;
+    glfwGetWindowSize(global.window, &width, &height);
     // draw person on top (small depth)
     duckInst1->ZOrder(1);
     duckInst1->MapPositionX(-0.5f);
     duckInst1->MapPositionY(-0.5f);
-    duckInst1->ScaleX(0.007f);
-    duckInst1->ScaleY(0.007f);
+    duckInst1->ScaleX( 2 / (float)width );
+    duckInst1->ScaleY( 2 / (float)height ); 
 
     Sprite* breadInst[5];
     
@@ -42,8 +44,8 @@ int main()
         breadInst[i]->ZOrder(2); 
         breadInst[i]->MapPositionX(0.5f);
         breadInst[i]->MapPositionY( -0.5f + 0.2f * i );
-        breadInst[i]->ScaleX(0.01f);
-        breadInst[i]->ScaleY(0.01f);
+        breadInst[i]->ScaleX(2 / (float)width);
+        breadInst[i]->ScaleY(2 / (float)height);
     }
 
     // timer variables
@@ -66,27 +68,27 @@ int main()
         // Update controller "hold" variable
         glfwPollEvents();
 
-        // Determine Tap and Release
-        Input_ProcessState();
-
+        // Determine Key States
+        global.keyboard.ProcessKeys();
+    
         // input
         // -----
-        if (Input_KeyHold('A'))
+        if (global.keyboard.IsPressed('A') || global.keyboard.IsPressed(AK_LEFT))
             duckInst1->MapPositionX( duckInst1->MapPositionX() - elapsedTime );
 
-        if (Input_KeyHold('D'))
+        if (global.keyboard.IsPressed('D') || global.keyboard.IsPressed(AK_RIGHT))
             duckInst1->MapPositionX(duckInst1->MapPositionX() + elapsedTime);
 
-        if (Input_KeyHold('W'))
+        if (global.keyboard.IsPressed('W') || global.keyboard.IsPressed(AK_UP))
             duckInst1->MapPositionY(duckInst1->MapPositionY() + elapsedTime);
 
-        if (Input_KeyHold('S'))
+        if (global.keyboard.IsPressed('S') || global.keyboard.IsPressed(AK_DOWN) )
             duckInst1->MapPositionY(duckInst1->MapPositionY() - elapsedTime);
 
         // Just for a test
-        if (Input_KeyTap('T')) printf("Tap T\n");
-        if (Input_KeyHold('Y')) printf("Hold Y\n");
-        if (Input_KeyRelease('U')) printf("Release U\n");
+        if (global.keyboard.IsTriggered('T')) printf("Tap T\n");
+        if (global.keyboard.IsPressed('Y')) printf("Hold Y\n");
+        //if (global.keyboard.Any()) printf("Key pressed: \n"); // Prints constantly, only uncomment for demo 
 
         // render
         // ------
@@ -100,6 +102,11 @@ int main()
             breadInst[i]->DisplaySprite();
         }
 
+
+        if (global.keyboard.IsPressed(AK_ESCAPE))
+        {
+            glfwSetWindowShouldClose(global.window, GLFW_TRUE);
+        }
         // update swapchain
         glfwSwapBuffers(global.window);
     }
