@@ -21,9 +21,7 @@ struct Keyboard
 	int currFrame[16];
 };
 
-// In the future when we use game controllers,
-// which only have ~10 buttons, there will only
-// be one int for tap, one for hold, and one for release
+// Hope to use the Keyboard class from Avian later, but this implementation will do for now.
 
 void Input_Update(GLFWwindow* window, int key, int scancode, int action, int mods);
 void Input_ProcessState();

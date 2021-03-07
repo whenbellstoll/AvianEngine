@@ -2,9 +2,7 @@
 
 // took this as a template, to quickly get textured geometry
 // https://github.com/JoeyDeVries/LearnOpenGL/blob/master/src/1.getting_started/4.1.textures
-// the point of this series isn't to teach graphics,
-// so may as well grab something random to start with,
-// then I built all the Stack Allocator stuff on top of it
+// starter code
 
 void CheckShader(GLuint shader)
 {

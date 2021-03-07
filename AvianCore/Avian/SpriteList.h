@@ -13,8 +13,11 @@ class   FrameElem
 {
 public:
 	FrameElem();
+	FrameElem(const char * filename);
 	virtual ~FrameElem();
 	String ImageName;
+	unsigned int texture;
+	unsigned int startingVertex;
 	int	Width;
 	int	Height;
 	COLORREF Transparency;
@@ -41,6 +44,7 @@ public:
 	void hFBoundingBox();
 	void vFBoundingBox();
 	void hvFBoundingBox();
+	void LoadFrame(const char* filename);
     //List collisionList;
 	void AddCollisionData(CollisionSegment);
 	void AddCollisionData(CollisionCircle);

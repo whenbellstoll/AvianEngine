@@ -1,5 +1,5 @@
 #include "SpriteFull.h"
-
+#include "../globals.h"
 // Private Methods
 void Sprite::PegRegistered(int notused)
 {
@@ -19,6 +19,19 @@ void Sprite::HandleLastFlipPR()
 
 void Sprite::DisplaySprite()
 {
+	// layer (what draws on top of what)
+	glUniform1f(0, zOrder / 100.0f );
+
+	// position
+	glUniform1f(1, mapPositionX);
+	glUniform1f(2, mapPositionY);
+
+	// scale
+	glUniform1f(3, scaleX);
+	glUniform1f(4, scaleY);
+
+	glBindTexture(GL_TEXTURE_2D, fe->texture);
+	glDrawArrays(GL_TRIANGLE_STRIP, fe->startingVertex, 4);
 }
 
 void Sprite::CheckSpriteCollision(Sprite*)
@@ -97,7 +110,11 @@ Sprite* Sprite::TempCheckCollisionWithSprite(float px, float py, float cpx, floa
 
 Sprite::Sprite()
 {
-	// default constructor - empty sprite
+	zOrder = 0;
+	mapPositionX = 0.0f;
+	mapPositionY = 0.0f;
+	scaleX = 1.0f;
+	scaleY = 1.0f;
 }
 
 Sprite::Sprite(Sprite*)
@@ -289,26 +306,39 @@ int Sprite::Id()
 	return 0;
 }
 
-void Sprite::MapPositionX(float, bool)
+void Sprite::MapPositionX(float x, bool b)
 {
+	if (!b)
+	{
+		mapPositionX = x;
+	}
 }
 
-void Sprite::MapPositionY(float, bool)
+void Sprite::MapPositionY(float y, bool b)
 {
+	if (!b)
+	{
+		mapPositionY = y;
+	}
 }
 
 float Sprite::MapPositionX()
 {
-	return 0.0f;
+	return mapPositionX;
 }
 
 float Sprite::MapPositionY()
 {
-	return 0.0f;
+	return mapPositionY;
 }
 
-void Sprite::MapPosition(float, float, bool)
+void Sprite::MapPosition(float x, float y, bool b)
 {
+	if (!b)
+	{
+		mapPositionX = x;
+		mapPositionY = y;
+	}
 }
 
 void Sprite::MapPositionXInc(float, float, bool)
@@ -347,12 +377,21 @@ float Sprite::WorldPositionY()
 	return 0.0f;
 }
 
-void Sprite::WorldPositionX(float, bool)
+void Sprite::WorldPositionX(float x, bool b)
 {
+	if (!b)
+	{
+		mapPositionX = x;
+	}
+
 }
 
-void Sprite::WorldPositionY(float, bool)
+void Sprite::WorldPositionY(float y, bool b)
 {
+	if (!b)
+	{
+		mapPositionY = y;
+	}
 }
 
 void Sprite::WorldPosition(float, float, bool)
@@ -375,31 +414,34 @@ void Sprite::WorldPositionYDec(float, float, bool)
 {
 }
 
-void Sprite::ScaleX(float)
+void Sprite::ScaleX(float x)
 {
+	scaleX = x;
 }
 
-void Sprite::ScaleY(float)
+void Sprite::ScaleY(float y)
 {
+	scaleY = y;
 }
 
 float Sprite::ScaleX()
 {
-	return 0.0f;
+	return scaleX;
 }
 
 float Sprite::ScaleY()
 {
-	return 0.0f;
+	return scaleY;
 }
 
-void Sprite::ZOrder(unsigned int)
+void Sprite::ZOrder(unsigned int i)
 {
+	zOrder = i;
 }
 
 unsigned int Sprite::ZOrder()
 {
-	return 0;
+	return zOrder;
 }
 
 void Sprite::Canned(bool)

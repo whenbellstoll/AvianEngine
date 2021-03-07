@@ -11,8 +11,7 @@
 
 #include "mempack.h"
 #include "graphics.h"
-#include "sprite.h"
-#include "instance.h"
+#include "Avian/SpriteFull.h"
 #include "input.h"
 
 struct Global

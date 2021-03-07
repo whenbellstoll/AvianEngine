@@ -1,5 +1,3 @@
-Author: Niko Procopi 2019
-
 Include: (C++ -> General -> Additional Directories)
 $(SolutionDir)\..\External Libraries\glm;$(SolutionDir)\..\External Libraries\GLFW\include;$(SolutionDir)\..\External Libraries\GLEW\include;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalIncludeDirectories)
 

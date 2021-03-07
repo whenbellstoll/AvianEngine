@@ -4,6 +4,7 @@
 #include "Node.h"
 #include "Array.h"
 #include "CollisionData.h"
+#include "SpriteList.h"
 class Alarm;
 class MovementPattern;
 
@@ -72,7 +73,7 @@ private:
 	int lastFrame;
 	bool ghostCollisionWithSprite;
 	bool ghostCollisionWithMap;
-	void DisplaySprite ();
+	// This method will be private and called from GameLoop, but it is public for demo: void DisplaySprite ();
 	//void CheckMapCollision(Map *);
 	void CheckSpriteCollision(Sprite *);
 	void UpdateSprite();
@@ -177,6 +178,7 @@ public:
 	//Array<Variable> LocalVariables;
 	//PathStateMachineTraverser *  psmt;
 	int  displayListNumber;
+	FrameElem* fe;
 	void Unused(bool);
 	bool Unused();
 	void Use(const char *);
@@ -187,6 +189,9 @@ public:
 	void CheckSameDisplayList(bool);
 	bool CheckSameDisplayList(void);
 
+	// This will be private later
+	void DisplaySprite();
+	// This will be private later
 
 	void CheckSameType(bool);
 	bool CheckSameType(void);
@@ -220,15 +225,15 @@ public:
 	//Map *BelongToMapPtr();
 	void Id(int);
 	int Id();
-	void MapPositionX(float,bool = false);
-	void MapPositionY(float,bool = false);
+	void MapPositionX(float f,bool  b= false);
+	void MapPositionY(float f,bool b = false);
 	float MapPositionX ();
 	float MapPositionY ();
-	void MapPosition(float,float,bool = false);
-	void MapPositionXInc(float,float,bool = false);
-	void MapPositionXDec(float,float,bool = false);
-	void MapPositionYInc(float,float,bool = false);
-	void MapPositionYDec(float,float,bool = false);
+	void MapPosition(float x,float y,bool b = false);
+	void MapPositionXInc(float x,float max,bool b = false);
+	void MapPositionXDec(float x,float min,bool b = false);
+	void MapPositionYInc(float y,float max,bool b = false);
+	void MapPositionYDec(float y,float min,bool b = false);
 
 	float LeftPosition();
 	float TopPosition();

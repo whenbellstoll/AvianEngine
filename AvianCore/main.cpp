@@ -16,34 +16,34 @@ int main()
     // create GPU Mempacks, etc
     InitOpenGL();
 
-    SpriteStruct* duckSprite = Sprite_Init("Assets/duck.bmp");
-    SpriteStruct* breadSprite = Sprite_Init("Assets/bread.bmp");
+    FrameElem duckSprite = FrameElem("Assets/duck.bmp");
+    FrameElem breadSprite = FrameElem("Assets/bread.bmp");
 
     printf("Allocating instances\n");
 
-    Instance* duckInst1 = (Instance*)MEMPACK_AllocMem(&global.ramPack, sizeof(Instance), "duckInst");
-    duckInst1->sprite = duckSprite;
+    Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "duckInst");
+    duckInst1->fe = &duckSprite;
 
     // draw person on top (small depth)
-    duckInst1->depth = 0.1f;
-    duckInst1->posX = -0.5f;
-    duckInst1->posY = -0.5f;
-    duckInst1->scaleX = 0.007f;
-    duckInst1->scaleY = 0.007f;
+    duckInst1->ZOrder(1);
+    duckInst1->MapPositionX(-0.5f);
+    duckInst1->MapPositionY(-0.5f);
+    duckInst1->ScaleX(0.007f);
+    duckInst1->ScaleY(0.007f);
 
-    Instance* breadInst[5];
+    Sprite* breadInst[5];
     
     for (int i = 0; i < 5; i++)
     {
-        breadInst[i] = (Instance*)MEMPACK_AllocMem(&global.ramPack, sizeof(Instance), "breadInst");
-        breadInst[i]->sprite = breadSprite;
+        breadInst[i] = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "breadInst");
+        breadInst[i]->fe = &breadSprite;
 
         // draw breads on bottom (larger depth)
-        breadInst[i]->depth = 0.2f; 
-        breadInst[i]->posX = 0.5f;
-        breadInst[i]->posY = -0.5f + 0.2f * i;
-        breadInst[i]->scaleX = 0.01f;
-        breadInst[i]->scaleY = 0.01f;
+        breadInst[i]->ZOrder(2); 
+        breadInst[i]->MapPositionX(0.5f);
+        breadInst[i]->MapPositionY( -0.5f + 0.2f * i );
+        breadInst[i]->ScaleX(0.01f);
+        breadInst[i]->ScaleY(0.01f);
     }
 
     // timer variables
@@ -54,7 +54,7 @@ int main()
     start = clock();
 
 
-    // render loop
+    // game loop
     // -----------
     while (!glfwWindowShouldClose(global.window))
     {
@@ -72,16 +72,16 @@ int main()
         // input
         // -----
         if (Input_KeyHold('A'))
-            duckInst1->posX -= elapsedTime;
+            duckInst1->MapPositionX( duckInst1->MapPositionX() - elapsedTime );
 
         if (Input_KeyHold('D'))
-            duckInst1->posX += elapsedTime;
+            duckInst1->MapPositionX(duckInst1->MapPositionX() + elapsedTime);
 
         if (Input_KeyHold('W'))
-            duckInst1->posY += elapsedTime;
+            duckInst1->MapPositionY(duckInst1->MapPositionY() + elapsedTime);
 
         if (Input_KeyHold('S'))
-            duckInst1->posY -= elapsedTime;
+            duckInst1->MapPositionY(duckInst1->MapPositionY() - elapsedTime);
 
         // Just for a test
         if (Input_KeyTap('T')) printf("Tap T\n");
@@ -93,11 +93,11 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        Instance_Draw(duckInst1);
+        duckInst1->DisplaySprite();
 
         for (int i = 0; i < 5; i++)
         {
-            Instance_Draw(breadInst[i]);
+            breadInst[i]->DisplaySprite();
         }
 
         // update swapchain
