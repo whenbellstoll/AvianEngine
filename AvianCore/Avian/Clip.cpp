@@ -62,3 +62,17 @@ bool CSCircleClipping(float cx, float cy, float radius, float topX, float topY, 
     return (distance <= (radius * radius));
 }
 
+bool IntersectRectangles1(const Rect& ro, const Rect& rt)
+{
+    if (ro.right <= rt.left ||    // r1 right edge past r2 left
+        ro.left >= rt.right)    // r1 left edge past r2 right
+    {
+        return false;
+    }
+    if (ro.top >= rt.bottom ||    // r1 top edge past r2 bottom
+        ro.bottom <= rt.top) // r1 bottom edge past r2 top
+    {
+        return false;
+    }
+    return true;
+}

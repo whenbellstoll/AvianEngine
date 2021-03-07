@@ -24,14 +24,14 @@ int main()
     Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "duckInst");
     duckInst1->fe = &duckSprite;
 
-    int width, height;
-    glfwGetWindowSize(global.window, &width, &height);
+
+    glfwGetWindowSize(global.window, &global.width, &global.height);
     // draw person on top (small depth)
     duckInst1->ZOrder(1);
     duckInst1->MapPositionX(-0.5f);
     duckInst1->MapPositionY(-0.5f);
-    duckInst1->ScaleX( 2 / (float)width );
-    duckInst1->ScaleY( 2 / (float)height ); 
+    duckInst1->ScaleX( 2 / (float)global.width );
+    duckInst1->ScaleY( 2 / (float)global.height ); 
 
     Sprite* breadInst[5];
     
@@ -44,8 +44,8 @@ int main()
         breadInst[i]->ZOrder(2); 
         breadInst[i]->MapPositionX(0.5f);
         breadInst[i]->MapPositionY( -0.5f + 0.2f * i );
-        breadInst[i]->ScaleX(2 / (float)width);
-        breadInst[i]->ScaleY(2 / (float)height);
+        breadInst[i]->ScaleX(2 / (float)global.width);
+        breadInst[i]->ScaleY(2 / (float)global.height);
     }
 
     // timer variables
@@ -55,7 +55,12 @@ int main()
     // initialize time
     start = clock();
 
-
+    // Testing Collision Segment
+    bool collisionSegment = CSLineOnLine(0, 0, 1, 2, 2, 0, 0, 1);
+    if (collisionSegment)
+    {
+        printf("\n Segment Collision Test passing. \n ");
+    }
     // game loop
     // -----------
     while (!glfwWindowShouldClose(global.window))
@@ -90,6 +95,18 @@ int main()
         if (global.keyboard.IsPressed('Y')) printf("Hold Y\n");
         //if (global.keyboard.Any()) printf("Key pressed: \n"); // Prints constantly, only uncomment for demo 
 
+        //printf("\n BB bread: %i , %i , %i , %i ", breadInst[0]->fe->BBox.left, breadInst[0]->fe->BBox.top, breadInst[0]->fe->BBox.right, breadInst[0]->fe->BBox.bottom);
+        //printf("\n BB Duck: %i , %i , %i , %i ", duckInst1->fe->BBox.left, duckInst1->fe->BBox.top, duckInst1->fe->BBox.right, duckInst1->fe->BBox.bottom);
+        //printf("\n Position Bread: %f , %f ", breadInst[0]->MapPositionX(), breadInst[0]->MapPositionY() );
+        //printf("\n Position Duck: %f , %f ", duckInst1->MapPositionX(), duckInst1->MapPositionY());
+
+
+
+        if (IntersectRectangles1(duckInst1->fe->BBox, breadInst[0]->fe->BBox))
+        {
+            printf("\n Collision between Duck and bread has been confirmed.");
+        }
+
         // render
         // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -115,7 +132,7 @@ int main()
     MEMPACK_Clean(&global.ramPack);
 
     // erase resources
-    delete mempackRamData;
+    free(mempackRamData);
     mempackRamData = nullptr;
 
     CleanOpenGL();

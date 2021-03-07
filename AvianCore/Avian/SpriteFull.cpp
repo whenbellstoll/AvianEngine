@@ -310,7 +310,11 @@ void Sprite::MapPositionX(float x, bool b)
 {
 	if (!b)
 	{
+		
 		mapPositionX = x;
+		float realSpace = (mapPositionX + 1) * (global.width / 2);
+		fe->BBox.left = realSpace;
+		fe->BBox.right = realSpace + fe->Width;
 	}
 }
 
@@ -318,7 +322,11 @@ void Sprite::MapPositionY(float y, bool b)
 {
 	if (!b)
 	{
+		
 		mapPositionY = y;
+		float realSpace = (-mapPositionY - 1) * (global.height / 2) * -1;
+		fe->BBox.top = realSpace;
+		fe->BBox.bottom = realSpace + fe->Height;
 	}
 }
 
@@ -336,6 +344,12 @@ void Sprite::MapPosition(float x, float y, bool b)
 {
 	if (!b)
 	{
+		float realSpaceX = (x + 1) * (global.width / 2);
+		fe->BBox.left = realSpaceX;
+		fe->BBox.right = realSpaceX + fe->Width;
+		float realSpaceY = (y + 1) * (global.height / 2) * -1;
+		fe->BBox.top = realSpaceY;
+		fe->BBox.bottom = realSpaceY + fe->Height;
 		mapPositionX = x;
 		mapPositionY = y;
 	}

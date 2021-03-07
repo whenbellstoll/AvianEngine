@@ -31,8 +31,6 @@ FrameElem::FrameElem(const char* filename)
     TranslateX = 0.0f;
     TranslateY = 0.0f;
     Delay = 0;
-    Width = 0;
-    Height = 0;
     Transparency = RGB(0, 0, 0);
     hFlip = false;
     vFlip = false;
@@ -145,6 +143,8 @@ void FrameElem::LoadFrame(const char* filename)
     BBox.left = 0;
     BBox.right = texW;
     BBox.bottom = texH;
+    Width = texW;
+    Height = texH;
     centerX = texW / 2;
     centerY = texH / 2;
     printf("\n Loaded frame complete. %s \n ", filename);

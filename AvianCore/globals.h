@@ -15,6 +15,7 @@
 #include "Avian/Keyboard.h"
 #include "Avian/Constants.h"
 #include "InputUpdate.h"
+#include "Avian/Clip.h"
 
 struct Global
 {
@@ -27,6 +28,8 @@ struct Global
 	Mempack pboPack;
 
 	Keyboard keyboard;
+
+	int width, height;
 };
 
 extern Global global;
