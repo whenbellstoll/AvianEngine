@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Avian">
+      <UniqueIdentifier>{7861ae0d-cf21-4b48-975f-c94a19f1ade5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mempack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\Clip.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\File.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\Game.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\MyGame.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\Node.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\SpriteFull.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\SpriteList.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="Avian\Constants.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="globals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mempack.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="instance.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\AvianGlobals.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\Clip.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\CollisionData.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\Constants.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\File.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\Game.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\GameNode.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\Keyboard.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\MyGame.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\SpriteFull.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\SpriteList.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\Node.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
