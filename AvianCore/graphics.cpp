@@ -3,6 +3,7 @@
 // took this as a template, to quickly get textured geometry
 // https://github.com/JoeyDeVries/LearnOpenGL/blob/master/src/1.getting_started/4.1.textures
 // starter code
+Keyboard* pKeyboard;
 
 void CheckShader(GLuint shader)
 {
@@ -85,8 +86,9 @@ void InitOpenGL()
         printf("Failed to create GLFW window\n");
         glfwTerminate();
     }
-    // We need to create the Keyboard at this point.
+    // We need to create the Keyboard at this point. Start the input
     global.keyboard = Keyboard();
+    pKeyboard = &global.keyboard;
     glfwMakeContextCurrent(global.window);
     glfwSetKeyCallback(global.window, Input_Update);
 

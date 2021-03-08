@@ -74,26 +74,26 @@ int main()
         glfwPollEvents();
 
         // Determine Key States
-        global.keyboard.ProcessKeys();
+        pKeyboard->ProcessKeys();
     
         // input
         // -----
-        if (global.keyboard.IsPressed('A') || global.keyboard.IsPressed(AK_LEFT))
+        if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT))
             duckInst1->MapPositionX( duckInst1->MapPositionX() - elapsedTime );
 
-        if (global.keyboard.IsPressed('D') || global.keyboard.IsPressed(AK_RIGHT))
+        if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
             duckInst1->MapPositionX(duckInst1->MapPositionX() + elapsedTime);
 
-        if (global.keyboard.IsPressed('W') || global.keyboard.IsPressed(AK_UP))
+        if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
             duckInst1->MapPositionY(duckInst1->MapPositionY() + elapsedTime);
 
-        if (global.keyboard.IsPressed('S') || global.keyboard.IsPressed(AK_DOWN) )
+        if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN) )
             duckInst1->MapPositionY(duckInst1->MapPositionY() - elapsedTime);
 
         // Just for a test
-        if (global.keyboard.IsTriggered('T')) printf("Tap T\n");
-        if (global.keyboard.IsPressed('Y')) printf("Hold Y\n");
-        //if (global.keyboard.Any()) printf("Key pressed: \n"); // Prints constantly, only uncomment for demo 
+        if (pKeyboard->IsTriggered('T')) printf("Tap T\n");
+        if (pKeyboard->IsPressed('Y')) printf("Hold Y\n");
+        //if (pKeyboard->Any()) printf("Key pressed: \n"); // Prints constantly, only uncomment for demo 
 
         //printf("\n BB bread: %i , %i , %i , %i ", breadInst[0]->fe->BBox.left, breadInst[0]->fe->BBox.top, breadInst[0]->fe->BBox.right, breadInst[0]->fe->BBox.bottom);
         //printf("\n BB Duck: %i , %i , %i , %i ", duckInst1->fe->BBox.left, duckInst1->fe->BBox.top, duckInst1->fe->BBox.right, duckInst1->fe->BBox.bottom);
@@ -120,7 +120,7 @@ int main()
         }
 
 
-        if (global.keyboard.IsPressed(AK_ESCAPE))
+        if (pKeyboard->IsPressed(AK_ESCAPE))
         {
             glfwSetWindowShouldClose(global.window, GLFW_TRUE);
         }

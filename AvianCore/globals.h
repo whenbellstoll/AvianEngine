@@ -32,6 +32,8 @@ struct Global
 	int width, height;
 };
 
+extern Keyboard *  pKeyboard;
+
 extern Global global;
 
 // Right now we allocate almost nothing, but
