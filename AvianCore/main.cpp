@@ -167,17 +167,35 @@ int main()
         if (pKeyboard->IsPressed('Y')) printf("Hold Y\n");
         //if (pKeyboard->Any()) printf("Key pressed: \n"); // Prints constantly, only uncomment for demo 
 
-        //printf("\n BB bread: %i , %i , %i , %i ", breadInst[0]->fe->BBox.left, breadInst[0]->fe->BBox.top, breadInst[0]->fe->BBox.right, breadInst[0]->fe->BBox.bottom);
-        //printf("\n BB Duck: %i , %i , %i , %i ", duckInst1->fe->BBox.left, duckInst1->fe->BBox.top, duckInst1->fe->BBox.right, duckInst1->fe->BBox.bottom);
+        //
+        //
         //printf("\n Position Bread: %f , %f ", breadInst[0]->MapPositionX(), breadInst[0]->MapPositionY() );
         //printf("\n Position Duck: %f , %f ", duckInst1->MapPositionX(), duckInst1->MapPositionY());
 
 
+        // Calculate Rectangle Positions for collision
+        Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
+        Rect breadBox = SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].BBox;
+        float duckrealSpaceX = (duckInst1->MapPositionX() + 1) * (global.width / 2);
+        float duckrealSpaceY = (duckInst1->MapPositionY() - 1) * (global.height / 2) * -1;
+        duckBox.left = duckrealSpaceX;
+        duckBox.right = duckrealSpaceX + SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].Width;
+        duckBox.top = duckrealSpaceY;
+        duckBox.bottom = duckrealSpaceY + SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].Height;
 
-        //if (IntersectRectangles1(duckInst1->fe->BBox, breadInst[0]->fe->BBox))
-       // {
-       //     printf("\n Collision between Duck and bread has been confirmed.");
-       // }
+        float breadrealSpaceX = (breadInst[0]->MapPositionX() + 1) * (global.width / 2);
+        float breadrealSpaceY = (breadInst[0]->MapPositionY() - 1) * (global.height / 2) * -1;
+        breadBox.left = breadrealSpaceX;
+        breadBox.right = breadrealSpaceX + SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].Width;
+        breadBox.top = breadrealSpaceY;
+        breadBox.bottom = breadrealSpaceY + SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].Height;
+
+       // printf("\n BB bread: %i , %i , %i , %i ", breadBox.left, breadBox.top, breadBox.right, breadBox.bottom);
+        //printf("\n BB Duck: %i , %i , %i , %i ", duckBox.left, duckBox.top, duckBox.right, duckBox.bottom);
+        if (IntersectRectangles1(duckBox, breadBox))
+        {
+            printf("\n Collision between Duck and bread has been confirmed. Positions: %i , %i , %i , %i", (int)duckrealSpaceX, (int)duckrealSpaceY, (int)breadrealSpaceX, (int)breadrealSpaceY);
+        }
 
         // render
         // ------
