@@ -19,60 +19,59 @@ int main()
     // create GPU Mempacks, etc
     InitOpenGL();
 
-    SpriteList[0] = *(SpriteElem *)MEMPACK_AllocMem(&global.ramPack, sizeof(SpriteElem), "duckInst");
+    SpriteList[0] = *(SpriteElem *)MEMPACK_AllocMem(&global.ramPack, sizeof(SpriteElem), "duckSpriteElem");
 
     SpriteList[0].TotalAnimations = 2;
     SpriteList[0].Animations = new AnimationElem[2];
 
-    FrameElem duckFrame = FrameElem("Assets/duck.bmp");
-    duckFrame.Delay = 6;
-    duckFrame.CurrentFrameTime = 6;
-    FrameElem duckWTwoFrame = FrameElem("Assets/duckw2.bmp");
-    duckWTwoFrame.Delay = 6;
-    duckWTwoFrame.CurrentFrameTime = 6;
-    FrameElem duckWThreeFrame = FrameElem("Assets/duckw3.bmp");
-    duckWThreeFrame.Delay = 6;
-    duckWThreeFrame.CurrentFrameTime = 6;
-    FrameElem duckWFourFrame = FrameElem("Assets/duckw4.bmp");
-    duckWFourFrame.Delay = 6;
-    duckWFourFrame.CurrentFrameTime = 6;
-    FrameElem duckWFiveFrame = FrameElem("Assets/duckw5.bmp");
-    duckWFiveFrame.Delay = 6;
-    duckWFiveFrame.CurrentFrameTime = 6;
-    FrameElem duckWSixFrame = FrameElem("Assets/duckw6.bmp");
-    duckWSixFrame.Delay = 6;
-    duckWSixFrame.CurrentFrameTime = 6;
+    SpriteList[0].Animations[0].TotalFrames = 1;
+    SpriteList[0].Animations[0].ConnectTo = 0;
+    SpriteList[0].Animations[0].Frames = new FrameElem[1];
 
-    AnimationElem duckIdle = AnimationElem();
-    duckIdle.TotalFrames = 1;
-    duckIdle.Frames = &duckFrame;
+    SpriteList[0].Animations[0].Frames[0] = FrameElem("Assets/duck.bmp");
+    SpriteList[0].Animations[0].Frames[0].Delay = 6;
+    SpriteList[0].Animations[0].Frames[0].Transparency = RGB(255,255,255);
 
-    AnimationElem duckWalk = AnimationElem();
-    duckWalk.TotalFrames = 6;
-    FrameElem walkFrames[6] = { duckFrame, duckWTwoFrame, duckWThreeFrame, duckWFourFrame, duckWFiveFrame, duckWSixFrame };
-    duckWalk.Frames = &walkFrames[0];
 
-    SpriteElem duckSprite = SpriteElem();
-    duckSprite.TotalAnimations = 2;
-    AnimationElem duckAnimation[2] = { duckIdle, duckWalk };
-    duckSprite.Animations = &duckAnimation[0];
 
-    FrameElem breadFrame = FrameElem("Assets/bread.bmp");
-    breadFrame.Delay = 50;
-    breadFrame.CurrentFrameTime = 50;
+    SpriteList[0].Animations[1].TotalFrames = 6;
+    SpriteList[0].Animations[1].ConnectTo = 0;
+    SpriteList[0].Animations[1].Frames = new FrameElem[6];
 
-    AnimationElem breadAni = AnimationElem();
-    breadAni.TotalFrames = 1;
-    breadAni.Frames = &breadFrame;
+    SpriteList[0].Animations[1].Frames[0] = SpriteList[0].Animations[0].Frames[0];
+    SpriteList[0].Animations[1].Frames[1] = FrameElem("Assets/duckw2.bmp");
+    SpriteList[0].Animations[1].Frames[1].Delay = 6;
+    SpriteList[0].Animations[1].Frames[1].Transparency = RGB(255, 255, 255);
+    SpriteList[0].Animations[1].Frames[2] = FrameElem("Assets/duckw3.bmp");
+    SpriteList[0].Animations[1].Frames[2].Delay = 6;
+    SpriteList[0].Animations[1].Frames[2].Transparency = RGB(255, 255, 255);
+    SpriteList[0].Animations[1].Frames[3] = FrameElem("Assets/duckw4.bmp");
+    SpriteList[0].Animations[1].Frames[3].Delay = 6;
+    SpriteList[0].Animations[1].Frames[3].Transparency = RGB(255, 255, 255);
+    SpriteList[0].Animations[1].Frames[4] = FrameElem("Assets/duckw5.bmp");
+    SpriteList[0].Animations[1].Frames[4].Delay = 6;
+    SpriteList[0].Animations[1].Frames[4].Transparency = RGB(255, 255, 255);
+    SpriteList[0].Animations[1].Frames[5] = FrameElem("Assets/duckw6.bmp");
+    SpriteList[0].Animations[1].Frames[5].Delay = 6;
+    SpriteList[0].Animations[1].Frames[5].Transparency = RGB(255, 255, 255);
 
-    SpriteElem breadSprite = SpriteElem();
-    breadSprite.TotalAnimations = 1;
-    breadSprite.Animations = &breadAni;
+
+    SpriteList[1] = *(SpriteElem*)MEMPACK_AllocMem(&global.ramPack, sizeof(SpriteElem), "breadSpriteElem");
+
+    SpriteList[1].TotalAnimations = 1;
+    SpriteList[1].Animations = new AnimationElem[1];
+
+    SpriteList[1].Animations[0].TotalFrames = 1;
+    SpriteList[1].Animations[0].ConnectTo = 0;
+    SpriteList[1].Animations[0].Frames = new FrameElem[1];
+
+    SpriteList[1].Animations[0].Frames[0] = FrameElem("Assets/bread.bmp");
+    SpriteList[1].Animations[0].Frames[0].Delay = 50;
+    SpriteList[1].Animations[0].Frames[0].Transparency = RGB(255, 255, 255);
 
     printf("Allocating instances\n");
 
     Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "duckInst");
-    duckInst1->se = &duckSprite;
 
 
     glfwGetWindowSize(global.window, &global.width, &global.height);
@@ -82,13 +81,16 @@ int main()
     duckInst1->MapPositionY(-0.5f);
     duckInst1->ScaleX( 2 / (float)global.width );
     duckInst1->ScaleY( 2 / (float)global.height ); 
+    duckInst1->ActorIndex(0);
+    duckInst1->Animation(0);
+    duckInst1->Frame(0);
+    duckInst1->Delay(6);
 
     Sprite* breadInst[5];
     
     for (int i = 0; i < 5; i++)
     {
         breadInst[i] = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "breadInst");
-        breadInst[i]->se = &breadSprite;
 
         // draw breads on bottom (larger depth)
         breadInst[i]->ZOrder(2); 
@@ -96,6 +98,11 @@ int main()
         breadInst[i]->MapPositionY( -0.5f + 0.2f * i );
         breadInst[i]->ScaleX(2 / (float)global.width);
         breadInst[i]->ScaleY(2 / (float)global.height);
+        breadInst[i]->ActorIndex(1);
+        breadInst[i]->Animation(0);
+        breadInst[i]->Frame(0);
+        breadInst[i]->Delay(50);
+
     }
 
     // timer variables
@@ -113,6 +120,7 @@ int main()
     }
     // game loop
     // -----------
+    int noCount = 0;
     while (!glfwWindowShouldClose(global.window))
     {
         // measure elapsed time per frame
@@ -129,16 +137,30 @@ int main()
         // input
         // -----
         if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT))
-            duckInst1->MapPositionX( duckInst1->MapPositionX() - elapsedTime );
-
+        {
+            duckInst1->MapPositionX(duckInst1->MapPositionX() - elapsedTime);
+            duckInst1->Animation(1);
+        }
         if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
+        {
             duckInst1->MapPositionX(duckInst1->MapPositionX() + elapsedTime);
-
+            duckInst1->Animation(1);
+        }
         if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
+        {
             duckInst1->MapPositionY(duckInst1->MapPositionY() + elapsedTime);
-
-        if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN) )
+            duckInst1->Animation(0);
+        }
+        if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN))
+        {
             duckInst1->MapPositionY(duckInst1->MapPositionY() - elapsedTime);
+            duckInst1->Animation(0);
+        }
+
+        if (pKeyboard->Nothing())
+        {
+            duckInst1->Animation(0);
+        }
 
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");

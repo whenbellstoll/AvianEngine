@@ -30,7 +30,7 @@ private:
 	int cAnimation;
 	int animation;		
 	int frame;
-	unsigned int delay;
+	float delay;
 	bool visible;
 	bool mainCharacter;
 	bool toBeDeleted;			
@@ -139,7 +139,7 @@ private:
 
 	bool TempCheckCollisionWithMap(float,float,float,float);
 	bool TempCheckCollisionWithMap(float,float,float,float,int);
-//	bool TempCheckCollisionWithSprite(float,float,float,float);
+	bool TempCheckCollisionWithSprite(float,float,float,float);
 	Sprite * TempCheckCollisionWithSprite(float,float,float,float,const char *);
 
 	/* PathStateMachine Implementation
@@ -268,7 +268,7 @@ public:
 	int Frame();
 	bool EndOfAnimation(int);
 	void Delay(unsigned int);
-	unsigned int Delay();
+	float Delay();
 	void ActorIndex(int);
 	int ActorIndex();
 	bool CollisionWithSprite(const char * n = NULL);

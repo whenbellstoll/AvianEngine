@@ -31,8 +31,18 @@ void Sprite::DisplaySprite()
 	glUniform1f(3, scaleX);
 	glUniform1f(4, scaleY);
 
-	glBindTexture(GL_TEXTURE_2D, se->Animations->Frames->texture);
-	glDrawArrays(GL_TRIANGLE_STRIP, se->Animations->Frames->startingVertex, 4);
+	// transparent color
+	GLint pos = glGetUniformLocation(global.program, "transparentB");
+	if (pos != -1)
+	{
+		glUniform1f(pos, SpriteList[actorIndex].Animations[animation].Frames[frame].Transparency.b / 255.0f);
+		glUniform1f(pos + 1, SpriteList[actorIndex].Animations[animation].Frames[frame].Transparency.g / 255.0f);
+		glUniform1f(pos + 2, SpriteList[actorIndex].Animations[animation].Frames[frame].Transparency.r / 255.0f);
+
+	}
+
+	glBindTexture(GL_TEXTURE_2D, SpriteList[actorIndex].Animations[animation].Frames[frame].texture);
+	glDrawArrays(GL_TRIANGLE_STRIP, SpriteList[actorIndex].Animations[animation].Frames[frame].startingVertex, 4);
 }
 
 void Sprite::CheckSpriteCollision(Sprite*)
@@ -59,35 +69,16 @@ void Sprite::UpdateAnimation()
 {
 	
 	float frameElapsed = 60 * dt; // assume 60 fps for now
-	float check = (se->Animations->Frames->CurrentFrameTime -= frameElapsed);
+	delay -= frameElapsed;
 	
-	if (check <= 0)
+	if (delay <= 0)
 	{
-		// if currentanimation only has one frame, return
-		if (se->Animations->TotalFrames == 1)
+		frame++;
+		if (frame >= SpriteList[actorIndex].Animations[animation].TotalFrames)
 		{
-			se->Animations->Frames->CurrentFrameTime = se->Animations->Frames->Delay;
-			return;
+			frame = 0;
 		}
-
-		if (se->Animations->ConnectTo != 0)
-		{
-			se->Animations->Frames++;
-		}
-		else if(se->Animations->TotalFrames <= 1)
-		{
-			for (int i = 0; i < se->Animations->TotalFrames; i++)
-			{
-				se->Animations->Frames--;
-			}
-		}
-		se->Animations->Frames->CurrentFrameTime = se->Animations->Frames->Delay;
-		se->Animations->ConnectTo++;
-		if (se->Animations->ConnectTo >= se->Animations->TotalFrames)
-		{
-			se->Animations->ConnectTo = 0;
-		}
-
+		delay = SpriteList[actorIndex].Animations[animation].Frames[frame].Delay;
 	}
 }
 
@@ -130,6 +121,11 @@ bool Sprite::TempCheckCollisionWithMap(float, float, float, float)
 }
 
 bool Sprite::TempCheckCollisionWithMap(float, float, float, float, int)
+{
+	return false;
+}
+
+bool Sprite::TempCheckCollisionWithSprite(float x, float y, float px, float py)
 {
 	return false;
 }
@@ -347,8 +343,8 @@ void Sprite::MapPositionX(float x, bool b)
 		
 		mapPositionX = x;
 		float realSpace = (mapPositionX + 1) * (global.width / 2);
-		se->Animations->Frames->BBox.left = realSpace;
-		se->Animations->Frames->BBox.right = realSpace + se->Animations->Frames->Width;
+		//se->Animations->Frames->BBox.left = realSpace;
+		//se->Animations->Frames->BBox.right = realSpace + se->Animations->Frames->Width;
 	}
 }
 
@@ -359,8 +355,8 @@ void Sprite::MapPositionY(float y, bool b)
 		
 		mapPositionY = y;
 		float realSpace = (-mapPositionY - 1) * (global.height / 2) * -1;
-		se->Animations->Frames->BBox.top = realSpace;
-		se->Animations->Frames->BBox.bottom = realSpace + se->Animations->Frames->Height;
+		//se->Animations->Frames->BBox.top = realSpace;
+		//se->Animations->Frames->BBox.bottom = realSpace + se->Animations->Frames->Height;
 	}
 }
 
@@ -379,11 +375,11 @@ void Sprite::MapPosition(float x, float y, bool b)
 	if (!b)
 	{
 		float realSpaceX = (x + 1) * (global.width / 2);
-		se->Animations->Frames->BBox.left = realSpaceX;
-		se->Animations->Frames->BBox.right = realSpaceX + se->Animations->Frames->Width;
+		//se->Animations->Frames->BBox.left = realSpaceX;
+		//se->Animations->Frames->BBox.right = realSpaceX + se->Animations->Frames->Width;
 		float realSpaceY = (y + 1) * (global.height / 2) * -1;
-		se->Animations->Frames->BBox.top = realSpaceY;
-		se->Animations->Frames->BBox.bottom = realSpaceY + se->Animations->Frames->Height;
+		//se->Animations->Frames->BBox.top = realSpaceY;
+		//se->Animations->Frames->BBox.bottom = realSpaceY + se->Animations->Frames->Height;
 		mapPositionX = x;
 		mapPositionY = y;
 	}
@@ -512,22 +508,30 @@ void Sprite::Pause(bool)
 
 void Sprite::Animation(int i)
 {
-	if (i >= se->TotalAnimations && i != 0)
+	if (i != animation)
 	{
-		Animation(0);
+		animation = i;
+		frame = 0;
 	}
-	
-	se->Animations = se->Animations + i;
 
+	if (animation >= SpriteList[actorIndex].TotalAnimations || animation <= 0 )
+	{
+		animation = 0;
+	}
 }
 
 int Sprite::Animation()
 {
-	return 0;
+	return animation;
 }
 
-void Sprite::Frame(int)
+void Sprite::Frame(int i)
 {
+	frame = i;
+	if (animation >= SpriteList[actorIndex].TotalAnimations || animation <= 0)
+	{
+		frame = 0;
+	}
 }
 
 int Sprite::TotalAnimations()
@@ -542,25 +546,31 @@ int Sprite::TotalFrames()
 
 int Sprite::Frame()
 {
-	return 0;
+	return frame;
 }
 
-bool Sprite::EndOfAnimation(int)
+bool Sprite::EndOfAnimation(int i)
 {
-	return false;
+	return (delay <= 0 && i == animation && frame == (SpriteList[actorIndex].Animations[animation].TotalFrames - 1) );
 }
 
-void Sprite::Delay(unsigned int)
+void Sprite::Delay(unsigned int ui)
 {
+	delay = ui;
 }
 
-unsigned int Sprite::Delay()
+float Sprite::Delay()
 {
-	return 0;
+	return delay;
 }
 
-void Sprite::ActorIndex(int)
+void Sprite::ActorIndex(int i)
 {
+	actorIndex = i;
+	if (i <= 0 || i > MAXACTORS)
+	{
+		actorIndex = 0;
+	}
 }
 
 int Sprite::ActorIndex()

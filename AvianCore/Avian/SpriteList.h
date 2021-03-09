@@ -23,8 +23,7 @@ public:
 	COLORREF Transparency;
 	float TranslateX;
 	float TranslateY;
-	float Delay;
-	float CurrentFrameTime;
+	int Delay;
 	FImp * pFImp;
 	bool hFlip;
 	bool vFlip;

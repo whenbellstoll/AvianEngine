@@ -227,12 +227,12 @@ struct Point{
 };
 
 struct COLORREF {
-	char r;
-	char g;
-	char b;
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
 };
 
-COLORREF RGB(char r, char g, char b);
+COLORREF RGB(unsigned char r, unsigned char g, unsigned char b);
 
 
 #endif

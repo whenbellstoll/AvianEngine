@@ -1,6 +1,6 @@
 #include "Constants.h"
 
-COLORREF RGB(char r, char b, char g)
+COLORREF RGB(unsigned char r, unsigned char b, unsigned char g)
 {
 COLORREF c;
 c.r = r;

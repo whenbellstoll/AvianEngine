@@ -7,7 +7,6 @@ FrameElem::FrameElem()
 	TranslateX = 0.0f;
 	TranslateY = 0.0f;
 	Delay = 0;
-    CurrentFrameTime = 0;
 	Width = 0;
 	Height = 0;
 	Transparency = RGB(0, 0, 0);
@@ -32,7 +31,6 @@ FrameElem::FrameElem(const char* filename)
     TranslateX = 0.0f;
     TranslateY = 0.0f;
     Delay = 1;
-    CurrentFrameTime = Delay;
     Transparency = RGB(0, 0, 0);
     hFlip = false;
     vFlip = false;
@@ -199,11 +197,18 @@ void FrameElem::FrameFlippingMoves()
 
 void* FrameElem::operator new[](size_t st)
 {
-	return nullptr;
+    void* p;
+    p = MEMPACK_AllocMem(&global.ramPack, st, "FrameElemArray");
+    if (!p) {
+        throw p;
+    }
+    return p;
 }
 
 void FrameElem::operator delete[](void* v)
 {
+    // Delete should be handled with 
+    return;
 }
 
 
@@ -219,20 +224,19 @@ AnimationElem::~AnimationElem()
 
 void* AnimationElem::operator new[](size_t st)
 {
-    /*
-    int size = sizeof(AnimationElem);
-    int allocNumber = st / size;
-
-    for (int i = 0; i < allocNumber; i++)
-    {
-
+    void* p;
+    p = MEMPACK_AllocMem(&global.ramPack, st, "AnimationElemArray");
+    if (!p) {
+        throw p;
     }
-    */
+    return p;
 
 }
 
 void AnimationElem::operator delete[](void* v)
 {
+    // Delete should be handled with the Mempack
+    return;
 }
 
 // Sprite Element
