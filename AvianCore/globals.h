@@ -34,6 +34,8 @@ struct Global
 
 extern Keyboard *  pKeyboard;
 
+extern SpriteElem SpriteList[MAXACTORS];
+
 extern Global global;
 
 // Right now we allocate almost nothing, but

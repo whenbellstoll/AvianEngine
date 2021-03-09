@@ -5,7 +5,7 @@
 #include "SpriteList.h"
 //extern HINSTANCE _hInst;								
 //extern HANDLE _hm;
-extern   SpriteElem	SpriteList[MAXACTORS];
+
 extern int _rw,_rh,_rd;
 extern int _wWidth,_wHeight,_sWidth,_sHeight;
 //extern   HWND _Ghwnd;

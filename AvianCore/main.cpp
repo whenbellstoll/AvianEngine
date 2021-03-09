@@ -1,6 +1,9 @@
 ﻿#include "globals.h"
 
+SpriteElem SpriteList[MAXACTORS];
 struct Global global;
+
+
 
 int main()
 {
@@ -15,6 +18,11 @@ int main()
     // create a window, create context,
     // create GPU Mempacks, etc
     InitOpenGL();
+
+    SpriteList[0] = *(SpriteElem *)MEMPACK_AllocMem(&global.ramPack, sizeof(SpriteElem), "duckInst");
+
+    SpriteList[0].TotalAnimations = 2;
+    SpriteList[0].Animations = new AnimationElem[2];
 
     FrameElem duckFrame = FrameElem("Assets/duck.bmp");
     duckFrame.Delay = 6;

@@ -181,7 +181,7 @@
 #define kMidiFileMaximum        128
 #define kAlarmMaximum			512
 #define MAXHOTSPOTS				5
-#define MAXACTORS				1001
+#define MAXACTORS				2 //1001
 #define kMaxSpriteType			16
 #define kMaxSpriteCollisions	10
 #define kMaxCollisionData		15

@@ -219,7 +219,16 @@ AnimationElem::~AnimationElem()
 
 void* AnimationElem::operator new[](size_t st)
 {
-	return nullptr;
+    /*
+    int size = sizeof(AnimationElem);
+    int allocNumber = st / size;
+
+    for (int i = 0; i < allocNumber; i++)
+    {
+
+    }
+    */
+
 }
 
 void AnimationElem::operator delete[](void* v)
