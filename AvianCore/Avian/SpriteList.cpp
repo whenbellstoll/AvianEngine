@@ -210,6 +210,7 @@ void FrameElem::operator delete[](void* v)
 // Animation Element
 AnimationElem::AnimationElem()
 {
+    ConnectTo = 1;
 }
 
 AnimationElem::~AnimationElem()

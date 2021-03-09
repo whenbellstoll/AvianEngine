@@ -16,13 +16,55 @@ int main()
     // create GPU Mempacks, etc
     InitOpenGL();
 
-    FrameElem duckSprite = FrameElem("Assets/duck.bmp");
-    FrameElem breadSprite = FrameElem("Assets/bread.bmp");
+    FrameElem duckFrame = FrameElem("Assets/duck.bmp");
+    duckFrame.Delay = 6;
+    duckFrame.CurrentFrameTime = 6;
+    FrameElem duckWTwoFrame = FrameElem("Assets/duckw2.bmp");
+    duckWTwoFrame.Delay = 6;
+    duckWTwoFrame.CurrentFrameTime = 6;
+    FrameElem duckWThreeFrame = FrameElem("Assets/duckw3.bmp");
+    duckWThreeFrame.Delay = 6;
+    duckWThreeFrame.CurrentFrameTime = 6;
+    FrameElem duckWFourFrame = FrameElem("Assets/duckw4.bmp");
+    duckWFourFrame.Delay = 6;
+    duckWFourFrame.CurrentFrameTime = 6;
+    FrameElem duckWFiveFrame = FrameElem("Assets/duckw5.bmp");
+    duckWFiveFrame.Delay = 6;
+    duckWFiveFrame.CurrentFrameTime = 6;
+    FrameElem duckWSixFrame = FrameElem("Assets/duckw6.bmp");
+    duckWSixFrame.Delay = 6;
+    duckWSixFrame.CurrentFrameTime = 6;
+
+    AnimationElem duckIdle = AnimationElem();
+    duckIdle.TotalFrames = 1;
+    duckIdle.Frames = &duckFrame;
+
+    AnimationElem duckWalk = AnimationElem();
+    duckWalk.TotalFrames = 6;
+    FrameElem walkFrames[6] = { duckFrame, duckWTwoFrame, duckWThreeFrame, duckWFourFrame, duckWFiveFrame, duckWSixFrame };
+    duckWalk.Frames = &walkFrames[0];
+
+    SpriteElem duckSprite = SpriteElem();
+    duckSprite.TotalAnimations = 2;
+    AnimationElem duckAnimation[2] = { duckIdle, duckWalk };
+    duckSprite.Animations = &duckAnimation[0];
+
+    FrameElem breadFrame = FrameElem("Assets/bread.bmp");
+    breadFrame.Delay = 50;
+    breadFrame.CurrentFrameTime = 50;
+
+    AnimationElem breadAni = AnimationElem();
+    breadAni.TotalFrames = 1;
+    breadAni.Frames = &breadFrame;
+
+    SpriteElem breadSprite = SpriteElem();
+    breadSprite.TotalAnimations = 1;
+    breadSprite.Animations = &breadAni;
 
     printf("Allocating instances\n");
 
     Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "duckInst");
-    duckInst1->fe = &duckSprite;
+    duckInst1->se = &duckSprite;
 
 
     glfwGetWindowSize(global.window, &global.width, &global.height);
@@ -38,7 +80,7 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         breadInst[i] = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "breadInst");
-        breadInst[i]->fe = &breadSprite;
+        breadInst[i]->se = &breadSprite;
 
         // draw breads on bottom (larger depth)
         breadInst[i]->ZOrder(2); 
@@ -102,20 +144,21 @@ int main()
 
 
 
-        if (IntersectRectangles1(duckInst1->fe->BBox, breadInst[0]->fe->BBox))
-        {
-            printf("\n Collision between Duck and bread has been confirmed.");
-        }
+        //if (IntersectRectangles1(duckInst1->fe->BBox, breadInst[0]->fe->BBox))
+       // {
+       //     printf("\n Collision between Duck and bread has been confirmed.");
+       // }
 
         // render
         // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+        duckInst1->dt = elapsedTime;
         duckInst1->DisplaySprite();
 
         for (int i = 0; i < 5; i++)
         {
+            breadInst[i]->dt = elapsedTime;
             breadInst[i]->DisplaySprite();
         }
 

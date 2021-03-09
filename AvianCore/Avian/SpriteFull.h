@@ -11,7 +11,8 @@ class MovementPattern;
 class   Sprite:public node
 {
 private:
-	int id;																		
+	int id;
+	
 	//Map *mapPointer;
 	String name;
 	float mapPositionX;
@@ -178,7 +179,9 @@ public:
 	//Array<Variable> LocalVariables;
 	//PathStateMachineTraverser *  psmt;
 	int  displayListNumber;
-	FrameElem* fe;
+	float dt;
+	// Eventually this will be replaced by the GameNode "SpriteList", but I don't have scene graphs at the moment.
+	SpriteElem* se;
 	void Unused(bool);
 	bool Unused();
 	void Use(const char *);

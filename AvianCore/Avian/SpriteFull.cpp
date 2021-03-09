@@ -19,6 +19,7 @@ void Sprite::HandleLastFlipPR()
 
 void Sprite::DisplaySprite()
 {
+	UpdateAnimation();
 	// layer (what draws on top of what)
 	glUniform1f(0, zOrder / 100.0f );
 
@@ -30,8 +31,8 @@ void Sprite::DisplaySprite()
 	glUniform1f(3, scaleX);
 	glUniform1f(4, scaleY);
 
-	glBindTexture(GL_TEXTURE_2D, fe->texture);
-	glDrawArrays(GL_TRIANGLE_STRIP, fe->startingVertex, 4);
+	glBindTexture(GL_TEXTURE_2D, se->Animations->Frames->texture);
+	glDrawArrays(GL_TRIANGLE_STRIP, se->Animations->Frames->startingVertex, 4);
 }
 
 void Sprite::CheckSpriteCollision(Sprite*)
@@ -56,6 +57,38 @@ void Sprite::UpdateTranslation()
 
 void Sprite::UpdateAnimation()
 {
+	
+	float frameElapsed = 60 * dt; // assume 60 fps for now
+	float check = (se->Animations->Frames->CurrentFrameTime -= frameElapsed);
+	
+	if (check <= 0)
+	{
+		// if currentanimation only has one frame, return
+		if (se->Animations->TotalFrames == 1)
+		{
+			se->Animations->Frames->CurrentFrameTime = se->Animations->Frames->Delay;
+			return;
+		}
+
+		if (se->Animations->ConnectTo != 0)
+		{
+			se->Animations->Frames++;
+		}
+		else if(se->Animations->TotalFrames <= 1)
+		{
+			for (int i = 0; i < se->Animations->TotalFrames; i++)
+			{
+				se->Animations->Frames--;
+			}
+		}
+		se->Animations->Frames->CurrentFrameTime = se->Animations->Frames->Delay;
+		se->Animations->ConnectTo++;
+		if (se->Animations->ConnectTo >= se->Animations->TotalFrames)
+		{
+			se->Animations->ConnectTo = 0;
+		}
+
+	}
 }
 
 void Sprite::ResetMapCollisionFlag()
@@ -115,6 +148,7 @@ Sprite::Sprite()
 	mapPositionY = 0.0f;
 	scaleX = 1.0f;
 	scaleY = 1.0f;
+	animation = 0;
 }
 
 Sprite::Sprite(Sprite*)
@@ -313,8 +347,8 @@ void Sprite::MapPositionX(float x, bool b)
 		
 		mapPositionX = x;
 		float realSpace = (mapPositionX + 1) * (global.width / 2);
-		fe->BBox.left = realSpace;
-		fe->BBox.right = realSpace + fe->Width;
+		se->Animations->Frames->BBox.left = realSpace;
+		se->Animations->Frames->BBox.right = realSpace + se->Animations->Frames->Width;
 	}
 }
 
@@ -325,8 +359,8 @@ void Sprite::MapPositionY(float y, bool b)
 		
 		mapPositionY = y;
 		float realSpace = (-mapPositionY - 1) * (global.height / 2) * -1;
-		fe->BBox.top = realSpace;
-		fe->BBox.bottom = realSpace + fe->Height;
+		se->Animations->Frames->BBox.top = realSpace;
+		se->Animations->Frames->BBox.bottom = realSpace + se->Animations->Frames->Height;
 	}
 }
 
@@ -345,11 +379,11 @@ void Sprite::MapPosition(float x, float y, bool b)
 	if (!b)
 	{
 		float realSpaceX = (x + 1) * (global.width / 2);
-		fe->BBox.left = realSpaceX;
-		fe->BBox.right = realSpaceX + fe->Width;
+		se->Animations->Frames->BBox.left = realSpaceX;
+		se->Animations->Frames->BBox.right = realSpaceX + se->Animations->Frames->Width;
 		float realSpaceY = (y + 1) * (global.height / 2) * -1;
-		fe->BBox.top = realSpaceY;
-		fe->BBox.bottom = realSpaceY + fe->Height;
+		se->Animations->Frames->BBox.top = realSpaceY;
+		se->Animations->Frames->BBox.bottom = realSpaceY + se->Animations->Frames->Height;
 		mapPositionX = x;
 		mapPositionY = y;
 	}
@@ -476,8 +510,15 @@ void Sprite::Pause(bool)
 {
 }
 
-void Sprite::Animation(int)
+void Sprite::Animation(int i)
 {
+	if (i >= se->TotalAnimations && i != 0)
+	{
+		Animation(0);
+	}
+	
+	se->Animations = se->Animations + i;
+
 }
 
 int Sprite::Animation()
