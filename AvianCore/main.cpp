@@ -120,7 +120,7 @@ int main()
         }
 
 
-        if (pKeyboard->IsPressed(AK_ESCAPE))
+        if (pKeyboard->IsPressed(AK_ESCAPE)) // Close the program
         {
             glfwSetWindowShouldClose(global.window, GLFW_TRUE);
         }
@@ -130,7 +130,6 @@ int main()
 
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
-
     // erase resources
     free(mempackRamData);
     mempackRamData = nullptr;

@@ -7,6 +7,7 @@ FrameElem::FrameElem()
 	TranslateX = 0.0f;
 	TranslateY = 0.0f;
 	Delay = 0;
+    CurrentFrameTime = 0;
 	Width = 0;
 	Height = 0;
 	Transparency = RGB(0, 0, 0);
@@ -30,7 +31,8 @@ FrameElem::FrameElem(const char* filename)
     ImageName = filename;
     TranslateX = 0.0f;
     TranslateY = 0.0f;
-    Delay = 0;
+    Delay = 1;
+    CurrentFrameTime = Delay;
     Transparency = RGB(0, 0, 0);
     hFlip = false;
     vFlip = false;
