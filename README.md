@@ -1,3 +1,10 @@
+
+<p align="center">
+  <a href="https://github.com/whenbellstoll/AvianEngine">
+    <img src="https://github.com/whenbellstoll/AvianEngine/blob/main/Documentation/Core%20Docs/AvianLogoText.png?raw=true" width=200 alt="Avian logo">
+  </a>
+</p>
+
 # AvianEngine
 ## 2D node-based cross-platform game engine
 
