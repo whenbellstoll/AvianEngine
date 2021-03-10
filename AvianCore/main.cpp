@@ -190,8 +190,8 @@ int main()
         breadBox.top = breadrealSpaceY;
         breadBox.bottom = breadrealSpaceY + SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].Height;
 
-       // printf("\n BB bread: %i , %i , %i , %i ", breadBox.left, breadBox.top, breadBox.right, breadBox.bottom);
-        //printf("\n BB Duck: %i , %i , %i , %i ", duckBox.left, duckBox.top, duckBox.right, duckBox.bottom);
+        // printf("\n BB bread: %i , %i , %i , %i ", breadBox.left, breadBox.top, breadBox.right, breadBox.bottom);
+        // printf("\n BB Duck: %i , %i , %i , %i ", duckBox.left, duckBox.top, duckBox.right, duckBox.bottom);
         if (IntersectRectangles1(duckBox, breadBox))
         {
             printf("\n Collision between Duck and bread has been confirmed. Positions: %i , %i , %i , %i", (int)duckrealSpaceX, (int)duckrealSpaceY, (int)breadrealSpaceX, (int)breadrealSpaceY);
