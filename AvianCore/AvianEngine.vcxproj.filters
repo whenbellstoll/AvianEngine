@@ -57,6 +57,9 @@
     <ClCompile Include="Avian\Keyboard.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
+    <ClCompile Include="Avian\CollisionData.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">

@@ -1,6 +1,3 @@
-#ifndef _COLLISIONDATA_H_
-#define _COLLISIONDATA_H_
-
 #include "Node.h"
 #include "File.h"
 #include "Clip.h"
@@ -100,5 +97,3 @@ public:
 	DYNCREATED
 			
 };
-
-#endif

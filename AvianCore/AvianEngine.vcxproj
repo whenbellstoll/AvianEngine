@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Avian\Clip.cpp" />
+    <ClCompile Include="Avian\CollisionData.cpp" />
     <ClCompile Include="Avian\Constants.cpp" />
     <ClCompile Include="Avian\File.cpp" />
     <ClCompile Include="Avian\Game.cpp" />

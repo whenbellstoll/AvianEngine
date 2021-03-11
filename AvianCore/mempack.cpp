@@ -2,8 +2,7 @@
 
 void MEMPACK_Init(Mempack* mp, void* start, int size, const char* name)
 {
-    // In CTR, "size" is the amount of RAM in the system,
-    // but here, it is the amount of bytes in the mempack
+    // size is the amount of bytes in the mempack
 
     mp->name = name;
     mp->packSize = size;
@@ -45,6 +44,7 @@ void* MEMPACK_AllocMem(Mempack* mp, int size, const char* name)
 
         // crash program
         while (true) {}
+        // it's dirty, and I don't care.
     }
 
     // save where data has been allocated
@@ -67,7 +67,6 @@ void* MEMPACK_AllocMem(Mempack* mp, int size, const char* name)
 }
 
 // This probably wont be used, but here it is if it's wanted,
-// even in Crash Team Racing it's only used twice (as far as we know)
 void* MEMPACK_AllocHighMem(Mempack* mp, int size, const char* name)
 {
     int numFreeBytes = MEMPACK_NumFreeBytes(mp);
