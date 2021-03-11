@@ -13,12 +13,22 @@ CollisionSegment::CollisionSegment(const CollisionSegment&)
 {
 }
 
-CollisionSegment::CollisionSegment(float x1, float y1, float x2, float y2, float nx, float ny, int id , unsigned char c, int ii)
+CollisionSegment::CollisionSegment(float x1, float y1, float x2, float y2, float nx, float ny, int idi , unsigned char c, int ii)
 {
 }
 
-CollisionSegment::CollisionSegment(float, float, float, float, int, unsigned char, int)
+CollisionSegment::CollisionSegment(float x1, float y1, float x2, float y2, int idi, unsigned char c, int i)
 {
+	originX = x1;
+	originY = y1;
+	magnitudeX = x2 - x1;
+	magnitudeY = y2 - y1;
+	segmentAttribute = c;
+	id = idi;
+	numPathState = i;
+	edgeCollision = true;
+	normalX = magnitudeY;
+	normalY = -magnitudeX;
 }
 
 CollisionSegment& CollisionSegment::operator=(const CollisionSegment& s)
@@ -204,17 +214,17 @@ ClassType CollisionCircle::Type()
 
 float CollisionCircle::OriginX()
 {
-	return 0.0f;
+	return originX;
 }
 
 float CollisionCircle::OriginY()
 {
-	return 0.0f;
+	return originY;
 }
 
 float CollisionCircle::Radius()
 {
-	return 0.0f;
+	return radius;
 }
 
 bool CollisionCircle::DetectCollision(CollisionSegment*, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
