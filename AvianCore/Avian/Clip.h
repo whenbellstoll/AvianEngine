@@ -14,9 +14,10 @@
 	//Arguments:	Eight float
 	//Modifies what:None
 	//Functions calling this function:
-	//				Sprite::CheckMapCollision()
+	//				SegmentCollision::DetectCollision()
+	//				CircleCollision::DetectCollision()
 	//Functions called by this function:
-	//				CompOutCode(float,float,float,float,float,float)
+	//				
 	//Example:
 	//-------------------------------------------------------------------------
 	bool CSLineOnLine(float, float, float, float, float, float, float, float);
