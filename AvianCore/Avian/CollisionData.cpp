@@ -291,7 +291,7 @@ bool CollisionSegment::DetectCollision(CollisionCircle* cc, float worldpositionX
 
 	// treat the projection as a box and check all four sides
 	return(
-		CSCircleClipping(ccX, ccY, cc->Radius(), x1, , , float bottomY) // original lines
+		CSCircleClipping(ccX, ccY, cc->Radius(), x1, y1, x3, y4) // original lines
 		);
 }
 
