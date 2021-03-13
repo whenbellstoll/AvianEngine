@@ -60,6 +60,9 @@
     <ClCompile Include="Avian\CollisionData.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
+    <ClCompile Include="Avian\Behavior.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="InputUpdate.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\Behavior.h">
+      <Filter>Source Files\Avian</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

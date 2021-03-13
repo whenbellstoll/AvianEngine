@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Avian\Behavior.cpp" />
     <ClCompile Include="Avian\Clip.cpp" />
     <ClCompile Include="Avian\CollisionData.cpp" />
     <ClCompile Include="Avian\Constants.cpp" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Avian\AvianGlobals.h" />
+    <ClInclude Include="Avian\Behavior.h" />
     <ClInclude Include="Avian\Clip.h" />
     <ClInclude Include="Avian\CollisionData.h" />
     <ClInclude Include="Avian\Constants.h" />
