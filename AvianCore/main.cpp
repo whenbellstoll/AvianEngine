@@ -1,4 +1,7 @@
 ﻿#include "globals.h"
+// Memory Leaks
+#include <stdlib.h>
+#include <crtdbg.h>
 
 SpriteElem SpriteList[MAXACTORS];
 struct Global global;
@@ -226,6 +229,7 @@ int main()
     mempackRamData = nullptr;
 
     CleanOpenGL();
+    _CrtDumpMemoryLeaks();
 
     // end program
     return 0;

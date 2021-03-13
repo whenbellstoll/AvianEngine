@@ -147,7 +147,7 @@ Sprite::Sprite()
 	animation = 0;
 }
 
-Sprite::Sprite(Sprite*)
+Sprite::Sprite(Sprite* s)
 {
 }
 
@@ -179,16 +179,16 @@ const char* Sprite::ClassName()
 	return "Sprite";
 }
 
-void Sprite::Use(const char*)
+void Sprite::Use(const char* c)
 {
 }
 
-Sprite* Sprite::Search(const char*)
+Sprite* Sprite::Search(const char* c)
 {
 	return nullptr;
 }
 
-Sprite* Sprite::Search(const int)
+Sprite* Sprite::Search(const int i)
 {
 	return nullptr;
 }

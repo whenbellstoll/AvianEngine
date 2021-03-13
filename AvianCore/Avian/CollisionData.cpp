@@ -1,5 +1,6 @@
-#include "CollisionData.h"
+#include "../globals.h"
 
+// this function is for spatial optimization, not quite there yet
 bool CollisionSegment::ChopCandidateInterval(double&, double&, double, double)
 {
 	return false;
@@ -38,14 +39,32 @@ CollisionSegment::CollisionSegment(const CollisionSegment& cs)
 	directionY = cs.directionY;
 	normalX = cs.normalX;
 	normalY = cs.normalY;
-	NorX = 200;
-	NorY = 200;
-	MinT = 1.5f;
+	NorX = cs.NorX;
+	NorY = cs.NorY;
+	MinT = cs.MinT;
 }
 
-// I've never used this constructor I've forgotten what the two extra floats are for 
+// I've never used this constructor I've forgotten what the two extra floats are for, assuming NorX and NorY for now
 CollisionSegment::CollisionSegment(float x1, float y1, float x2, float y2, float nx, float ny, int idi , unsigned char c, int ii)
 {
+	originX = x1;
+	originY = y1;
+	magnitudeX = x2 - x1;
+	magnitudeY = y2 - y1;
+	segmentAttribute = c;
+	id = idi;
+	numPathState = ii;
+	edgeCollision = true;
+	float length = sqrt(((double)magnitudeX * (double)magnitudeX) + ((double)magnitudeY * (double)magnitudeY));
+	directionX = magnitudeX / length;
+	directionY = magnitudeY / length;
+	magnitudeX = length;
+	magnitudeY = length;
+	normalX = -directionY;
+	normalY = directionX;
+	NorX = nx;
+	NorY = ny;
+	MinT = 1.5f;
 }
 
 CollisionSegment::CollisionSegment(float x1, float y1, float x2, float y2, int idi, unsigned char c, int i)
@@ -71,11 +90,25 @@ CollisionSegment::CollisionSegment(float x1, float y1, float x2, float y2, int i
 
 }
 
-CollisionSegment& CollisionSegment::operator=(const CollisionSegment& s)
+CollisionSegment& CollisionSegment::operator=(const CollisionSegment& cs)
 {
-	// TODO: insert return statement here
-}
-
+	originX = cs.originX;
+	originY = cs.originY;
+	magnitudeX = cs.magnitudeX;
+	magnitudeY = cs.magnitudeY;
+	segmentAttribute = cs.segmentAttribute;
+	id = cs.id;
+	numPathState = cs.numPathState;
+	edgeCollision = cs.edgeCollision;
+	directionX = cs.directionX;
+	directionY = cs.directionY;
+	normalX = cs.normalX;
+	normalY = cs.normalY;
+	NorX = cs.NorX;
+	NorY = cs.NorY;
+	MinT = cs.MinT;
+	return *this;
+}	
 CollisionSegment::operator bool() const
 {
 	return false;
@@ -153,7 +186,42 @@ void CollisionSegment::NormalY(float ny)
 
 bool CollisionSegment::DetectCollision(CollisionSegment* cs, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
 {
-	// we need to do some normal checking here but not sure how to do that yet
+	// Function written with assumption that cs is the stationary collider and we are the ones moving.
+	// we need to do some normal checking here
+	// For the collision segment that is moving, we check if the movement is against its normals
+	// Ex:		
+	//     ____|____|____  Will not collide with anything
+	//          ||
+	//			\/
+	// For the collision that is stationary, we check if the movement is aligned with its normals
+	//Ex:
+	//		|
+	//		|
+	//     --
+	//		|	 <= ___|___|___		Will not collide
+	//		|
+	//	   --
+	//		|
+	//		|
+	if (vectX > 0 && (normalX < 0 || cs->NormalX() > 0) )
+	{
+		return false;
+	}
+	else if (vectX < 0 && (normalX > 0 || cs->NormalX() < 0))
+	{
+		return false;
+	}
+	
+	if (vectY > 0 && (normalY < 0 || cs->NormalY() > 0))
+	{
+		return false;
+	}
+	else if (vectY < 0 && (normalY > 0 || cs->NormalY() < 0))
+	{
+		return false;
+	}
+
+
 
 	float x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6;
 	x1 = originX + worldpositionX1;
@@ -161,30 +229,70 @@ bool CollisionSegment::DetectCollision(CollisionSegment* cs, float worldposition
 	y1 = originY + worldpositionY1;
 	y2 = y1 + (directionY * magnitudeY);
 
-	x3 = cs->OriginX() + worldpositionX1;
+	x3 = cs->OriginX() + worldpositionX2;
 	x4 = x3 + (cs->DirectionX() * cs->MagnitudeX());
-	y3 = cs->OriginY() + worldpositionY1;
+	y3 = cs->OriginY() + worldpositionY2;
 	y4 = y3 + (cs->DirectionY() * cs->MagnitudeY());
 
 	// projected line
-	x5 = x3 + (vectX * speed);
-	x6 = x4 + (vectX * speed);
-	y5 = y3 + (vectY * speed);
-	y6 = y4 + (vectY * speed);
+	x5 = x1 + (vectX * speed);
+	x6 = x2 + (vectX * speed);
+	y5 = y1 + (vectY * speed);
+	y6 = y2 + (vectY * speed);
 
 	// treat the projection as a box and check all four sides
 	return(
 		CSLineOnLine(x1, y1, x2, y2, x3, y3, x4, y4) || // original lines
-		CSLineOnLine(x1, y1, x2, y2, x5, y5, x6, y6) || // this line vs projection
-		CSLineOnLine(x1, y1, x2, y2, x3, y3, x5, y5) ||
-		CSLineOnLine(x1, y1, x2, y2, x6, y6, x4, y4)
+		CSLineOnLine(x3, y3, x4, y4, x5, y5, x6, y6) || // this line vs projection
+		CSLineOnLine(x3, y3, x4, y4, x3, y3, x5, y5) ||
+		CSLineOnLine(x3, y3, x4, y4, x6, y6, x4, y4)
 		);
 
 }
 
-bool CollisionSegment::DetectCollision(CollisionCircle*, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
+bool CollisionSegment::DetectCollision(CollisionCircle* cc, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
 {
-	return false;
+	if (vectX > 0 && normalX < 0 )
+	{
+		return false;
+	}
+	else if (vectX < 0 && normalX > 0 )
+	{
+		return false;
+	}
+
+	if (vectY > 0 && normalY < 0 )
+	{
+		return false;
+	}
+	else if (vectY < 0 && normalY > 0 )
+	{
+		return false;
+	}
+
+
+
+	float x1, y1, x2, y2, x3, y3, x4, y4;
+	x1 = originX + worldpositionX1;
+	x2 = x1 + (directionX * magnitudeX);
+	y1 = originY + worldpositionY1;
+	y2 = y1 + (directionY * magnitudeY);
+
+	// projected line
+	x3 = x1 + (vectX * speed);
+	x4 = x2 + (vectX * speed);
+	y3 = y1 + (vectY * speed);
+	y4 = y2 + (vectY * speed);
+	
+	float ccX = cc->OriginX() + worldpositionX2;
+	float ccY = cc->OriginY() + worldpositionY2;
+
+
+
+	// treat the projection as a box and check all four sides
+	return(
+		CSCircleClipping(ccX, ccY, cc->Radius(), x1, , , float bottomY) // original lines
+		);
 }
 
 int CollisionSegment::Id()
@@ -215,18 +323,20 @@ void CollisionSegment::OriginY(float oy)
 void* CollisionSegment::operator new(size_t st)
 {
 	void* p;
+	p = MEMPACK_AllocMem(&global.ramPack, st, "CollisionSegment");
 	return p;
 }
 
 void CollisionSegment::operator delete(void* v)
 {
+	return;
 }
 
 void CollisionSegment::Save(File& f)
 {
 }
 
-void CollisionSegment::Load(File&)
+void CollisionSegment::Load(File& f)
 {
 }
 
@@ -297,12 +407,12 @@ float CollisionCircle::Radius()
 	return radius;
 }
 
-bool CollisionCircle::DetectCollision(CollisionSegment*, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
+bool CollisionCircle::DetectCollision(CollisionSegment* cs, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
 {
 	return false;
 }
 
-bool CollisionCircle::DetectCollision(CollisionCircle*, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
+bool CollisionCircle::DetectCollision(CollisionCircle* cs, float worldpositionX1, float worldpositionY1, float worldpositionX2, float worldpositionY2, float vectX, float vectY, float speed)
 {
 	return false;
 }
@@ -317,13 +427,16 @@ void CollisionCircle::Id(int i)
 	id = i;
 }
 
-void* CollisionCircle::operator new(size_t)
+void* CollisionCircle::operator new(size_t st)
 {
-	return nullptr;
+	void* p;
+	p = MEMPACK_AllocMem(&global.ramPack, st, "CollisionCircle");
+	return p;
 }
 
 void CollisionCircle::operator delete(void*)
 {
+	return;
 }
 
 void CollisionCircle::Save(File&)

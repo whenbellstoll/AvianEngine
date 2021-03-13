@@ -16,6 +16,7 @@
 #include "Avian/Constants.h"
 #include "InputUpdate.h"
 #include "Avian/Clip.h"
+#include "Avian/CollisionData.h"
 
 struct Global
 {
