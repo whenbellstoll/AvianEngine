@@ -7,6 +7,38 @@ SpriteElem SpriteList[MAXACTORS];
 struct Global global;
 
 
+// Behavior Demo
+void MoveSprite(Sprite* This)
+{
+    float distance = 0.01f;
+    if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT))
+    {
+        This->MapPositionX(This->MapPositionX() - distance);
+        This->Animation(1);
+    }
+    if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
+    {
+        This->MapPositionX(This->MapPositionX() + distance);
+        This->Animation(1);
+    }
+    if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
+    {
+        This->MapPositionY(This->MapPositionY() + distance);
+        This->Animation(0);
+    }
+    if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN))
+    {
+        This->MapPositionY(This->MapPositionY() - distance);
+        This->Animation(0);
+    }
+
+    if (pKeyboard->Nothing())
+    {
+        This->Animation(0);
+    }
+}
+
+void (*f)(void*) = (void(*)(void*))MoveSprite;
 
 int main()
 {
@@ -81,6 +113,7 @@ int main()
     // draw person on top (small depth)
     duckInst1->ZOrder(1);
     duckInst1->MapPositionX(-0.5f);
+    //(*f)(duckInst1);
     duckInst1->MapPositionY(-0.5f);
     duckInst1->ScaleX( 2 / (float)global.width );
     duckInst1->ScaleY( 2 / (float)global.height ); 
@@ -137,33 +170,11 @@ int main()
         // Determine Key States
         pKeyboard->ProcessKeys();
     
+        // Behavior
+        (*f)(duckInst1);
         // input
         // -----
-        if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT))
-        {
-            duckInst1->MapPositionX(duckInst1->MapPositionX() - elapsedTime);
-            duckInst1->Animation(1);
-        }
-        if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
-        {
-            duckInst1->MapPositionX(duckInst1->MapPositionX() + elapsedTime);
-            duckInst1->Animation(1);
-        }
-        if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
-        {
-            duckInst1->MapPositionY(duckInst1->MapPositionY() + elapsedTime);
-            duckInst1->Animation(0);
-        }
-        if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN))
-        {
-            duckInst1->MapPositionY(duckInst1->MapPositionY() - elapsedTime);
-            duckInst1->Animation(0);
-        }
-
-        if (pKeyboard->Nothing())
-        {
-            duckInst1->Animation(0);
-        }
+        
 
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");

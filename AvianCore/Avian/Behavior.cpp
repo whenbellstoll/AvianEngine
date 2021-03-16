@@ -5,27 +5,37 @@ Bnode::Bnode()
 	Index = 0;
 	Active = true;
 	type = -1;
+	f = 0;
 }
 
-Bnode::Bnode(const Bnode&)
+Bnode::Bnode(const Bnode& bn)
+{
+	Index = bn.Index;
+	Active = bn.Active;
+	type = bn.type;
+	f = bn.f;
+}
+
+Bnode& Bnode::operator=(const Bnode& bn)
+{
+	Index = bn.Index;
+	Active = bn.Active;
+	type = bn.type;
+	f = bn.f;
+	return *this;
+}
+
+void Bnode::Save(File& f)
 {
 }
 
-Bnode& Bnode::operator=(const Bnode&)
-{
-	// TODO: insert return statement here
-}
-
-void Bnode::Save(File&)
-{
-}
-
-void Bnode::Load(File&)
+void Bnode::Load(File& f)
 {
 }
 
 Behavior::Behavior()
 {
+	IsRunning = true;
 }
 
 Behavior& Behavior::operator=(const Behavior&)
@@ -86,20 +96,27 @@ bool Behavior::FunctionActiveStatus(unsigned int)
 
 bool Behavior::TimerActiveStatus(unsigned int)
 {
+	// Timer function, to do
 	return false;
 }
 
 void Behavior::ChangeState(unsigned int, unsigned int)
 {
+	// State Machine function, to do
 }
 
 int Behavior::GetCurrentState(unsigned int)
 {
+	// State Machine Function, to do
 	return 0;
 }
 
 void Behavior::Clear()
 {
+	Bnodes.clear();
+	FunctionsIndexes.clear();
+	StateMachinesIndexes.clear();
+	TimersIndexes.clear();
 }
 
 unsigned int Behavior::Count()
@@ -107,6 +124,7 @@ unsigned int Behavior::Count()
 	return 0;
 }
 
+// Not implementing the timer yet
 //void Behavior::ResetTimer(unsigned int i, unsigned int delay, TimerMode mode)
 //{
 //}
@@ -116,7 +134,7 @@ unsigned int Behavior::Count()
 	//return 0;
 //}
 
-void Behavior::Update(void*)
+void Behavior::Update(void* f)
 {
 }
 
