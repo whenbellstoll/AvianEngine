@@ -3,42 +3,12 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 
+void** FArray;
+int maxFIndex;
 SpriteElem SpriteList[MAXACTORS];
 struct Global global;
 
-
-// Behavior Demo
-void MoveSprite(Sprite* This)
-{
-    float distance = 0.01f;
-    if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT))
-    {
-        This->MapPositionX(This->MapPositionX() - distance);
-        This->Animation(1);
-    }
-    if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
-    {
-        This->MapPositionX(This->MapPositionX() + distance);
-        This->Animation(1);
-    }
-    if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
-    {
-        This->MapPositionY(This->MapPositionY() + distance);
-        This->Animation(0);
-    }
-    if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN))
-    {
-        This->MapPositionY(This->MapPositionY() - distance);
-        This->Animation(0);
-    }
-
-    if (pKeyboard->Nothing())
-    {
-        This->Animation(0);
-    }
-}
-
-void (*f)(void*) = (void(*)(void*))MoveSprite;
+//void (*f)(void*) = (void(*)(void*))MoveSprite;
 
 int main()
 {
@@ -49,6 +19,14 @@ int main()
 
     // initialize mempack for RAM
     MEMPACK_Init(&global.ramPack, mempackRamData, ramSize, "ram");
+    
+    // Allocate Memory for Function Array
+    FArray = (void**)MEMPACK_AllocMem(&global.ramPack, sizeof(void*), "Function Array");
+    // Add our behavior from GameFunctions.h to FArray
+    FArray[0] = (void *)MoveSprite;
+    void (*f)(void*) = (void(*)(void*))FArray[0];
+    maxFIndex = 0;
+
 
     // create a window, create context,
     // create GPU Mempacks, etc
@@ -68,7 +46,7 @@ int main()
     SpriteList[0].Animations[0].Frames[0].Transparency = RGB(255,255,255);
 
 
-
+ 
     SpriteList[0].Animations[1].TotalFrames = 6;
     SpriteList[0].Animations[1].ConnectTo = 0;
     SpriteList[0].Animations[1].Frames = new FrameElem[6];
@@ -110,10 +88,9 @@ int main()
 
 
     glfwGetWindowSize(global.window, &global.width, &global.height);
-    // draw person on top (small depth)
+    // draw duck on top (small depth)
     duckInst1->ZOrder(1);
     duckInst1->MapPositionX(-0.5f);
-    //(*f)(duckInst1);
     duckInst1->MapPositionY(-0.5f);
     duckInst1->ScaleX( 2 / (float)global.width );
     duckInst1->ScaleY( 2 / (float)global.height ); 
@@ -140,6 +117,9 @@ int main()
         breadInst[i]->Delay(50);
 
     }
+    Behavior b = Behavior();
+    duckInst1->behavior = &b;
+    duckInst1->behavior->AddFunction(0, true);
 
     // timer variables
     clock_t start;
@@ -171,7 +151,8 @@ int main()
         pKeyboard->ProcessKeys();
     
         // Behavior
-        (*f)(duckInst1);
+        //(*f)(duckInst1);
+        //(*(void (*)(void *))FArray[0])(duckInst1);
         // input
         // -----
         
@@ -216,7 +197,7 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         duckInst1->dt = elapsedTime;
-        duckInst1->DisplaySprite();
+        duckInst1->UpdateSprite();
 
         for (int i = 0; i < 5; i++)
         {

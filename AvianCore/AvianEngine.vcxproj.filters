@@ -63,6 +63,12 @@
     <ClCompile Include="Avian\Behavior.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
+    <ClCompile Include="globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFunctions.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -117,6 +123,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Avian\Behavior.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFunctions.h">
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
   </ItemGroup>

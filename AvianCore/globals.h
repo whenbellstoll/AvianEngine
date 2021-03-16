@@ -17,6 +17,8 @@
 #include "InputUpdate.h"
 #include "Avian/Clip.h"
 #include "Avian/CollisionData.h"
+#include "Avian/Behavior.h"
+#include "GameFunctions.h"
 
 struct Global
 {
@@ -39,6 +41,12 @@ extern SpriteElem SpriteList[MAXACTORS];
 
 extern Global global;
 
+// Behavior
+void** NewVoidPointers(unsigned int);
+
+extern    void** FArray;
+extern   int maxFIndex;
+
 // Right now we allocate almost nothing, but
 // the dial will be cranked up in future tutorials,
 // when we add more stuff, and get to 3D graphics.
@@ -47,10 +55,8 @@ extern Global global;
 #define pboSize 0x100000 // 1024 kilobytes
 #define ramSize 0x100000 // 1024 kilobytes
 
-// For industry-level engines, please compile
-// in x64 instead of x86. All the tutorials are
-// x86 because some people dont own x64 computers
-
-// When compiling in x86 mode, malloc fails with
-// any amount 2gb or more, 1gb - 1.9gb return a pointer,
-// but the engine fails to run if you malloc 1.7gb+
+// For industry-level use, please compile in x64 
+// instead of x86. When compiling in x86 mode,
+// malloc fails with any amount 2gb or more, 1gb - 1.9gb
+// return a pointer, but the engine fails to run if 
+// you malloc 1.7gb+

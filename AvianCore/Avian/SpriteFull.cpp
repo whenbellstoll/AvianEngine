@@ -51,6 +51,9 @@ void Sprite::CheckSpriteCollision(Sprite*)
 
 void Sprite::UpdateSprite()
 {
+	UpdateTranslation();
+	DisplaySprite();
+	behavior->Update((void *)this);
 }
 
 void Sprite::reflect(float, float)

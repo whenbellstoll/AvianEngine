@@ -1,9 +1,9 @@
-#include "Behavior.h"
+#include "../globals.h"
 
 Bnode::Bnode()
 {
 	Index = 0;
-	Active = true;
+	Active = false;
 	type = -1;
 	f = 0;
 }
@@ -36,19 +36,36 @@ void Bnode::Load(File& f)
 Behavior::Behavior()
 {
 	IsRunning = true;
+	Clear();
 }
 
-Behavior& Behavior::operator=(const Behavior&)
+Behavior& Behavior::operator=(const Behavior& b)
 {
-	// TODO: insert return statement here
+	IsRunning = b.IsRunning;
+	Bnodes = b.Bnodes;
+	FunctionsIndexes = b.FunctionsIndexes;
+	StateMachinesIndexes = b.StateMachinesIndexes;
+	TimersIndexes = b.TimersIndexes;
+
+	return *this;
 }
 
 void Behavior::AddStateMachine(unsigned int, bool)
 {
 }
 
-void Behavior::AddFunction(unsigned int, bool)
+void Behavior::AddFunction(unsigned int i, bool b)
 {
+	if (i > maxFIndex)
+	{
+		return;
+	}
+	Bnode n;
+	n.Index = i;
+	n.Active = b;
+	n.type = 0;
+	n.f = (void(*)(void*))FArray[i];
+	Bnodes.push_back(n);
 }
 
 void Behavior::AddTimer(unsigned int, bool)
@@ -134,8 +151,12 @@ unsigned int Behavior::Count()
 	//return 0;
 //}
 
-void Behavior::Update(void* f)
+void Behavior::Update(void* obj)
 {
+	for (std::vector<Bnode>::iterator it = Bnodes.begin(); it != Bnodes.end(); ++it )
+	{
+		if(it->Active && IsRunning) (*it->f)(obj);
+	}
 }
 
 void Behavior::Save(File&)

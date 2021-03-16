@@ -2,13 +2,15 @@
 
 node::node()
 {
+    next = nullptr;
+    previous = nullptr;
     local = this;
 }
 
 node::~node()
 {
-    previous->next = next;
-    next->previous = previous;
+    //previous->next = next;
+    //next->previous = previous;
 }
 
 node* node::Next()

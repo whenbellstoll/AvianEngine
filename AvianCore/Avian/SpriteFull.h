@@ -5,6 +5,7 @@
 #include "Array.h"
 #include "CollisionData.h"
 #include "SpriteList.h"
+#include "Behavior.h"
 class Alarm;
 class MovementPattern;
 
@@ -77,7 +78,7 @@ private:
 	// This method will be private and called from GameLoop, but it is public for demo: void DisplaySprite ();
 	//void CheckMapCollision(Map *);
 	void CheckSpriteCollision(Sprite *);
-	void UpdateSprite();
+	
 	bool unused;
 	bool checkSameDisplayList;
 	bool mapCollision;
@@ -194,6 +195,7 @@ public:
 
 	// This will be private later
 	void DisplaySprite();
+	void UpdateSprite();
 	// This will be private later
 
 	void CheckSameType(bool);
@@ -408,7 +410,7 @@ public:
 	void * operator new(size_t);
 	void   operator delete(void *);
 
-	//Behavior behavior;
+	Behavior * behavior;
 	friend class MovementPattern;
 	friend class SpritePTR;
 	friend class PathStateMachine;

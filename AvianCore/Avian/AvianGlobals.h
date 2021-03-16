@@ -34,7 +34,6 @@ extern   bool _IsScreenSaver;
 //extern    StateMachine     * SMArray;
 //extern    Timer            * TMArray;
 //extern    PathStateMachine * PSMArray;
-extern    void            ** FArray;
 extern    void            ** SMFArray;
 extern    void            ** LVFArray;
 extern    node            ** NArray;
@@ -57,6 +56,7 @@ extern   int maxNIndex;
 	extern    UserError    _UE;
 	extern unsigned int _GameLoops;
 #endif
+	
 	/*
 void ComposePathes();
 
