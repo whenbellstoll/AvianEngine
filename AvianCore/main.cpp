@@ -25,7 +25,6 @@ int main()
     FArray = (void**)MEMPACK_AllocMem(&global.ramPack, sizeof(void*), "Function Array");
     // Add our behavior from GameFunctions.h to FArray
     FArray[0] = (void *)MoveSprite;
-    // void (*f)(void*) = (void(*)(void*))FArray[0];
     
 
 

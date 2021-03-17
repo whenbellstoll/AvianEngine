@@ -194,6 +194,7 @@
     <ClCompile Include="Avian\File.cpp" />
     <ClCompile Include="Avian\Game.cpp" />
     <ClCompile Include="Avian\Keyboard.cpp" />
+    <ClCompile Include="Avian\List.cpp" />
     <ClCompile Include="Avian\MyGame.cpp" />
     <ClCompile Include="Avian\Node.cpp" />
     <ClCompile Include="Avian\SpriteFull.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="Avian\GameNode.h" />
     <ClInclude Include="Avian\Input.h" />
     <ClInclude Include="Avian\Keyboard.h" />
+    <ClInclude Include="Avian\List.h" />
     <ClInclude Include="Avian\MyGame.h" />
     <ClInclude Include="Avian\Node.h" />
     <ClInclude Include="Avian\SpriteFull.h" />
