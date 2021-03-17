@@ -30,3 +30,5 @@ void MoveSprite(Sprite* This)
         This->Animation(0);
     }
 }
+
+//void CollectBread(Sprite* This)

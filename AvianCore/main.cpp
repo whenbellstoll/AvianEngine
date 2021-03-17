@@ -20,12 +20,13 @@ int main()
     // initialize mempack for RAM
     MEMPACK_Init(&global.ramPack, mempackRamData, ramSize, "ram");
     
+    maxFIndex = 0;
     // Allocate Memory for Function Array
     FArray = (void**)MEMPACK_AllocMem(&global.ramPack, sizeof(void*), "Function Array");
     // Add our behavior from GameFunctions.h to FArray
     FArray[0] = (void *)MoveSprite;
-    void (*f)(void*) = (void(*)(void*))FArray[0];
-    maxFIndex = 0;
+    // void (*f)(void*) = (void(*)(void*))FArray[0];
+    
 
 
     // create a window, create context,
@@ -117,6 +118,8 @@ int main()
         breadInst[i]->Delay(50);
 
     }
+    
+    
     Behavior b = Behavior();
     duckInst1->behavior = &b;
     duckInst1->behavior->AddFunction(0, true);
