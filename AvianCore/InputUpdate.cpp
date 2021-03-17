@@ -6,9 +6,7 @@ void Input_Update(GLFWwindow* window, int key, int scancode, int action, int mod
 	{
 		// This bit shifting turns 'key' into a 
 		// bit index in the entire array, which 
-		// holds 512 bits total. This was used in
-		// CTR to store bits depending on what 
-		// has been unlocked in Adventure Mode
+		// holds 512 bits total.
 
 		// toggle bit on
 		pKeyboard->press[key >> 5] |= 1 << (key & 0x1f);

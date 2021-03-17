@@ -604,17 +604,17 @@ void Sprite::CannedDirection(unsigned int direction)
 {
 }
 
-void Sprite::VectorDirection(float, float, unsigned int)
+void Sprite::VectorDirection(float x, float y, unsigned int mag)
 {
 }
 
-void Sprite::VectorAngle(float, float)
+void Sprite::VectorAngle(float ang, float gaming)
 {
 }
 
 float Sprite::VectorAngle()
 {
-	return 0.0f;
+	
 }
 
 void Sprite::VariableNumber(int)
@@ -628,12 +628,12 @@ int Sprite::VariableNumber(void)
 
 float Sprite::DirectionX()
 {
-	return 0.0f;
+	return directionX;
 }
 
 float Sprite::DirectionY()
 {
-	return 0.0f;
+	return directionY;
 }
 
 bool Sprite::CollisionWithMap()
