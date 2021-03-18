@@ -37,12 +37,12 @@ class   Game: public node
 
 public:
 	int    li;
-	static List gameNodeList;
+	static Array<node *> gameNodeList;
 	int levelNumber;
 	int prevNumber;
 	bool newLevel;
 	String name;
-	//Behavior behavior;
+	Behavior behavior;
 	Game();
 	~Game();
 	void Name(const char *);
@@ -51,8 +51,8 @@ public:
 	int LevelNumber(void);
 	static GameNode* Search(const char *);
 	static GameNode* Search(int);
-	//void Add(GameNode *gn);
-	//void Add(GameNode gn);
+	void Add(GameNode *gn);
+	void Add(GameNode gn);
 	void AddLocalVariable(unsigned int);
 	void EndGame();
 	void LevelName(const char *);
@@ -70,7 +70,7 @@ public:
 	unsigned int ViewportHeight();
 	void Title(const char *);
 	bool IsFullScreen();
-	//Behavior & GetCurrentLevelBehavior();
+	Behavior & GetCurrentLevelBehavior();
 	void ViewPortPosition(unsigned int ,unsigned int,bool = true);
 	unsigned int ViewPortPositionX();
 	unsigned int ViewPortPositionY();

@@ -72,6 +72,9 @@
     <ClCompile Include="Avian\List.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
+    <ClCompile Include="Avian\GameNode.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -132,6 +135,9 @@
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
     <ClInclude Include="Avian\List.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\Array.h">
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
   </ItemGroup>

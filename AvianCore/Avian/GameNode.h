@@ -3,9 +3,6 @@
 #include "Array.h"
 #include "List.h"
 #include "SpriteFull.h"
-struct KeyboardInputKeys{
-		Array<unsigned char> KInputKeys;
-	};
 
 class ParticleSystem;
 class   GameNode:public node
@@ -19,6 +16,7 @@ protected:
 	double startTime;
 	bool showScrollingBoundingBox;
 	bool quitOnEscape;
+	bool usePalette;
 	String paletteName;
 	int li;
 
@@ -27,7 +25,7 @@ public:
     ~GameNode();
 
 	String levelName;
-	//Behavior behavior;
+	Behavior behavior;
 	int	spriteCount;
 	int	mapCount;
 	int	variableCount;
@@ -42,13 +40,13 @@ public:
 	int streamedSoundMaximum;
 	int midiFileMaximum;
 	int particleSystemMaximum;
-	List mapList;
-	List spriteList[kMaxSpriteType];
-	List variableList;
-	List soundList;
-	List streamedSoundList;
-	List midiFileList;
-	List particleSystemList;
+	Array<node *> mapList;
+	Array<node*> spriteList;//[kMaxSpriteType];
+	Array<node *> variableList;
+	Array<node *> soundList;
+	Array<node *> streamedSoundList;
+	Array<node *> midiFileList;
+	Array<node *> particleSystemList;
 	//void UpdateParticleSystem(Map *);
 	//bool Add(ParticleSystem *);
     //ViewPort viewPort;
@@ -72,7 +70,6 @@ public:
 	//bool Add(MidiFile *);
 	bool AddSFX(const char *,const char *,bool = false,int = 50);
 	bool AddMusic(const char *,const char *,bool = false);
-    bool AddMidiFile(const char *,const char *,bool = false);
 	//bool AddMap(const char *,const char *,Map::MapType);
 	//bool Add(Map &);
 	//bool Add(Variable &);
@@ -87,7 +84,6 @@ public:
 	void UpdateScreen();
 	void PlaySFX(const char *);
 	void PlayMusic(const char *);
-	void PlayMidiFile(const char *);
 	void StopMusic(const char *);
 	void StopMidiFile(const char *);
 	void InitFPS();
@@ -104,12 +100,7 @@ public:
 	bool QuitOnEscape();
 	void QuitOnEscape(bool);
 	void ViewPortPosition(unsigned int ,unsigned int,bool = true); 
-	void DeleteFunCursor();
-
-	Array<unsigned char> MInputData1;
-	//Array<MouseRelMove> MInputData2;
-	Array<KeyboardInputKeys> KInputKeysNumber;
-	
+	void DeleteCursor();	
 	void UpdateCursor();
 
 	void Save(File &);

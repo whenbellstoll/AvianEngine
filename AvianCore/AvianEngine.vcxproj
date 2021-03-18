@@ -193,6 +193,7 @@
     <ClCompile Include="Avian\Constants.cpp" />
     <ClCompile Include="Avian\File.cpp" />
     <ClCompile Include="Avian\Game.cpp" />
+    <ClCompile Include="Avian\GameNode.cpp" />
     <ClCompile Include="Avian\Keyboard.cpp" />
     <ClCompile Include="Avian\List.cpp" />
     <ClCompile Include="Avian\MyGame.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="mempack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Avian\Array.h" />
     <ClInclude Include="Avian\AvianGlobals.h" />
     <ClInclude Include="Avian\Behavior.h" />
     <ClInclude Include="Avian\Clip.h" />
