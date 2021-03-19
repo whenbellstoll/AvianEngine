@@ -122,17 +122,17 @@ public:
 
 
 
-#define DYNCREATEI(cname)								\
+#define DYNCREATEIMP(cname)								\
 		node * cname::CreateObject(){return new cname;}	\
-		CREATE cname::cr(#cname,cname::CreateObject);   \
-		const char * cname::ClassName(){ return cr.name;}
+		CREATE cname::cr(#cname,&cname::CreateObject);   \
+		const char * cname::ClassName(){ return #cname;}
 
 
 struct CREATE
 {
 	String name;
 	node * (*pCreateObject)();
-	CREATE(char *,node * (*)());
+	CREATE(const char *,node * (*)());
 };
 
 bool CurrentDirectory(String & u);

@@ -178,12 +178,4 @@ void GameNode::Load(File&)
 {
 }
 
-const char* GameNode::ClassName()
-{
-	return "GameNode";
-}
-
-node* GameNode::CreateObject()
-{
-	return nullptr;//new GameNode(this);
-}
+DYNCREATEIMP(GameNode);
