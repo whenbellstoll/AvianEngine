@@ -123,6 +123,12 @@ int main()
     duckInst1->behavior = &b;
     duckInst1->behavior->AddFunction(0, true);
 
+    // Add Map
+    //Map mM = Map("mainMap", "Assets/Maps/mainMap.bmp", Map::MapType::STANDARDMAP);
+    Map* mainMap = (Map *)MEMPACK_AllocMem(&global.ramPack, sizeof(Map), "mainMap");
+    mainMap->FileName("Assets/Maps/mainMap.bmp");
+    mainMap->Name("mainMap");
+
     // timer variables
     clock_t start;
     clock_t end;
@@ -196,8 +202,12 @@ int main()
 
         // render
         // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.2f, 0.3f, 0.3f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        //mainMap->DisplayMap();
+        mainMap->DisplayMap();
+
         duckInst1->dt = elapsedTime;
         duckInst1->UpdateSprite();
 

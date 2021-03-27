@@ -38,7 +38,7 @@ template <class T>
 void Array<T>::Free()
 {
 	delete[] ar;
-	ar = NULL;
+	ar = nullptr;
 }
 
 template <class T>

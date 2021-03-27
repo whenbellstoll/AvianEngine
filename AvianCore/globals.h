@@ -19,6 +19,7 @@
 #include "Avian/CollisionData.h"
 #include "Avian/Behavior.h"
 #include "GameFunctions.h"
+#include "Avian/Map.h"
 
 struct Global
 {

@@ -305,7 +305,7 @@ UString& UString::operator=(const UString& cus)
 	return *this;
 }
 
-CREATE::CREATE(char* c , node* (*pCn)())
+CREATE::CREATE(const char* c , node* (*pCn)())
 {
 	name = String(c);
 	pCreateObject = pCn;

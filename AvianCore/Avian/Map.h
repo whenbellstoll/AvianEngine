@@ -46,10 +46,13 @@ private:
 	
 	int				id;
 	String          name;
-	String			fileName;
+	//String			fileName;
+	const char*		fileName;
 	bool			isMasterMap;        
 	unsigned  int	height;				
 	unsigned  int	width;
+	unsigned int	texture;
+	unsigned int	startingVertex;
 	int             gridRows;
 	int             gridColumns;
 	float	        worldPositionX;				
@@ -87,7 +90,7 @@ private:
     void  UpdateStandardMap();
 	void  UpdateWrappedMap();
 	void  (Map::*displayMap)();          
-    void  DisplayMap();
+
 
 	friend   void  ToggleMode();
 	friend   void  RestoreAllSurfaces();
@@ -110,15 +113,20 @@ private:
 	friend class Particle;
 
 public:
+	// temporarily public
+	void  DisplayMap();
+	// move to private later
 
 	Array<node*> alarmList;
     Map();
 	Map(const Map &);
-	Map(const char*,const char*, MapType,int = 0,int = 0,int = 0,bool = true,Rect = zrect); 
+	Map(const char*,const char*, MapType,int = 0,int = 0,int = 0,bool = true); 
 	~Map();
 	static Map* Search(const char *);        
 	void Name(const char *);
     const char *Name();
+	void FileName(const char*);
+	const char* FileName();
 	Array<node*> collisionList; 
 	unsigned int Height();
     unsigned int Width();
