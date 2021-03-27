@@ -24,30 +24,41 @@ void Game::LevelNumber(int i)
 	levelNumber = i;
 }
 
-int Game::LevelNumber(void)
+int Game::LevelNumber()
 {
-	return 0;
+	return levelNumber;
 }
 
-GameNode* Game::Search(const char*)
+GameNode* Game::Search(const char* n)
 {
+	for (int i = 0; i < gameNodeList.NumberOfElements(); i++)
+	{
+		GameNode* gn = (GameNode*)gameNodeList[i];
+		if (!strcmp(n, gn->Name())) return gn;
+	}
 	return nullptr;
 }
 
-GameNode* Game::Search(int)
+GameNode* Game::Search(int i)
 {
+	if (i < gameNodeList.NumberOfElements())
+	{
+		return (GameNode*)gameNodeList[i];
+	}
 	return nullptr;
 }
 
-/*
+
 void Game::Add(GameNode* gn)
 {
+	gameNodeList.InsertBack(gn);
 }
 
 void Game::Add(GameNode gn)
 {
+	gameNodeList.InsertBack(&gn);
 }
-*/
+
 void Game::AddLocalVariable(unsigned int)
 {
 }
@@ -122,6 +133,11 @@ void Game::Title(const char*)
 bool Game::IsFullScreen()
 {
 	return false;
+}
+
+Behavior& Game::GetCurrentLevelBehavior()
+{
+	// TODO: insert return statement here
 }
 
 /*

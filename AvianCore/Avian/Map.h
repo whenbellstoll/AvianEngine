@@ -127,6 +127,7 @@ public:
     const char *Name();
 	void FileName(const char*);
 	const char* FileName();
+	void SetMapType(MapType);
 	Array<node*> collisionList; 
 	unsigned int Height();
     unsigned int Width();

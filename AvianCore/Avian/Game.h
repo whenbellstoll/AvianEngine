@@ -29,7 +29,7 @@ class   Game: public node
 	void LoadGameDialog();
 	void LoadInputData(const char *);
 
-	//Array<int> LevelNavigation;
+	Array<int> LevelNavigation;
 	bool navigation;
 	int currentNavigation;
 

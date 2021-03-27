@@ -3,6 +3,7 @@
 #include "Array.h"
 #include "List.h"
 #include "SpriteFull.h"
+#include "Map.h"
 
 class ParticleSystem;
 class   GameNode:public node
@@ -24,28 +25,25 @@ public:
 	GameNode();
     ~GameNode();
 
-	String levelName;
-	Behavior behavior;
+	const char * levelName;
+	Behavior * behavior;
 	int	spriteCount;
 	int	mapCount;
 	int	variableCount;
 	int soundCount;
 	int streamedSoundCount;
-	int midiFileCount;
 	int particleSystemCount;
 	int	spriteMaximum;
 	int	mapMaximum;
 	int	variableMaximum;
 	int soundMaximum;
 	int streamedSoundMaximum;
-	int midiFileMaximum;
 	int particleSystemMaximum;
 	Array<node *> mapList;
 	Array<node*> spriteList;//[kMaxSpriteType];
 	Array<node *> variableList;
 	Array<node *> soundList;
 	Array<node *> streamedSoundList;
-	Array<node *> midiFileList;
 	Array<node *> particleSystemList;
 	//void UpdateParticleSystem(Map *);
 	//bool Add(ParticleSystem *);
@@ -67,10 +65,9 @@ public:
     //bool Add(Variable *);
 	//bool Add(Sound *);
 	//bool Add(StreamedSound *);
-	//bool Add(MidiFile *);
 	bool AddSFX(const char *,const char *,bool = false,int = 50);
 	bool AddMusic(const char *,const char *,bool = false);
-	//bool AddMap(const char *,const char *,Map::MapType);
+	bool AddMap(const char *,const char *,Map::MapType);
 	//bool Add(Map &);
 	//bool Add(Variable &);
 	bool Add(Sprite &);

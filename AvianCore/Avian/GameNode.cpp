@@ -1,7 +1,20 @@
+#include "../globals.h"
 #include "GameNode.h"
 
 GameNode::GameNode()
 {
+	spriteCount = 0;
+	mapCount = 0;
+	variableCount = 0;
+	soundCount = 0;
+	streamedSoundCount = 0;
+	particleSystemCount = 0;
+	spriteMaximum = 1024;
+	mapMaximum = 1024;
+	variableMaximum = 1024;
+	soundMaximum = 512;
+	streamedSoundMaximum = 128;
+	particleSystemMaximum = 1024;
 }
 
 GameNode::~GameNode()
@@ -10,6 +23,22 @@ GameNode::~GameNode()
 
 void GameNode::Execute()
 {
+	// Update objects
+	// Maps
+	for (int i = 0; i < mapList.NumberOfElements(); i++)
+	{
+		Map* m = (Map*)mapList[i];
+		m->DisplayMap();
+	}
+	// Sprites
+	for (int i = 0; i < spriteList.NumberOfElements(); i++)
+	{
+		Sprite* s = (Sprite*)spriteList[i];
+		s->UpdateSprite();
+	}
+	// sound effects
+	// music
+	// particleSystems
 }
 
 void GameNode::Id(int i)
@@ -43,9 +72,9 @@ GameNode* GameNode::Search(const char* n)
 
 bool GameNode::Add(Sprite* s)
 {
-	// TO DO add spriteList check
+	if (spriteList.NumberOfElements() == spriteMaximum)	return false;
+	
 	spriteList.InsertBack(s);
-
 	return true;
 }
 
@@ -59,10 +88,28 @@ bool GameNode::AddMusic(const char*, const char*, bool)
 	return false;
 }
 
+bool GameNode::AddMap(const char* name, const char* filename, Map::MapType mT)
+{
+	if (mapList.NumberOfElements() == mapMaximum) return false;
+
+	// Allocate Map and Set Variables
+	Map* m = (Map*)MEMPACK_AllocMem(&global.ramPack, sizeof(Map), "AddMapGameNode");
+	m->Name(name);
+	m->FileName(filename);
+	m->SetMapType(mT);
+	mapList.InsertBack(m);
+
+	return true;
+}
+
 bool GameNode::Add(Sprite& s)
 {
-	spriteList.InsertBack(&s);
+	if (spriteList.NumberOfElements() + 1 > spriteMaximum)
+	{
+		return false;
+	}
 
+	spriteList.InsertBack(&s);
 	return true;
 }
 
@@ -106,15 +153,15 @@ void GameNode::PlaySFX(const char* n)
 {
 }
 
-void GameNode::PlayMusic(const char*)
+void GameNode::PlayMusic(const char* n)
 {
 }
 
-void GameNode::StopMusic(const char*)
+void GameNode::StopMusic(const char* n)
 {
 }
 
-void GameNode::StopMidiFile(const char*)
+void GameNode::StopMidiFile(const char* n)
 {
 }
 

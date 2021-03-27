@@ -268,6 +268,11 @@ const char* Map::FileName()
     return fileName;
 }
 
+void Map::SetMapType(MapType mt)
+{
+    mType = mt;
+}
+
 unsigned int Map::Height()
 {
 	return 0;
