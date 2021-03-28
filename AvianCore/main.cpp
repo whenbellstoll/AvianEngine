@@ -29,11 +29,11 @@ int main()
     // Add our behavior from GameFunctions.h to FArray
     FArray[0] = (void *)MoveSprite;
     
-    glfwGetWindowSize(global.window, &global.width, &global.height);
 
     // create a window, create context,
     // create GPU Mempacks, etc
     InitOpenGL();
+    glfwGetWindowSize(global.window, &global.width, &global.height);
 
     LoadAnimation();
 

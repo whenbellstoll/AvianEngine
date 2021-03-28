@@ -198,7 +198,6 @@ void Map::DisplayMap()
         glUniform1f(pos + 2, transparencyColor.r / 255.0f);
 
     }
-    printf("Drawing Map Texture %i with starting vertex %i \n", texture, startingVertex);
     glBindTexture(GL_TEXTURE_2D, texture);
     glDrawArrays(GL_TRIANGLE_STRIP, startingVertex, 4);
 }
@@ -528,13 +527,18 @@ Map* MapPTR::operator->()
 Map& MapPTR::operator*()
 {
 	// TODO: insert return statement here
+    Map* r = nullptr;
+    return *r;
 }
 
 MapPTR& MapPTR::operator=(Map*)
 {
 	// TODO: insert return statement here
+    MapPTR* r = nullptr;
+    return *r;
 }
 
 MapPTR::operator Map* ()
 {
+    return mapPtr;
 }

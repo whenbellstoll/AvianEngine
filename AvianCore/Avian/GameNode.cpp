@@ -26,7 +26,6 @@ void GameNode::Execute(float dt)
 	for (int i = 0; i < mapList.NumberOfElements(); i++)
 	{
 		Map* m = (Map*)mapList[i];
-		printf("Name of Map being drawn: %s \n", m->Name());
 		m->DisplayMap();
 	}
 	// Sprites
@@ -34,9 +33,7 @@ void GameNode::Execute(float dt)
 	{
 		Sprite* s = (Sprite*)spriteList[i];
 		s->dt = dt;
-		printf("Name of Sprite being drawn: %i \n", s->ActorIndex());
-		s->DisplaySprite();
-		//s->UpdateSprite();
+		s->UpdateSprite();
 	}
 	// sound effects
 	// music

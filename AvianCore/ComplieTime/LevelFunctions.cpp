@@ -19,8 +19,8 @@ void Init_Level_1(GameNode* gn)
     duckInst1->Animation(0);
     duckInst1->Frame(0);
     duckInst1->Delay(6);
-    Behavior duckb = Behavior();
-    duckInst1->behavior = &duckb;
+    //Behavior duckb = Behavior();
+    duckInst1->behavior = new Behavior();
     duckInst1->behavior->AddFunction(0, true);
     gn->Add(duckInst1);
 
@@ -40,8 +40,7 @@ void Init_Level_1(GameNode* gn)
         breadInst[i]->Animation(0);
         breadInst[i]->Frame(0);
         breadInst[i]->Delay(50);
-        Behavior breadb = Behavior();
-        breadInst[i]->behavior = &breadb;
+        breadInst[i]->behavior = new Behavior();
         gn->Add(breadInst[i]);
     }
 

@@ -379,7 +379,7 @@ CollisionCircle& CollisionCircle::operator=(const CollisionCircle& s)
 	NorX = s.NorX;
 	NorY = s.NorY;
 	MinT = s.MinT;
-	
+	return *this;
 }
 
 node* CollisionCircle::Clone()

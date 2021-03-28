@@ -614,7 +614,7 @@ void Sprite::VectorAngle(float ang, float gaming)
 
 float Sprite::VectorAngle()
 {
-	
+	return 0.0f;
 }
 
 void Sprite::VariableNumber(int)

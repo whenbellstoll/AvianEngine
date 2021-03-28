@@ -138,6 +138,8 @@ bool Game::IsFullScreen()
 Behavior& Game::GetCurrentLevelBehavior()
 {
 	// TODO: insert return statement here
+	Behavior* b = nullptr;
+	return *b;
 }
 
 /*
