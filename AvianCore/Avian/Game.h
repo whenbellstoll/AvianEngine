@@ -38,6 +38,7 @@ class   Game: public node
 public:
 	int    li;
 	Array<node *> gameNodeList;
+	GameNode* currentLevel;
 	int levelNumber;
 	int prevNumber;
 	bool newLevel;

@@ -23,6 +23,8 @@
 #include "ComplieTime/LevelFunctions.h"
 #include "Avian/Map.h"
 #include "Avian/GameNode.h"
+#include "Avian/Game.h"
+
 
 
 struct Global
@@ -39,7 +41,7 @@ struct Global
 	Mempack pboPack;
 
 	Keyboard keyboard;
-	GameNode * currentLevel;
+	Game * game;
 
 	int width, height;
 };

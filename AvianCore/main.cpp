@@ -37,29 +37,33 @@ int main()
 
     LoadAnimation();
 
+    global.game = new Game();
     GameNode g1 = GameNode();                       //(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
     g1.spriteList.Clear();
     g1.spriteList.Resize(10);
     g1.mapList.Clear();
     g1.mapList.Resize(10);
-    g1.Id(1);
+    g1.Id(0);
     g1.Name("Level_1");
     g1.gameNodeLevelFunction = Init_Level_1;
     g1.transitionFunction = Exit_Level_1;
     g1.endLevelFunction = End_Level_1;
-    global.currentLevel = &g1;
-    (*global.currentLevel->gameNodeLevelFunction)(global.currentLevel);
+    global.game->Add(&g1);
+    global.game->levelNumber = 0;
+    global.game->currentLevel = &g1;
+    (*global.game->currentLevel->gameNodeLevelFunction)(global.game->currentLevel);
 
     GameNode g2 = GameNode();
     g2.spriteList.Clear();
     g2.spriteList.Resize(10);
     g2.mapList.Clear();
     g2.mapList.Resize(10);
-    g2.Id(2);
+    g2.Id(1);
     g2.Name("Level_2");
     g2.gameNodeLevelFunction = Init_Level_2;
     g2.transitionFunction = Exit_Level_2;
     g2.endLevelFunction = End_Level_2;
+    global.game->Add(&g2);
 
     // timer variables
     clock_t start;
@@ -123,29 +127,18 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
        
-        global.currentLevel->Execute(elapsedTime);
+        global.game->currentLevel->Execute(elapsedTime);
         
         // swap between levels
         if (pKeyboard->IsTriggered(AK_1))
         {
-            // make sure we aren't already on level one
-            if (global.currentLevel->Id() != 1)
-            {
-                global.currentLevel->endLevelFunction(global.currentLevel);
-                global.currentLevel = &g1;
-                global.currentLevel->gameNodeLevelFunction(global.currentLevel);
-            }
+            global.game->LevelNumber(0);
+          
         }
 
         if (pKeyboard->IsTriggered(AK_2))
         {
-            // make sure we aren't already on level one
-            if (global.currentLevel->Id() != 2)
-            {
-                global.currentLevel->endLevelFunction(global.currentLevel);
-                global.currentLevel = &g2;
-                global.currentLevel->gameNodeLevelFunction(global.currentLevel);
-            }
+            global.game->LevelNumber(1);
         }
 
         if (pKeyboard->IsPressed(AK_ESCAPE)) // Close the program
@@ -157,7 +150,7 @@ int main()
         glfwSwapBuffers(global.window);
     }
 
-    global.currentLevel->endLevelFunction(global.currentLevel);
+    global.game->currentLevel->endLevelFunction(global.game->currentLevel);
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
     // erase global resources
