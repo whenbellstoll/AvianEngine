@@ -33,6 +33,8 @@ struct Global
 
 	Mempack ramPack;
 	Mempack levelPack;
+	Mempack mapvboPack;
+	Mempack mappboPack;
 	Mempack vboPack;
 	Mempack pboPack;
 
@@ -62,6 +64,8 @@ extern   int maxFIndex;
 #define pboSize		0x100000 // 1024 kilobytes
 #define ramSize		0x100000 // 1024 kilobytes
 #define levelSize	0x100000 // 2048 kilobytes
+#define mapvboSize	0x1000
+#define mappboSize	0x100000
 // For industry-level use, please compile in x64 
 // instead of x86. When compiling in x86 mode,
 // malloc fails with any amount 2gb or more, 1gb - 1.9gb

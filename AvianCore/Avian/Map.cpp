@@ -104,7 +104,7 @@ void Map::LoadMap()
     const int texPixelsSize = sz - dataOffset;
 
     // allocate data
-    void* pboMem = MEMPACK_AllocMem(&global.pboPack, texPixelsSize, "texture pixels");
+    void* pboMem = MEMPACK_AllocMem(&global.mappboPack, texPixelsSize, "texture pixels");
 
     // Set the data, with offset, size, and ram pointer
     glBufferSubData(GL_PIXEL_UNPACK_BUFFER, (int)pboMem, texPixelsSize, &hex[dataOffset]);
@@ -130,10 +130,10 @@ void Map::LoadMap()
     // each vertex is 4 bytes large, so to get the starting vertex
     // of any given sprite, divide the amount of memory allocated by sizeof(Vertex).
     // this will be used in the render loop
-    startingVertex = (int)global.vboPack.firstFreeByte / (sizeof(float) * 4);
+    startingVertex = (int)global.mapvboPack.firstFreeByte / (sizeof(float) * 4);
 
     // allocate data
-    void* vboMem = MEMPACK_AllocMem(&global.vboPack, sizeof(vertices), "four vertices");
+    void* vboMem = MEMPACK_AllocMem(&global.mapvboPack, sizeof(vertices), "four vertices");
 
     // copy data
     glBufferSubData(GL_ARRAY_BUFFER, (int)vboMem, sizeof(vertices), vertices);

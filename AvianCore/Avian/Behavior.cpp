@@ -169,12 +169,5 @@ void Behavior::Load(File&)
 {
 }
 
-const char* Behavior::ClassName()
-{
-	return "Behavior";
-}
-
-const char* Bnode::ClassName()
-{
-	return "Bnode";
-}
+DYNCREATEIMP(Behavior);
+DYNCREATEIMP(Bnode);

@@ -197,6 +197,7 @@ void InitOpenGL()
     // to the start of pbo memory, so it holds offsets, 
     // not raw GPU addresses
     MEMPACK_Init(&global.pboPack, 0, pboSize, (char*)"pbo");
+    MEMPACK_Init(&global.mappboPack, 0, mappboSize, (char*)"mappbo");
 
     // Generate and bind VAO, dont unbind
     glGenVertexArrays(1, &global.VAO);
@@ -211,6 +212,8 @@ void InitOpenGL()
     // to the start of pbo memory, so it holds offsets, 
     // not raw GPU addresses
     MEMPACK_Init(&global.vboPack, 0, vboSize, (char*)"vbo");
+    MEMPACK_Init(&global.mapvboPack, 0, mapvboSize, (char*)"mapvbo");
+
 
     // Vertex position and tex coordinates
     // will be in our vertex structure
@@ -224,6 +227,8 @@ void CleanOpenGL()
 {
     MEMPACK_Clean(&global.vboPack);
     MEMPACK_Clean(&global.pboPack);
+    MEMPACK_Clean(&global.mapvboPack);
+    MEMPACK_Clean(&global.mappboPack);
 
     glDeleteVertexArrays(1, &global.VAO);
     glDeleteBuffers(1, &global.VBO);

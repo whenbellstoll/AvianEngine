@@ -37,18 +37,29 @@ int main()
 
     LoadAnimation();
 
-    GameNode* g1 = new GameNode();//(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
-    g1->spriteList.Clear();
-    g1->spriteList.Resize(10);
-    g1->mapList.Clear();
-    g1->mapList.Resize(10);
-    g1->Id(1);
-    g1->Name("Level_1");
-    g1->gameNodeLevelFunction = Init_Level_1;
-    g1->transitionFunction = Exit_Level_1;
-    g1->endLevelFunction = End_Level_1;
-    global.currentLevel = g1;
+    GameNode g1 = GameNode();                       //(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
+    g1.spriteList.Clear();
+    g1.spriteList.Resize(10);
+    g1.mapList.Clear();
+    g1.mapList.Resize(10);
+    g1.Id(1);
+    g1.Name("Level_1");
+    g1.gameNodeLevelFunction = Init_Level_1;
+    g1.transitionFunction = Exit_Level_1;
+    g1.endLevelFunction = End_Level_1;
+    global.currentLevel = &g1;
     (*global.currentLevel->gameNodeLevelFunction)(global.currentLevel);
+
+    GameNode g2 = GameNode();
+    g2.spriteList.Clear();
+    g2.spriteList.Resize(10);
+    g2.mapList.Clear();
+    g2.mapList.Resize(10);
+    g2.Id(2);
+    g2.Name("Level_2");
+    g2.gameNodeLevelFunction = Init_Level_2;
+    g2.transitionFunction = Exit_Level_2;
+    g2.endLevelFunction = End_Level_2;
 
     // timer variables
     clock_t start;
@@ -82,12 +93,6 @@ int main()
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");
         if (pKeyboard->IsPressed('Y')) printf("Hold Y\n");
-        //if (pKeyboard->Any()) printf("Key pressed: \n"); // Prints constantly, only uncomment for demo 
-
-        //
-        //
-        //printf("\n Position Bread: %f , %f ", breadInst[0]->MapPositionX(), breadInst[0]->MapPositionY() );
-        //printf("\n Position Duck: %f , %f ", duckInst1->MapPositionX(), duckInst1->MapPositionY());
 
 
         // Calculate Rectangle Positions for collision
@@ -107,8 +112,6 @@ int main()
         breadBox.top = breadrealSpaceY;
         breadBox.bottom = breadrealSpaceY + SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].Height;
 
-        // printf("\n BB bread: %i , %i , %i , %i ", breadBox.left, breadBox.top, breadBox.right, breadBox.bottom);
-        // printf("\n BB Duck: %i , %i , %i , %i ", duckBox.left, duckBox.top, duckBox.right, duckBox.bottom);
         if (IntersectRectangles1(duckBox, breadBox))
         {
             printf("\n Collision between Duck and bread has been confirmed. Positions: %i , %i , %i , %i", (int)duckrealSpaceX, (int)duckrealSpaceY, (int)breadrealSpaceX, (int)breadrealSpaceY);
@@ -119,20 +122,31 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        //mainMap->DisplayMap();
-        /*mainMap->DisplayMap();
-
-        duckInst1->dt = elapsedTime;
-        duckInst1->UpdateSprite();
-
-        for (int i = 0; i < 5; i++)
-        {
-            breadInst[i]->dt = elapsedTime;
-            breadInst[i]->DisplaySprite();
-        }*/
+       
         global.currentLevel->Execute(elapsedTime);
-        //Map* m = static_cast<Map *>(global.currentLevel->mapList[0]);
-        //m->DisplayMap();
+        
+        // swap between levels
+        if (pKeyboard->IsTriggered(AK_1))
+        {
+            // make sure we aren't already on level one
+            if (global.currentLevel->Id() != 1)
+            {
+                global.currentLevel->transitionFunction(global.currentLevel);
+                global.currentLevel = &g1;
+                global.currentLevel->gameNodeLevelFunction(global.currentLevel);
+            }
+        }
+
+        if (pKeyboard->IsTriggered(AK_2))
+        {
+            // make sure we aren't already on level one
+            if (global.currentLevel->Id() != 2)
+            {
+                global.currentLevel->transitionFunction(global.currentLevel);
+                global.currentLevel = &g2;
+                global.currentLevel->gameNodeLevelFunction(global.currentLevel);
+            }
+        }
 
         if (pKeyboard->IsPressed(AK_ESCAPE)) // Close the program
         {
@@ -144,7 +158,6 @@ int main()
     }
 
     global.currentLevel->transitionFunction(global.currentLevel);
-    delete global.currentLevel;
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
     // erase global resources

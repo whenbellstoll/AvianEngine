@@ -23,7 +23,9 @@ void LoadAnimation()
     SpriteList[0].Animations[1].ConnectTo = 0;
     SpriteList[0].Animations[1].Frames = new FrameElem[6];
 
-    SpriteList[0].Animations[1].Frames[0] = SpriteList[0].Animations[0].Frames[0];
+    SpriteList[0].Animations[1].Frames[0] = FrameElem("Assets/duck.bmp");
+    SpriteList[0].Animations[1].Frames[0].Delay = 6;
+    SpriteList[0].Animations[1].Frames[0].Transparency = RGB(255, 255, 255);
     SpriteList[0].Animations[1].Frames[1] = FrameElem("Assets/duckw2.bmp");
     SpriteList[0].Animations[1].Frames[1].Delay = 6;
     SpriteList[0].Animations[1].Frames[1].Transparency = RGB(255, 255, 255);
@@ -39,7 +41,10 @@ void LoadAnimation()
     SpriteList[0].Animations[1].Frames[5] = FrameElem("Assets/duckw6.bmp");
     SpriteList[0].Animations[1].Frames[5].Delay = 6;
     SpriteList[0].Animations[1].Frames[5].Transparency = RGB(255, 255, 255);
-
+    
+    // Do this for some reason ?? texture appears really big for no discernable reason otherwise
+    SpriteList[0].Animations[0].Frames[0] = SpriteList[0].Animations[1].Frames[0];
+    
 
     SpriteList[1] = *(SpriteElem*)MEMPACK_AllocMem(&global.ramPack, sizeof(SpriteElem), "breadSpriteElem");
 
