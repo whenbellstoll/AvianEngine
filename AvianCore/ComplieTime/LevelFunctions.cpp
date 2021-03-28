@@ -12,7 +12,7 @@ void Init_Level_1(GameNode* gn)
     // draw duck on top (small depth)
     duckInst1->ZOrder(1);
     duckInst1->MapPositionX(-0.5f);
-    duckInst1->MapPositionY(-0.5f);
+    duckInst1->MapPositionY(0.5f);
     duckInst1->ScaleX(2 / (float)global.width);
     duckInst1->ScaleY(2 / (float)global.height);
     duckInst1->ActorIndex(0);
@@ -94,10 +94,10 @@ void Init_Level_2(GameNode* gn)
 
         // draw breads on bottom (larger depth)
         breadInst[i]->ZOrder(2);
-        breadInst[i]->MapPositionX(0.5f);
-        breadInst[i]->MapPositionY(-0.5f + 0.2f * i);
-        breadInst[i]->ScaleX(2 / (float)global.width);
-        breadInst[i]->ScaleY(2 / (float)global.height);
+        breadInst[i]->MapPositionX(-0.5f + 0.2f * i );
+        breadInst[i]->MapPositionY(0.5f );
+        breadInst[i]->ScaleX( (-2) / (float)global.width);
+        breadInst[i]->ScaleY( (2 * (i + 1) ) / (float)global.height);
         breadInst[i]->ActorIndex(1);
         breadInst[i]->Animation(0);
         breadInst[i]->Frame(0);

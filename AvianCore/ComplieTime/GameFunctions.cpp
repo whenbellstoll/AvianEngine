@@ -12,22 +12,29 @@ void MoveSprite(Sprite* This)
     if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
     {
         This->MapPositionX(This->MapPositionX() + distance);
-        This->Animation(1);
+        This->Animation(2);
     }
     if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
     {
         This->MapPositionY(This->MapPositionY() + distance);
-        This->Animation(0);
+        //This->Animation(0);
     }
     if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN))
     {
         This->MapPositionY(This->MapPositionY() - distance);
-        This->Animation(0);
+        //This->Animation(0);
     }
 
     if (pKeyboard->Nothing())
     {
-        This->Animation(0);
+        if (This->Animation() == 1)
+        {
+            This->Animation(0);
+        }
+        else if(This->Animation() == 2 )
+        {
+            This->Animation(3);
+        }
     }
 }
 
