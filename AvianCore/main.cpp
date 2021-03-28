@@ -5,7 +5,7 @@
 
 void** FArray;
 int maxFIndex;
-
+Game* myGame;
 struct Global global;
 
 //void (*f)(void*) = (void(*)(void*))MoveSprite;
@@ -37,7 +37,7 @@ int main()
 
     LoadAnimation();
 
-    global.game = new Game();
+    myGame = new Game();
     GameNode g1 = GameNode();                       //(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
     g1.spriteList.Clear();
     g1.spriteList.Resize(10);
@@ -48,10 +48,10 @@ int main()
     g1.gameNodeLevelFunction = Init_Level_1;
     g1.transitionFunction = Exit_Level_1;
     g1.endLevelFunction = End_Level_1;
-    global.game->Add(&g1);
-    global.game->levelNumber = 0;
-    global.game->currentLevel = &g1;
-    (*global.game->currentLevel->gameNodeLevelFunction)(global.game->currentLevel);
+    myGame->Add(&g1);
+    myGame->levelNumber = 0;
+    myGame->currentLevel = &g1;
+    (*myGame->currentLevel->gameNodeLevelFunction)(myGame->currentLevel);
 
     GameNode g2 = GameNode();
     g2.spriteList.Clear();
@@ -63,7 +63,7 @@ int main()
     g2.gameNodeLevelFunction = Init_Level_2;
     g2.transitionFunction = Exit_Level_2;
     g2.endLevelFunction = End_Level_2;
-    global.game->Add(&g2);
+    myGame->Add(&g2);
 
     // timer variables
     clock_t start;
@@ -127,18 +127,18 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
        
-        global.game->currentLevel->Execute(elapsedTime);
+        myGame->currentLevel->Execute(elapsedTime);
         
         // swap between levels
         if (pKeyboard->IsTriggered(AK_1))
         {
-            global.game->LevelNumber(0);
+            myGame->LevelNumber(0);
           
         }
 
         if (pKeyboard->IsTriggered(AK_2))
         {
-            global.game->LevelNumber(1);
+            myGame->LevelNumber(1);
         }
 
         if (pKeyboard->IsPressed(AK_ESCAPE)) // Close the program
@@ -150,7 +150,7 @@ int main()
         glfwSwapBuffers(global.window);
     }
 
-    global.game->currentLevel->endLevelFunction(global.game->currentLevel);
+    myGame->currentLevel->endLevelFunction(myGame->currentLevel);
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
     // erase global resources

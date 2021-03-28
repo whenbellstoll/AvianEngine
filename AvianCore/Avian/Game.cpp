@@ -24,9 +24,9 @@ void Game::LevelNumber(int i)
 	GameNode* temp = Search(i);
 	if (!temp) return;
 
-	global.game->currentLevel->endLevelFunction(global.game->currentLevel);
-	global.game->currentLevel = temp;
-	global.game->currentLevel->gameNodeLevelFunction(global.game->currentLevel);
+	myGame->currentLevel->endLevelFunction(myGame->currentLevel);
+	myGame->currentLevel = temp;
+	myGame->currentLevel->gameNodeLevelFunction(myGame->currentLevel);
 	prevNumber = levelNumber;
 	levelNumber = i;
 }
@@ -81,11 +81,11 @@ void Game::LevelName(const char* n)
 	if (levelNumber == temp->Id()) return;
 	
 	// end the current level
-	global.game->currentLevel->endLevelFunction(global.game->currentLevel);
-	global.game->currentLevel = temp;
-	global.game->currentLevel->gameNodeLevelFunction(global.game->currentLevel);
+	myGame->currentLevel->endLevelFunction(myGame->currentLevel);
+	myGame->currentLevel = temp;
+	myGame->currentLevel->gameNodeLevelFunction(myGame->currentLevel);
 	prevNumber = levelNumber;
-	levelNumber = global.game->currentLevel->Id();
+	levelNumber = myGame->currentLevel->Id();
 }
 
 void Game::ShowCursor(bool b)
@@ -105,24 +105,24 @@ const char* Game::LevelName()
 
 void Game::NextLevel()
 {
-	global.game->currentLevel->endLevelFunction(global.game->currentLevel);
-	global.game->currentLevel = Search(levelNumber + 1);
-	global.game->currentLevel->gameNodeLevelFunction(global.game->currentLevel);
+	myGame->currentLevel->endLevelFunction(myGame->currentLevel);
+	myGame->currentLevel = Search(levelNumber + 1);
+	myGame->currentLevel->gameNodeLevelFunction(myGame->currentLevel);
 	prevNumber = levelNumber;
 	levelNumber++;
 }
 
 void Game::RestartLevel()
 {
-	global.game->currentLevel->endLevelFunction(global.game->currentLevel);
-	global.game->currentLevel->gameNodeLevelFunction(global.game->currentLevel);
+	myGame->currentLevel->endLevelFunction(myGame->currentLevel);
+	myGame->currentLevel->gameNodeLevelFunction(myGame->currentLevel);
 }
 
 void Game::PreviousLevel()
 {
-	global.game->currentLevel->endLevelFunction(global.game->currentLevel);
-	global.game->currentLevel = Search(levelNumber + 1);
-	global.game->currentLevel->gameNodeLevelFunction(global.game->currentLevel);
+	myGame->currentLevel->endLevelFunction(myGame->currentLevel);
+	myGame->currentLevel = Search(levelNumber + 1);
+	myGame->currentLevel->gameNodeLevelFunction(myGame->currentLevel);
 	prevNumber = levelNumber;
 	levelNumber++;
 }

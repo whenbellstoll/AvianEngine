@@ -41,12 +41,13 @@ struct Global
 	Mempack pboPack;
 
 	Keyboard keyboard;
-	Game * game;
+	//Game * game;
 
 	int width, height;
 };
 
 extern Keyboard *  pKeyboard;
+extern Game* myGame;
 
 extern SpriteElem SpriteList[MAXACTORS];
 
