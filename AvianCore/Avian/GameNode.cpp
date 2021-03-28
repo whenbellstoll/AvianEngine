@@ -7,34 +7,36 @@ GameNode::GameNode()
 	mapCount = 0;
 	variableCount = 0;
 	soundCount = 0;
-	streamedSoundCount = 0;
+	musicCount = 0;
 	particleSystemCount = 0;
-	spriteMaximum = 1024;
-	mapMaximum = 1024;
-	variableMaximum = 1024;
-	soundMaximum = 512;
-	streamedSoundMaximum = 128;
-	particleSystemMaximum = 1024;
+	
+	
+	
+	
 }
 
 GameNode::~GameNode()
 {
 }
 
-void GameNode::Execute()
+void GameNode::Execute(float dt)
 {
 	// Update objects
 	// Maps
 	for (int i = 0; i < mapList.NumberOfElements(); i++)
 	{
 		Map* m = (Map*)mapList[i];
+		printf("Name of Map being drawn: %s \n", m->Name());
 		m->DisplayMap();
 	}
 	// Sprites
 	for (int i = 0; i < spriteList.NumberOfElements(); i++)
 	{
 		Sprite* s = (Sprite*)spriteList[i];
-		s->UpdateSprite();
+		s->dt = dt;
+		printf("Name of Sprite being drawn: %i \n", s->ActorIndex());
+		s->DisplaySprite();
+		//s->UpdateSprite();
 	}
 	// sound effects
 	// music
@@ -93,7 +95,7 @@ bool GameNode::AddMap(const char* name, const char* filename, Map::MapType mT)
 	if (mapList.NumberOfElements() == mapMaximum) return false;
 
 	// Allocate Map and Set Variables
-	Map* m = (Map*)MEMPACK_AllocMem(&global.ramPack, sizeof(Map), "AddMapGameNode");
+	Map* m = (Map*)MEMPACK_AllocMem(&global.levelPack, sizeof(Map), "AddMapGameNode");
 	m->Name(name);
 	m->FileName(filename);
 	m->SetMapType(mT);

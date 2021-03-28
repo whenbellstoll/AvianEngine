@@ -10,7 +10,7 @@ class   GameNode:public node
 {
 protected:
 	int	id;
-	String name;
+	const char * name;
 	unsigned int worldWidth;
 	unsigned int worldHeight;
 	double endTime;
@@ -31,19 +31,19 @@ public:
 	int	mapCount;
 	int	variableCount;
 	int soundCount;
-	int streamedSoundCount;
+	int musicCount;
 	int particleSystemCount;
-	int	spriteMaximum;
-	int	mapMaximum;
-	int	variableMaximum;
-	int soundMaximum;
-	int streamedSoundMaximum;
-	int particleSystemMaximum;
+	int spriteMaximum = 1024;
+	int mapMaximum = 1024;
+	int variableMaximum = 1024;
+	int soundMaximum = 512;
+	int musicMaximum = 128;
+	int particleSystemMaximum = 1024;
 	Array<node *> mapList;
 	Array<node*> spriteList;//[kMaxSpriteType];
 	Array<node *> variableList;
 	Array<node *> soundList;
-	Array<node *> streamedSoundList;
+	Array<node *> musicList;
 	Array<node *> particleSystemList;
 	//void UpdateParticleSystem(Map *);
 	//bool Add(ParticleSystem *);
@@ -53,7 +53,7 @@ public:
 	void (*transitionFunction)(GameNode *);
 	void (*endLevelFunction)(GameNode *);
 	bool transitionDone;
-	void Execute();
+	void Execute(float);
 	void Id(int);
 	int Id(void);
 	void Name(const char *);

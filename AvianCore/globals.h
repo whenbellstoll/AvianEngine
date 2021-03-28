@@ -18,8 +18,12 @@
 #include "Avian/Clip.h"
 #include "Avian/CollisionData.h"
 #include "Avian/Behavior.h"
-#include "GameFunctions.h"
+#include "ComplieTime/GameFunctions.h"
+#include "ComplieTime/LoadAnimations.h"
+#include "ComplieTime/LevelFunctions.h"
 #include "Avian/Map.h"
+#include "Avian/GameNode.h"
+
 
 struct Global
 {
@@ -28,10 +32,12 @@ struct Global
 	GLuint VBO, VAO, PBO, program;
 
 	Mempack ramPack;
+	Mempack levelPack;
 	Mempack vboPack;
 	Mempack pboPack;
 
 	Keyboard keyboard;
+	GameNode * currentLevel;
 
 	int width, height;
 };
@@ -43,7 +49,7 @@ extern SpriteElem SpriteList[MAXACTORS];
 extern Global global;
 
 // Behavior
-void** NewVoidPointers(unsigned int);
+//void** NewVoidPointers(unsigned int);
 
 extern    void** FArray;
 extern   int maxFIndex;
@@ -52,10 +58,10 @@ extern   int maxFIndex;
 // the dial will be cranked up in future tutorials,
 // when we add more stuff, and get to 3D graphics.
 // You can allocate several gigabytes if you want
-#define vboSize 0x1000   // 0001 kilobytes <-- just a quad
-#define pboSize 0x100000 // 1024 kilobytes
-#define ramSize 0x100000 // 1024 kilobytes
-
+#define vboSize		0x1000   // 0001 kilobytes <-- just a quad
+#define pboSize		0x100000 // 1024 kilobytes
+#define ramSize		0x100000 // 1024 kilobytes
+#define levelSize	0x100000 // 2048 kilobytes
 // For industry-level use, please compile in x64 
 // instead of x86. When compiling in x86 mode,
 // malloc fails with any amount 2gb or more, 1gb - 1.9gb

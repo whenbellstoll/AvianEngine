@@ -1,5 +1,5 @@
 // Behavior Demo
-#include "globals.h"
+#include "../globals.h"
 
 void MoveSprite(Sprite* This)
 {

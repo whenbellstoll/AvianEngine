@@ -66,9 +66,6 @@
     <ClCompile Include="globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameFunctions.cpp">
-      <Filter>Source Files\Avian</Filter>
-    </ClCompile>
     <ClCompile Include="Avian\List.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
@@ -76,6 +73,15 @@
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
     <ClCompile Include="Avian\Map.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplieTime\GameFunctions.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplieTime\LoadAnimations.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
+    <ClCompile Include="ComplieTime\LevelFunctions.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,9 +140,6 @@
     <ClInclude Include="Avian\Behavior.h">
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
-    <ClInclude Include="GameFunctions.h">
-      <Filter>Source Files\Avian</Filter>
-    </ClInclude>
     <ClInclude Include="Avian\List.h">
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
@@ -144,6 +147,15 @@
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
     <ClInclude Include="Avian\Map.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplieTime\GameFunctions.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplieTime\LoadAnimations.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="ComplieTime\LevelFunctions.h">
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
   </ItemGroup>

@@ -77,7 +77,7 @@ void Map::LoadMap()
     fseek(f, 0L, SEEK_SET);
 
     // allocate memory
-    char* hex = (char*)MEMPACK_AllocMem(&global.ramPack, sz, "map file");
+    char* hex = (char*)MEMPACK_AllocMem(&global.levelPack, sz, "map file");
 
     // read
     fread(hex, 1, sz, f);
@@ -114,7 +114,7 @@ void Map::LoadMap()
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, texW, texH, 0, GL_BGR, GL_UNSIGNED_BYTE, (void*)pboMem);
 
     // erase CPU allocation
-    MEMPACK_ReallocMem(&global.ramPack, 0, "erasing texture file");
+    MEMPACK_ReallocMem(&global.levelPack, 0, "erasing texture file");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -198,7 +198,7 @@ void Map::DisplayMap()
         glUniform1f(pos + 2, transparencyColor.r / 255.0f);
 
     }
-
+    printf("Drawing Map Texture %i with starting vertex %i \n", texture, startingVertex);
     glBindTexture(GL_TEXTURE_2D, texture);
     glDrawArrays(GL_TRIANGLE_STRIP, startingVertex, 4);
 }
@@ -248,13 +248,14 @@ Map* Map::Search(const char*)
 	return nullptr;
 }
 
-void Map::Name(const char*)
+void Map::Name(const char* n)
 {
+    name = n;
 }
 
 const char* Map::Name()
 {
-	return nullptr;
+	return name;
 }
 
 void Map::FileName(const char* fn)

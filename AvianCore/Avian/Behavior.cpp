@@ -153,6 +153,8 @@ unsigned int Behavior::Count()
 
 void Behavior::Update(void* obj)
 {
+	if (Bnodes.empty()) return;
+
 	for (std::vector<Bnode>::iterator it = Bnodes.begin(); it != Bnodes.end(); ++it )
 	{
 		if(it->Active && IsRunning) (*it->f)(obj);

@@ -5,7 +5,7 @@
 
 void** FArray;
 int maxFIndex;
-SpriteElem SpriteList[MAXACTORS];
+
 struct Global global;
 
 //void (*f)(void*) = (void(*)(void*))MoveSprite;
@@ -14,9 +14,12 @@ int main()
 {
     printf("Globals: %d bytes\n", sizeof(global));
 
-    // this should be the one and only "malloc"
+    // these should be the only "malloc" calls
     void* mempackRamData = malloc(ramSize);
-
+    void* levelpackRamData = malloc(levelSize);
+    
+    // initialize mempack for RAM
+    MEMPACK_Init(&global.levelPack, levelpackRamData, levelSize, "levelMemory");
     // initialize mempack for RAM
     MEMPACK_Init(&global.ramPack, mempackRamData, ramSize, "ram");
     
@@ -26,108 +29,26 @@ int main()
     // Add our behavior from GameFunctions.h to FArray
     FArray[0] = (void *)MoveSprite;
     
-
+    glfwGetWindowSize(global.window, &global.width, &global.height);
 
     // create a window, create context,
     // create GPU Mempacks, etc
     InitOpenGL();
 
-    SpriteList[0] = *(SpriteElem *)MEMPACK_AllocMem(&global.ramPack, sizeof(SpriteElem), "duckSpriteElem");
+    LoadAnimation();
 
-    SpriteList[0].TotalAnimations = 2;
-    SpriteList[0].Animations = new AnimationElem[2];
-
-    SpriteList[0].Animations[0].TotalFrames = 1;
-    SpriteList[0].Animations[0].ConnectTo = 0;
-    SpriteList[0].Animations[0].Frames = new FrameElem[1];
-
-    SpriteList[0].Animations[0].Frames[0] = FrameElem("Assets/duck.bmp");
-    SpriteList[0].Animations[0].Frames[0].Delay = 6;
-    SpriteList[0].Animations[0].Frames[0].Transparency = RGB(255,255,255);
-
-
- 
-    SpriteList[0].Animations[1].TotalFrames = 6;
-    SpriteList[0].Animations[1].ConnectTo = 0;
-    SpriteList[0].Animations[1].Frames = new FrameElem[6];
-
-    SpriteList[0].Animations[1].Frames[0] = SpriteList[0].Animations[0].Frames[0];
-    SpriteList[0].Animations[1].Frames[1] = FrameElem("Assets/duckw2.bmp");
-    SpriteList[0].Animations[1].Frames[1].Delay = 6;
-    SpriteList[0].Animations[1].Frames[1].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[2] = FrameElem("Assets/duckw3.bmp");
-    SpriteList[0].Animations[1].Frames[2].Delay = 6;
-    SpriteList[0].Animations[1].Frames[2].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[3] = FrameElem("Assets/duckw4.bmp");
-    SpriteList[0].Animations[1].Frames[3].Delay = 6;
-    SpriteList[0].Animations[1].Frames[3].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[4] = FrameElem("Assets/duckw5.bmp");
-    SpriteList[0].Animations[1].Frames[4].Delay = 6;
-    SpriteList[0].Animations[1].Frames[4].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[5] = FrameElem("Assets/duckw6.bmp");
-    SpriteList[0].Animations[1].Frames[5].Delay = 6;
-    SpriteList[0].Animations[1].Frames[5].Transparency = RGB(255, 255, 255);
-
-
-    SpriteList[1] = *(SpriteElem*)MEMPACK_AllocMem(&global.ramPack, sizeof(SpriteElem), "breadSpriteElem");
-
-    SpriteList[1].TotalAnimations = 1;
-    SpriteList[1].Animations = new AnimationElem[1];
-
-    SpriteList[1].Animations[0].TotalFrames = 1;
-    SpriteList[1].Animations[0].ConnectTo = 0;
-    SpriteList[1].Animations[0].Frames = new FrameElem[1];
-
-    SpriteList[1].Animations[0].Frames[0] = FrameElem("Assets/bread.bmp");
-    SpriteList[1].Animations[0].Frames[0].Delay = 50;
-    SpriteList[1].Animations[0].Frames[0].Transparency = RGB(255, 255, 255);
-
-    printf("Allocating instances\n");
-
-    Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "duckInst");
-
-
-    glfwGetWindowSize(global.window, &global.width, &global.height);
-    // draw duck on top (small depth)
-    duckInst1->ZOrder(1);
-    duckInst1->MapPositionX(-0.5f);
-    duckInst1->MapPositionY(-0.5f);
-    duckInst1->ScaleX( 2 / (float)global.width );
-    duckInst1->ScaleY( 2 / (float)global.height ); 
-    duckInst1->ActorIndex(0);
-    duckInst1->Animation(0);
-    duckInst1->Frame(0);
-    duckInst1->Delay(6);
-
-    Sprite* breadInst[5];
-    
-    for (int i = 0; i < 5; i++)
-    {
-        breadInst[i] = (Sprite*)MEMPACK_AllocMem(&global.ramPack, sizeof(Sprite), "breadInst");
-
-        // draw breads on bottom (larger depth)
-        breadInst[i]->ZOrder(2); 
-        breadInst[i]->MapPositionX(0.5f);
-        breadInst[i]->MapPositionY( -0.5f + 0.2f * i );
-        breadInst[i]->ScaleX(2 / (float)global.width);
-        breadInst[i]->ScaleY(2 / (float)global.height);
-        breadInst[i]->ActorIndex(1);
-        breadInst[i]->Animation(0);
-        breadInst[i]->Frame(0);
-        breadInst[i]->Delay(50);
-
-    }
-    
-    
-    Behavior b = Behavior();
-    duckInst1->behavior = &b;
-    duckInst1->behavior->AddFunction(0, true);
-
-    // Add Map
-    //Map mM = Map("mainMap", "Assets/Maps/mainMap.bmp", Map::MapType::STANDARDMAP);
-    Map* mainMap = (Map *)MEMPACK_AllocMem(&global.ramPack, sizeof(Map), "mainMap");
-    mainMap->FileName("Assets/Maps/mainMap.bmp");
-    mainMap->Name("mainMap");
+    GameNode* g1 = new GameNode();//(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
+    g1->spriteList.Clear();
+    g1->spriteList.Resize(10);
+    g1->mapList.Clear();
+    g1->mapList.Resize(10);
+    g1->Id(1);
+    g1->Name("Level_1");
+    g1->gameNodeLevelFunction = Init_Level_1;
+    g1->transitionFunction = Exit_Level_1;
+    g1->endLevelFunction = End_Level_1;
+    global.currentLevel = g1;
+    (*global.currentLevel->gameNodeLevelFunction)(global.currentLevel);
 
     // timer variables
     clock_t start;
@@ -157,13 +78,6 @@ int main()
 
         // Determine Key States
         pKeyboard->ProcessKeys();
-    
-        // Behavior
-        //(*f)(duckInst1);
-        //(*(void (*)(void *))FArray[0])(duckInst1);
-        // input
-        // -----
-        
 
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");
@@ -177,7 +91,7 @@ int main()
 
 
         // Calculate Rectangle Positions for collision
-        Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
+        /*Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
         Rect breadBox = SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].BBox;
         float duckrealSpaceX = (duckInst1->MapPositionX() + 1) * (global.width / 2);
         float duckrealSpaceY = (duckInst1->MapPositionY() - 1) * (global.height / 2) * -1;
@@ -198,7 +112,7 @@ int main()
         if (IntersectRectangles1(duckBox, breadBox))
         {
             printf("\n Collision between Duck and bread has been confirmed. Positions: %i , %i , %i , %i", (int)duckrealSpaceX, (int)duckrealSpaceY, (int)breadrealSpaceX, (int)breadrealSpaceY);
-        }
+        }*/
 
         // render
         // ------
@@ -206,7 +120,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         //mainMap->DisplayMap();
-        mainMap->DisplayMap();
+        /*mainMap->DisplayMap();
 
         duckInst1->dt = elapsedTime;
         duckInst1->UpdateSprite();
@@ -215,22 +129,31 @@ int main()
         {
             breadInst[i]->dt = elapsedTime;
             breadInst[i]->DisplaySprite();
-        }
-
+        }*/
+        global.currentLevel->Execute(elapsedTime);
+        //Map* m = static_cast<Map *>(global.currentLevel->mapList[0]);
+        //m->DisplayMap();
 
         if (pKeyboard->IsPressed(AK_ESCAPE)) // Close the program
         {
             glfwSetWindowShouldClose(global.window, GLFW_TRUE);
         }
+
         // update swapchain
         glfwSwapBuffers(global.window);
     }
 
+    global.currentLevel->transitionFunction(global.currentLevel);
+    delete global.currentLevel;
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
-    // erase resources
+    // erase global resources
     free(mempackRamData);
     mempackRamData = nullptr;
+
+    // erase level resources
+    free(levelpackRamData);
+    levelpackRamData = nullptr;
 
     CleanOpenGL();
     _CrtDumpMemoryLeaks();

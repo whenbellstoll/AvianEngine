@@ -37,7 +37,7 @@ class   Game: public node
 
 public:
 	int    li;
-	static Array<node *> gameNodeList;
+	Array<node *> gameNodeList;
 	int levelNumber;
 	int prevNumber;
 	bool newLevel;
@@ -49,8 +49,8 @@ public:
 	const char* Name(void);
 	void LevelNumber(int i);
 	int LevelNumber(void);
-	static GameNode* Search(const char *);
-	static GameNode* Search(int);
+	GameNode* Search(const char *);
+	GameNode* Search(int);
 	void Add(GameNode *gn);
 	void Add(GameNode gn);
 	void AddLocalVariable(unsigned int);

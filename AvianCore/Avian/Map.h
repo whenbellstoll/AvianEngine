@@ -45,7 +45,8 @@ private:
 	WrappingAlgorithm * wa;
 	
 	int				id;
-	String          name;
+	//String          name;
+	const char*		name;
 	//String			fileName;
 	const char*		fileName;
 	bool			isMasterMap;        
