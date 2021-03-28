@@ -131,7 +131,7 @@ int main()
             // make sure we aren't already on level one
             if (global.currentLevel->Id() != 1)
             {
-                global.currentLevel->transitionFunction(global.currentLevel);
+                global.currentLevel->endLevelFunction(global.currentLevel);
                 global.currentLevel = &g1;
                 global.currentLevel->gameNodeLevelFunction(global.currentLevel);
             }
@@ -142,7 +142,7 @@ int main()
             // make sure we aren't already on level one
             if (global.currentLevel->Id() != 2)
             {
-                global.currentLevel->transitionFunction(global.currentLevel);
+                global.currentLevel->endLevelFunction(global.currentLevel);
                 global.currentLevel = &g2;
                 global.currentLevel->gameNodeLevelFunction(global.currentLevel);
             }
@@ -157,7 +157,7 @@ int main()
         glfwSwapBuffers(global.window);
     }
 
-    global.currentLevel->transitionFunction(global.currentLevel);
+    global.currentLevel->endLevelFunction(global.currentLevel);
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
     // erase global resources

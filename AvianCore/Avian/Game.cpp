@@ -1,3 +1,4 @@
+#include "../globals.h"
 #include "Game.h"
 
 Game::Game()
@@ -20,6 +21,9 @@ const char* Game::Name(void)
 
 void Game::LevelNumber(int i)
 {
+	global.currentLevel->endLevelFunction(global.currentLevel);
+	global.currentLevel = Search(i);
+	global.currentLevel->gameNodeLevelFunction(global.currentLevel);
 	prevNumber = levelNumber;
 	levelNumber = i;
 }
@@ -67,8 +71,13 @@ void Game::EndGame()
 {
 }
 
-void Game::LevelName(const char*)
+void Game::LevelName(const char* n)
 {
+	global.currentLevel->endLevelFunction(global.currentLevel);
+	global.currentLevel = Search(n);
+	global.currentLevel->gameNodeLevelFunction(global.currentLevel);
+	prevNumber = levelNumber;
+	levelNumber = global.currentLevel->Id();
 }
 
 void Game::ShowCursor(bool b)
@@ -88,22 +97,36 @@ const char* Game::LevelName()
 
 void Game::NextLevel()
 {
+	global.currentLevel->endLevelFunction(global.currentLevel);
+	global.currentLevel = Search(levelNumber + 1);
+	global.currentLevel->gameNodeLevelFunction(global.currentLevel);
+	prevNumber = levelNumber;
+	levelNumber++;
 }
 
 void Game::RestartLevel()
 {
+	global.currentLevel->endLevelFunction(global.currentLevel);
+	global.currentLevel->gameNodeLevelFunction(global.currentLevel);
 }
 
 void Game::PreviousLevel()
 {
+	global.currentLevel->endLevelFunction(global.currentLevel);
+	global.currentLevel = Search(levelNumber + 1);
+	global.currentLevel->gameNodeLevelFunction(global.currentLevel);
+	prevNumber = levelNumber;
+	levelNumber++;
 }
 
 void Game::BackwardLevel()
 {
+	// ????
 }
 
 void Game::ForwardLevel()
 {
+	// ????
 }
 
 unsigned int Game::WorldWidth()
@@ -126,8 +149,9 @@ unsigned int Game::ViewportHeight()
 	return 0;
 }
 
-void Game::Title(const char*)
+void Game::Title(const char* n)
 {
+	glfwSetWindowTitle(global.window, n);
 }
 
 bool Game::IsFullScreen()

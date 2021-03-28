@@ -53,15 +53,16 @@ void Init_Level_1(GameNode* gn)
 
 void Exit_Level_1(GameNode* gn)
 {
+    
+}
+
+void End_Level_1(GameNode* gn)
+{
     gn->mapList.Clear();
     gn->spriteList.Clear();
     MEMPACK_Clean(&global.mappboPack);
     MEMPACK_Clean(&global.mapvboPack);
     MEMPACK_Clean(&global.levelPack);
-}
-
-void End_Level_1(GameNode* gn)
-{
 }
 
 void Init_Level_2(GameNode* gn)
@@ -114,13 +115,14 @@ void Init_Level_2(GameNode* gn)
 
 void Exit_Level_2(GameNode* gn)
 {
+    
+}
+
+void End_Level_2(GameNode* gn)
+{
     gn->mapList.Clear();
     gn->spriteList.Clear();
     MEMPACK_Clean(&global.mappboPack);
     MEMPACK_Clean(&global.mapvboPack);
     MEMPACK_Clean(&global.levelPack);
-}
-
-void End_Level_2(GameNode* gn)
-{
 }
