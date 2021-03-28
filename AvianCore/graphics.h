@@ -8,4 +8,6 @@ void CheckProgram(GLuint program);
 
 void InitOpenGL();
 
+void onResize(GLFWwindow* window, int, int);
+
 void CleanOpenGL();

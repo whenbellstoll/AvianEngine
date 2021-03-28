@@ -91,6 +91,7 @@ void InitOpenGL()
     pKeyboard = &global.keyboard;
     glfwMakeContextCurrent(global.window);
     glfwSetKeyCallback(global.window, Input_Update);
+    glfwSetFramebufferSizeCallback(global.window, onResize);
 
     // Enable GLEW, setting glewExperimental to true.
     // This allows GLEW take the modern approach to retrive function pointers and extensions
@@ -222,6 +223,12 @@ void InitOpenGL()
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 }
+
+void onResize(GLFWwindow* window, int w, int h) {
+    glViewport(0, 0, w, h); // reset the viewport
+
+}
+
 
 void CleanOpenGL()
 {

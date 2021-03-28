@@ -90,6 +90,7 @@ int main()
 
         // Update controller "hold" variable
         glfwPollEvents();
+        //glfwGetWindowSize(global.window, &global.width, &global.height);
 
         // Determine Key States
         pKeyboard->ProcessKeys();
