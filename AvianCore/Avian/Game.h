@@ -25,8 +25,6 @@ class   Game: public node
 	void LoadReplayDialog();
 	void RealLoadGame();
 	void RealSaveGame();
-	void SaveGameDialog();
-	void LoadGameDialog();
 	void LoadInputData(const char *);
 
 	Array<int> LevelNavigation;

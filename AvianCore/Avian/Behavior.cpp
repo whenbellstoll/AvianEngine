@@ -64,6 +64,7 @@ void Behavior::AddFunction(unsigned int i, bool b)
 	n.Index = i;
 	n.Active = b;
 	n.type = 0;
+	// this casts our function to "void FunctionSignature(void* arg)"
 	n.f = (void(*)(void*))FArray[i];
 	Bnodes.push_back(n);
 }
@@ -157,6 +158,7 @@ void Behavior::Update(void* obj)
 
 	for (std::vector<Bnode>::iterator it = Bnodes.begin(); it != Bnodes.end(); ++it )
 	{
+		// we are passing in our parent object to the function
 		if(it->Active && IsRunning) (*it->f)(obj);
 	}
 }
