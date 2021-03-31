@@ -200,7 +200,7 @@ void Sprite::CheckSameDisplayList(bool)
 {
 }
 
-bool Sprite::CheckSameDisplayList(void)
+bool Sprite::CheckSameDisplayList()
 {
 	return false;
 }
@@ -227,7 +227,7 @@ void Sprite::GhostCollisionWithSprite(bool)
 {
 }
 
-bool Sprite::GhostCollisionWithSprite(void)
+bool Sprite::GhostCollisionWithSprite()
 {
 	return false;
 }
@@ -236,7 +236,7 @@ void Sprite::GhostCollisionWithMap(bool)
 {
 }
 
-bool Sprite::GhostCollisionWithMap(void)
+bool Sprite::GhostCollisionWithMap()
 {
 	return false;
 }
@@ -260,7 +260,7 @@ float Sprite::TranslationY()
 	return 0.0f;
 }
 
-float Sprite::Speed(void)
+float Sprite::Speed()
 {
 	return 0.0f;
 }
@@ -621,7 +621,7 @@ void Sprite::VariableNumber(int)
 {
 }
 
-int Sprite::VariableNumber(void)
+int Sprite::VariableNumber()
 {
 	return 0;
 }
@@ -649,7 +649,7 @@ void Sprite::MainCharacter(bool)
 {
 }
 
-bool Sprite::MainCharacter(void)
+bool Sprite::MainCharacter()
 {
 	return false;
 }
@@ -658,7 +658,7 @@ void Sprite::CheckCollisionWithMap(bool)
 {
 }
 
-bool Sprite::CheckCollisionWithMap(void)
+bool Sprite::CheckCollisionWithMap()
 {
 	return false;
 }
@@ -667,7 +667,7 @@ void Sprite::DisplayListNumber(int)
 {
 }
 
-int Sprite::DisplayListNumber(void)
+int Sprite::DisplayListNumber()
 {
 	return 0;
 }
@@ -676,7 +676,7 @@ void Sprite::DoNotCutDirection(bool)
 {
 }
 
-bool Sprite::DoNotCutDirection(void)
+bool Sprite::DoNotCutDirection()
 {
 	return false;
 }
@@ -694,7 +694,7 @@ void Sprite::CannedHDirection(bool)
 {
 }
 
-bool Sprite::CannedHDirection(void)
+bool Sprite::CannedHDirection()
 {
 	return false;
 }
@@ -703,7 +703,7 @@ void Sprite::CannedVDirection(bool)
 {
 }
 
-bool Sprite::CannedVDirection(void)
+bool Sprite::CannedVDirection()
 {
 	return false;
 }
@@ -727,12 +727,12 @@ void Sprite::AlarmMaximum(int)
 {
 }
 
-int Sprite::AlarmMaximum(void)
+int Sprite::AlarmMaximum()
 {
 	return 0;
 }
 
-int Sprite::AlarmCount(void)
+int Sprite::AlarmCount()
 {
 	return 0;
 }

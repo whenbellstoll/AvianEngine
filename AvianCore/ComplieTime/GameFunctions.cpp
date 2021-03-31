@@ -39,14 +39,9 @@ void MoveSprite(Sprite* This)
 
     if (pKeyboard->Nothing())
     {
-        if (This->Animation() == 1)
-        {
-            This->Animation(0);
-        }
-        else if(This->Animation() == 2 )
-        {
-            This->Animation(3);
-        }
+        
+        This->Animation(0);
+        
     }
 }
 
