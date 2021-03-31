@@ -45,8 +45,9 @@ void Sprite::DisplaySprite()
 	glDrawArrays(GL_TRIANGLE_STRIP, SpriteList[actorIndex].Animations[animation].Frames[frame].startingVertex, 4);
 }
 
-void Sprite::CheckSpriteCollision(Sprite*)
+void Sprite::CheckSpriteCollision(Sprite* s)
 {
+
 }
 
 void Sprite::UpdateSprite()
@@ -56,8 +57,9 @@ void Sprite::UpdateSprite()
 	behavior->Update((void *)this);
 }
 
-void Sprite::reflect(float, float)
+void Sprite::reflect(float x, float y)
 {
+
 }
 
 void Sprite::FrictionFactor()
@@ -113,10 +115,6 @@ void Sprite::GravityFactor()
 {
 }
 
-node* Sprite::Clone()
-{
-	return nullptr;
-}
 
 bool Sprite::TempCheckCollisionWithMap(float, float, float, float)
 {
@@ -160,26 +158,28 @@ Sprite& Sprite::operator=(const Sprite& s)
 	return *this;
 }
 
-Sprite::Sprite(const Sprite&)
+Sprite::Sprite(const Sprite& s)
 {
+	zOrder = 0;
+	mapPositionX = 0.0f;
+	mapPositionY = 0.0f;
+	scaleX = 1.0f;
+	scaleY = 1.0f;
+	animation = 0;
 }
 
 Sprite::~Sprite()
 {
 }
 
-void Sprite::Unused(bool)
+void Sprite::Unused(bool b)
 {
+	unused = b;
 }
 
 bool Sprite::Unused()
 {
-	return false;
-}
-
-const char* Sprite::ClassName()
-{
-	return "Sprite";
+	return unused;
 }
 
 void Sprite::Use(const char* c)
@@ -1155,6 +1155,8 @@ bool Sprite::LookAheadCollision(unsigned int, unsigned int, unsigned int)
 {
 	return false;
 }
+
+DYNCREATEIMP(Sprite);
 
 
 // SpritPTR Locator
