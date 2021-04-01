@@ -64,10 +64,12 @@ void Sprite::reflect(float x, float y)
 
 void Sprite::FrictionFactor()
 {
+
 }
 
 void Sprite::UpdateTranslation()
 {
+
 }
 
 void Sprite::UpdateAnimation()
@@ -93,18 +95,22 @@ void Sprite::ResetMapCollisionFlag()
 
 void Sprite::FlipSet()
 {
+
 }
 
 void Sprite::GetTranslation()
 {
+
 }
 
 void Sprite::CannedFactor()
 {
+
 }
 
 void Sprite::HandleAlarms()
 {
+	// not yet
 }
 
 void Sprite::UpdateMovementPattern()
@@ -388,19 +394,19 @@ void Sprite::MapPosition(float x, float y, bool b)
 	}
 }
 
-void Sprite::MapPositionXInc(float, float, bool)
+void Sprite::MapPositionXInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::MapPositionXDec(float, float, bool)
+void Sprite::MapPositionXDec(float dec, float min, bool b)
 {
 }
 
-void Sprite::MapPositionYInc(float, float, bool)
+void Sprite::MapPositionYInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::MapPositionYDec(float, float, bool)
+void Sprite::MapPositionYDec(float dec, float min, bool b)
 {
 }
 
@@ -441,23 +447,24 @@ void Sprite::WorldPositionY(float y, bool b)
 	}
 }
 
-void Sprite::WorldPosition(float, float, bool)
+void Sprite::WorldPosition(float x, float y, bool b)
+{
+
+}
+
+void Sprite::WorldPositionXInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::WorldPositionXInc(float, float, bool)
+void Sprite::WorldPositionXDec(float dec, float min, bool b)
 {
 }
 
-void Sprite::WorldPositionXDec(float, float, bool)
+void Sprite::WorldPositionYInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::WorldPositionYInc(float, float, bool)
-{
-}
-
-void Sprite::WorldPositionYDec(float, float, bool)
+void Sprite::WorldPositionYDec(float dec, float min, bool b)
 {
 }
 
@@ -491,22 +498,24 @@ unsigned int Sprite::ZOrder()
 	return zOrder;
 }
 
-void Sprite::Canned(bool)
+void Sprite::Canned(bool b)
 {
+	canned = b;
 }
 
 bool Sprite::Canned()
 {
-	return false;
+	return canned;
 }
 
 bool Sprite::Pause()
 {
-	return false;
+	return pauseSprite;
 }
 
-void Sprite::Pause(bool)
+void Sprite::Pause(bool b)
 {
+	pauseSprite = b;
 }
 
 void Sprite::Animation(int i)
@@ -539,12 +548,12 @@ void Sprite::Frame(int i)
 
 int Sprite::TotalAnimations()
 {
-	return 0;
+	return SpriteList[actorIndex].TotalAnimations;
 }
 
 int Sprite::TotalFrames()
 {
-	return 0;
+	return SpriteList[actorIndex].Animations[animation].TotalFrames;
 }
 
 int Sprite::Frame()
@@ -581,13 +590,14 @@ int Sprite::ActorIndex()
 	return actorIndex;
 }
 
-//bool Sprite::CollisionWithSprite(const char* n = NULL)
-//{
-	//return false;
-//}
-
-void Sprite::Reflection(bool)
+bool Sprite::CollisionWithSprite(const char* n)
 {
+	return false;
+}
+
+void Sprite::Reflection(bool b)
+{
+	reflection = b;
 }
 
 bool Sprite::InViewport()
@@ -617,7 +627,7 @@ float Sprite::VectorAngle()
 	return 0.0f;
 }
 
-void Sprite::VariableNumber(int)
+void Sprite::VariableNumber(int i)
 {
 }
 
@@ -641,48 +651,53 @@ bool Sprite::CollisionWithMap()
 	return false;
 }
 
-void Sprite::CollisionWithMap(bool)
+void Sprite::CollisionWithMap(bool b)
 {
 }
 
-void Sprite::MainCharacter(bool)
+void Sprite::MainCharacter(bool b)
 {
+	mainCharacter = b;
 }
 
 bool Sprite::MainCharacter()
 {
-	return false;
+	return mainCharacter;
 }
 
-void Sprite::CheckCollisionWithMap(bool)
+void Sprite::CheckCollisionWithMap(bool b)
 {
+	mapCollision = b;
 }
 
 bool Sprite::CheckCollisionWithMap()
 {
-	return false;
+	return mapCollision;
 }
 
-void Sprite::DisplayListNumber(int)
+void Sprite::DisplayListNumber(int i)
 {
+	displayListNumber = i;
 }
 
 int Sprite::DisplayListNumber()
 {
-	return 0;
+	return displayListNumber;
 }
 
-void Sprite::DoNotCutDirection(bool)
+void Sprite::DoNotCutDirection(bool b)
 {
+	doNotCutDirection = b;
 }
 
 bool Sprite::DoNotCutDirection()
 {
-	return false;
+	return doNotCutDirection;
 }
 
-void Sprite::BelongToMap(const char*)
+void Sprite::BelongToMap(const char* n)
 {
+	
 }
 
 const char* Sprite::BelongToMap()
@@ -690,22 +705,24 @@ const char* Sprite::BelongToMap()
 	return nullptr;
 }
 
-void Sprite::CannedHDirection(bool)
+void Sprite::CannedHDirection(bool b)
 {
+	cannedHDirection = b;
 }
 
 bool Sprite::CannedHDirection()
 {
-	return false;
+	return cannedHDirection;
 }
 
-void Sprite::CannedVDirection(bool)
+void Sprite::CannedVDirection(bool b)
 {
+	cannedVDirection = b;
 }
 
 bool Sprite::CannedVDirection()
 {
-	return false;
+	return cannedVDirection;
 }
 
 float Sprite::HotSpotX(int)
@@ -791,31 +808,32 @@ int Sprite::ViewportY()
 	return 0;
 }
 
-bool Sprite::CollisionWithMap(int)
+bool Sprite::CollisionWithMap(int i)
 {
 	return false;
 }
 
-bool Sprite::CollisionWithSprite(int)
+bool Sprite::CollisionWithSprite(int i)
 {
 	return false;
 }
 
-bool Sprite::Collision(int)
+bool Sprite::Collision(int i)
 {
 	return false;
 }
 
-void Sprite::ActivateCollisionWithSprite(bool)
+void Sprite::ActivateCollisionWithSprite(bool b)
 {
+	activateCollisionWithSprite = b;
 }
 
 bool Sprite::ActivateCollisionWithSprite()
 {
-	return false;
+	return activateCollisionWithSprite;
 }
 
-void Sprite::Follow(Sprite*, unsigned int, unsigned int, unsigned int)
+void Sprite::Follow(Sprite* s, unsigned int i, unsigned int , unsigned int)
 {
 }
 
@@ -823,7 +841,7 @@ void Sprite::Follow(const String, unsigned int, unsigned int, unsigned int)
 {
 }
 
-float Sprite::Distance(Sprite*)
+float Sprite::Distance(Sprite* s)
 {
 	return 0.0f;
 }
