@@ -42,13 +42,13 @@ struct Global
 	Mempack pboPack;
 
 	Keyboard keyboard;
-	AvianMouse mouse;
+	Mouse mouse;
 
 	int width, height;
 };
 
 extern Keyboard *  pKeyboard;
-extern AvianMouse* pMouse;
+extern Mouse* pMouse;
 extern Game* myGame;
 
 extern SpriteElem SpriteList[MAXACTORS];

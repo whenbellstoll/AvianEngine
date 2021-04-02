@@ -7,7 +7,7 @@
 
 #include "SpriteFull.h"
 
-class   AvianMouse
+class   Mouse
 {
 public:
 	unsigned int doubleClickAccuracy;
@@ -45,8 +45,8 @@ public:
 
 
 public:
-	AvianMouse();
-	~AvianMouse();
+	Mouse();
+	~Mouse();
 	bool IsPressed(unsigned char c); 
 	bool IsTriggered(unsigned char c);
 	bool IsNotPressed(unsigned char c);

@@ -4,7 +4,7 @@
 // https://github.com/JoeyDeVries/LearnOpenGL/blob/master/src/1.getting_started/4.1.textures
 // starter code
 Keyboard* pKeyboard;
-AvianMouse* pMouse;
+Mouse* pMouse;
 
 void CheckShader(GLuint shader)
 {
@@ -91,7 +91,7 @@ void InitOpenGL()
     global.keyboard = Keyboard();
     pKeyboard = &global.keyboard;
 	// We also need to reate the mouse
-	global.mouse = AvianMouse();
+	global.mouse = Mouse();
 	pMouse = &global.mouse;
     glfwMakeContextCurrent(global.window);
 	// set callback for input and resize

@@ -1,52 +1,52 @@
 #include "Mouse.h"
 
-AvianMouse::AvianMouse()
+Mouse::Mouse()
 {
 }
 
-AvianMouse::~AvianMouse()
+Mouse::~Mouse()
 {
 }
 
-bool AvianMouse::IsPressed(unsigned char key)
+bool Mouse::IsPressed(unsigned char key)
 {
 	return press[key] & 1;
 }
 
-bool AvianMouse::IsNotPressed(unsigned char key)
+bool Mouse::IsNotPressed(unsigned char key)
 {
 	return !(press[key] & 1);
 }
 
-bool AvianMouse::IsTriggered(unsigned char key)
+bool Mouse::IsTriggered(unsigned char key)
 {
 
 	return triggered[key] & 1;
 }
 
-bool AvianMouse::IsNotTriggered(unsigned char key)
+bool Mouse::IsNotTriggered(unsigned char key)
 {
 	return !(triggered[key] & 1);
 }
 
-bool AvianMouse::GetKey(unsigned char& key)
+bool Mouse::GetKey(unsigned char& key)
 {
 	return false;
 }
 
-bool AvianMouse::Nothing()
+bool Mouse::Nothing()
 {
 	int zeros[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	return(memcmp(press, zeros, sizeof(press)) == 0);
 }
 
-bool AvianMouse::Any()
+bool Mouse::Any()
 {
 	int zeros[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	return(memcmp(press, zeros, sizeof(press)) != 0);
 }
 
-void AvianMouse::Process()
+void Mouse::Process()
 {
 	for (int i = 0; i < 16; i++)
 	{
