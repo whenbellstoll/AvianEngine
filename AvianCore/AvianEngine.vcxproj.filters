@@ -90,6 +90,9 @@
     <ClCompile Include="Avian\Mouse.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
+    <ClCompile Include="Avian\ControllerInput.cpp">
+      <Filter>Source Files\Avian</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -168,6 +171,9 @@
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
     <ClInclude Include="Avian\Mouse.h">
+      <Filter>Source Files\Avian</Filter>
+    </ClInclude>
+    <ClInclude Include="Avian\ControllerInput.h">
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
   </ItemGroup>
