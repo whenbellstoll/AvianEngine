@@ -1,39 +1,13 @@
-#ifndef _MOUSE_H_
-#define _MOUSE_H_
+#ifndef MOUSE_HEADER
+#define MOUSE_HEADER
 
 #define NORMAL    0
 #define LOW       1
 #define HIGH      2
 
+#include "SpriteFull.h"
 
-struct MouseRelMove
-{
-	int relx;
-	int rely;
-	int relz;
-};
-
-///Network
-struct MouseEvent
-{
-	unsigned char Event;  
-	signed char   Value; 
-	unsigned int  XY;
-};
-
-//Event
-//0x1  rx
-//0x2  ry
-//0x4  rz
-//0x8  b0
-//0x10 b1
-//0x20 b2
-
-//Network
-
-struct MoImp;
-
-class   Mouse
+class   AvianMouse
 {
 public:
 	unsigned int doubleClickAccuracy;
@@ -53,31 +27,34 @@ public:
 	int y;
 	int relx;
 	int rely;
-	int relz;
-	HWND hWnd;
-    RECT MotionRect;
-	Key  keys[3];
-	DWORD elements;
-	MoImp * pMoImp;
+    Rect MotionRect;
+	// true for first frame of hold
+	char triggered[16];
 
-	DirectInput DirectInputInstance;
-	bool isMovingX;
-	bool isMovingY;
-	bool isMovingZ;
-	friend class GameNode;
+	// true for every frame of hold
+	char press[16];
+
+	// true for first frame of release
+	char release[16];
+
+	// raw data for comparison
+	char prevFrame[16];
+	// not used in current implementation, but may be used in later implementation
+	char currFrame[16];
+
+
 
 public:
-
-	DWORD replayFrame;
-	Mouse(HWND,HINSTANCE);
-	~Mouse();
-	bool IsPressed(unsigned char); 
-	bool IsTriggered(unsigned char);
-	bool IsNotPressed(unsigned char);
-	bool IsNotTriggered(unsigned char);
-	bool GetKey(unsigned char &);
+	AvianMouse();
+	~AvianMouse();
+	bool IsPressed(unsigned char c); 
+	bool IsTriggered(unsigned char c);
+	bool IsNotPressed(unsigned char c);
+	bool IsNotTriggered(unsigned char c);
+	bool GetKey(unsigned char & c);
 	bool Nothing();
 	bool Any();
+	void Process();
 	bool HaveWheel();
 	void DoubleClickSpeed(unsigned int = 15 );
 	void DoubleClickAccuracy(unsigned int = 5);
@@ -88,7 +65,7 @@ public:
 	unsigned int HoldCounter(unsigned char);
 	void StartReceivingData();
 	void StopReceivingData();
-	unsigned int Update(MouseEvent * & MouseEvents);
+	unsigned int Update();
 	void ResetKeys();
 	int RelX();
 	int RelY();
@@ -99,12 +76,10 @@ public:
 	unsigned int WorldY();
 	unsigned int X();
 	unsigned int Y();
-	void Locate(unsigned int,unsigned int);
-	bool InRect(FunRect *);
-	void SetMotionRect(FunRect *);
-	void SetSensitivity(int);
+	void Locate(unsigned int i,unsigned int ni);
+	bool InRect(Rect * r);
+	void SetMotionRect(Rect * r);
+	void SetSensitivity(int i);
     bool IsMoving();
 };
-
-
 #endif

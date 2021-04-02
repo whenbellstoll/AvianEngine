@@ -122,6 +122,11 @@ void Sprite::GravityFactor()
 }
 
 
+node* Sprite::Clone()
+{
+	return nullptr;
+}
+
 bool Sprite::TempCheckCollisionWithMap(float, float, float, float)
 {
 	return false;

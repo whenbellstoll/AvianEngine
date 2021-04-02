@@ -24,6 +24,7 @@
 #include "Avian/Map.h"
 #include "Avian/GameNode.h"
 #include "Avian/Game.h"
+#include "Avian/Mouse.h"
 
 
 
@@ -41,12 +42,13 @@ struct Global
 	Mempack pboPack;
 
 	Keyboard keyboard;
-	//Game * game;
+	AvianMouse mouse;
 
 	int width, height;
 };
 
 extern Keyboard *  pKeyboard;
+extern AvianMouse* pMouse;
 extern Game* myGame;
 
 extern SpriteElem SpriteList[MAXACTORS];

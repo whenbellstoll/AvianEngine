@@ -95,10 +95,13 @@ int main()
         // Determine Key States
         pKeyboard->ProcessKeys();
 
+		// Determine Mouse State
+		pMouse->Process();
+
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");
         if (pKeyboard->IsPressed('Y')) printf("Hold Y\n");
-
+		if (pMouse->IsPressed(0)) printf("Hold MouseLeft \n");
 
         // Calculate Rectangle Positions for collision
         /*Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;

@@ -4,6 +4,7 @@
 // https://github.com/JoeyDeVries/LearnOpenGL/blob/master/src/1.getting_started/4.1.textures
 // starter code
 Keyboard* pKeyboard;
+AvianMouse* pMouse;
 
 void CheckShader(GLuint shader)
 {
@@ -89,10 +90,15 @@ void InitOpenGL()
     // We need to create the Keyboard at this point. Start the input
     global.keyboard = Keyboard();
     pKeyboard = &global.keyboard;
+	// We also need to reate the mouse
+	global.mouse = AvianMouse();
+	pMouse = &global.mouse;
     glfwMakeContextCurrent(global.window);
-    glfwSetKeyCallback(global.window, Input_Update);
+	// set callback for input and resize
+	glfwSetKeyCallback(global.window, Input_Update);
     glfwSetFramebufferSizeCallback(global.window, onResize);
-
+	glfwSetCursorPosCallback(global.window, Mouse_Position_Update);
+	glfwSetMouseButtonCallback(global.window, Mouse_Update);
     // Enable GLEW, setting glewExperimental to true.
     // This allows GLEW take the modern approach to retrive function pointers and extensions
     glewExperimental = GL_TRUE;
