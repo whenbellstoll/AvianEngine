@@ -4,7 +4,7 @@
 void MoveSprite(Sprite* This)
 {
     float distance = 0.01f;
-    if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT))
+    if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT) || pGamepadOne->GetAxis(0) < -0.5f )
     {
         This->MapPositionX(This->MapPositionX() - distance);
         This->Animation(1);
@@ -16,7 +16,7 @@ void MoveSprite(Sprite* This)
             This->MapPositionX(This->MapPositionX() - (37 * (2.0f / global.width))); // 37 == SpriteList[0].Animation[2].Frames[x].width
         }
     }
-    if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
+    if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT) || pGamepadOne->GetAxis(0) > 0.5f )
     {
         This->MapPositionX(This->MapPositionX() + distance);
         This->Animation(1);
@@ -27,17 +27,17 @@ void MoveSprite(Sprite* This)
             This->MapPositionX(This->MapPositionX() + (37 * (2.0f / global.width))); // 37 == SpriteList[0].Animation[2].Frames[x].width
         }
     }
-    if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
+    if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP) || pGamepadOne->GetAxis(1) > 0.5f)
     {
         This->MapPositionY(This->MapPositionY() + distance);
         
     }
-    if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN))
+    if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN) || pGamepadOne->GetAxis(1) < -0.5f )
     {
         This->MapPositionY(This->MapPositionY() - distance);
     }
 
-    if (pKeyboard->Nothing())
+    if (pKeyboard->Nothing() && pGamepadOne->GetAxis(0) < 0.5f && pGamepadOne->GetAxis(0) > -0.5f )
     {
         
         This->Animation(0);

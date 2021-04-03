@@ -5,6 +5,10 @@
 // starter code
 Keyboard* pKeyboard;
 Mouse* pMouse;
+Gamepad* pGamepadOne;
+Gamepad* pGamepadTwo;
+Gamepad* pGamepadThree;
+Gamepad* pGamepadFour;
 
 void CheckShader(GLuint shader)
 {
@@ -90,10 +94,24 @@ void InitOpenGL()
     // We need to create the Keyboard at this point. Start the input
     global.keyboard = Keyboard();
     pKeyboard = &global.keyboard;
-	// We also need to reate the mouse
+	
+	// We also need to create the mouse
 	global.mouse = Mouse();
 	pMouse = &global.mouse;
     glfwMakeContextCurrent(global.window);
+
+	// Gamepads as well
+	//global.joyOne = Gamepad(GLFW_JOYSTICK_1);
+	//global.joyTwo = Gamepad(GLFW_JOYSTICK_2);
+	//global.joyThree = Gamepad(GLFW_JOYSTICK_3);
+	//global.joyFour = Gamepad(GLFW_JOYSTICK_4);
+
+	pGamepadOne = new Gamepad(0);//&global.joyOne;
+	pGamepadTwo = new Gamepad(1);//&global.joyTwo;
+	pGamepadThree = new Gamepad(2);//&global.joyThree;
+	pGamepadFour = new Gamepad(3);//&global.joyFour;
+
+
 	// set callback for input and resize
 	glfwSetKeyCallback(global.window, Input_Update);
     glfwSetFramebufferSizeCallback(global.window, onResize);

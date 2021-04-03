@@ -25,6 +25,8 @@
 #include "Avian/GameNode.h"
 #include "Avian/Game.h"
 #include "Avian/Mouse.h"
+#include "Avian/ControllerInput.h"
+
 
 
 
@@ -41,15 +43,24 @@ struct Global
 	Mempack vboPack;
 	Mempack pboPack;
 
+	// Input
 	Keyboard keyboard;
 	Mouse mouse;
+	//Gamepad joyOne;
+	//Gamepad joyTwo;
+	//Gamepad joyThree;
+	//Gamepad joyFour;
 
 	int width, height;
 };
 
 extern Keyboard *  pKeyboard;
-extern Mouse* pMouse;
-extern Game* myGame;
+extern Mouse * pMouse;
+extern Gamepad * pGamepadOne;
+extern Gamepad * pGamepadTwo;
+extern Gamepad * pGamepadThree;
+extern Gamepad * pGamepadFour;
+extern Game * myGame;
 
 extern SpriteElem SpriteList[MAXACTORS];
 

@@ -98,13 +98,16 @@ int main()
 		// Determine Mouse State
 		pMouse->Process();
 
+		// Gamepads
+		pGamepadOne->Process();
+
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");
         if (pKeyboard->IsPressed('Y')) printf("Hold Y\n");
 		if (pMouse->IsTriggered(0)) printf("Tap MouseLeft \n");
 		if (pMouse->IsPressed(0)) printf("Hold MouseLeft \n");
-		
-
+		if (pGamepadOne->IsPressed(0)) printf("This should be A \n");
+		//if (pGamepadOne->Nothing()) printf("Nothing from Gamepad. \n");
         // Calculate Rectangle Positions for collision
         /*Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
         Rect breadBox = SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].BBox;
