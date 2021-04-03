@@ -90,7 +90,6 @@ int main()
 
         // Update controller "hold" variable
         glfwPollEvents();
-        //glfwGetWindowSize(global.window, &global.width, &global.height);
 
         // Determine Key States
         pKeyboard->ProcessKeys();
@@ -108,8 +107,12 @@ int main()
 		if (pMouse->IsPressed(0)) printf("Hold MouseLeft \n");
 		if (pGamepadOne->IsPressed(0)) printf("This should be A \n");
 		//if (pGamepadOne->Nothing()) printf("Nothing from Gamepad. \n");
-        // Calculate Rectangle Positions for collision
-        /*Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
+        
+		
+		/*
+		Code that should probably be deleted but won't be because I think it's a good reference for thing I have yet to implement
+		// Calculate Rectangle Positions for collision
+        Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
         Rect breadBox = SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].BBox;
         float duckrealSpaceX = (duckInst1->MapPositionX() + 1) * (global.width / 2);
         float duckrealSpaceY = (duckInst1->MapPositionY() - 1) * (global.height / 2) * -1;
@@ -128,7 +131,8 @@ int main()
         if (IntersectRectangles1(duckBox, breadBox))
         {
             printf("\n Collision between Duck and bread has been confirmed. Positions: %i , %i , %i , %i", (int)duckrealSpaceX, (int)duckrealSpaceY, (int)breadrealSpaceX, (int)breadrealSpaceY);
-        }*/
+        }
+		*/
 
         // render
         // ------
