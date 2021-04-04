@@ -62,16 +62,22 @@ void LoadAnimation()
 
 void DeleteAnimations()
 {
-	/*for (int s = 0; s < MAXACTORS; s++) 
+	for (int s = 0; s < MAXACTORS; s++) 
 	{
 		for (int a = 0; a < SpriteList[s].TotalAnimations; a++)
 		{
-			//for (int f = 0; f < SpriteList[s].Animations[a].TotalFrames; f++)
-			//{
-				delete SpriteList[s].Animations[a].Frames;
-			//}
+			for (int f = 0; f < SpriteList[s].Animations[a].TotalFrames; f++)
+			{
+				FrameElem* fe = &SpriteList[s].Animations[a].Frames[f];
+				delete fe;
+			}
+			AnimationElem* ae = &SpriteList[s].Animations[a];
+			delete ae;
 		}
-	}*/
+		SpriteElem* se = &SpriteList[s];
+		delete se;
+
+	}
 	//delete[] SpriteList[0].Animations[0].Frames;
 	//delete[] SpriteList[0].Animations[1].Frames;
 	//delete[] SpriteList[1].Animations[0].Frames;
@@ -79,9 +85,9 @@ void DeleteAnimations()
 	//SpriteList[0].Animations[1].~AnimationElem();
 	//SpriteList[1].Animations[0].~AnimationElem();
 	//SpriteList[0].Animations = nullptr;
-	delete[] SpriteList[0].Animations;
-	delete[] SpriteList[1].Animations;
-	//SpriteList[0].~SpriteElem();
-	//SpriteList[1].~SpriteElem();
+	//delete[] SpriteList[0].Animations;
+	//delete[] SpriteList[1].Animations;
+	SpriteList[0].~SpriteElem();
+	SpriteList[1].~SpriteElem();
 	delete SpriteList;
 }

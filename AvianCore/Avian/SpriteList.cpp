@@ -253,7 +253,8 @@ void* AnimationElem::operator new[](size_t st)
 void AnimationElem::operator delete[](void* v)
 {
 	AnimationElem* obj = (AnimationElem*)v;
-	delete[] obj->Frames;
+	sizeof(obj);
+	//delete[] obj->Frames;
     // Delete should be handled with the Mempack
 }
 

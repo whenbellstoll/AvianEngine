@@ -15,7 +15,8 @@ private:
 	int id;
 	
 	//Map *mapPointer;
-	String name;
+	//String name;
+	const char* name;
 	float mapPositionX;
 	float mapPositionY;			
 	int viewPortX;

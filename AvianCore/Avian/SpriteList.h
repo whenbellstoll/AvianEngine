@@ -15,7 +15,8 @@ public:
 	FrameElem();
 	FrameElem(const char * filename);
 	virtual ~FrameElem();
-	String ImageName;
+	const char * ImageName;
+	//String ImageName;
 	unsigned int texture;
 	unsigned int startingVertex;
 	int	Width;

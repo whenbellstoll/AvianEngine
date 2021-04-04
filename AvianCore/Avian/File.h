@@ -123,14 +123,15 @@ public:
 
 
 #define DYNCREATEIMP(cname)								\
-		node * cname::CreateObject(){return new cname;}	\
-		CREATE cname::cr(#cname,&cname::CreateObject);   \
-		const char * cname::ClassName(){ return #cname;}
+	const char * cname::ClassName(){ return #cname;}	\
+	node * cname::CreateObject(){return new cname;}		
+	//CREATE cname::cr(#cname,&cname::CreateObject);   \ //causes memory leaks.
+		
 
 
 struct CREATE
 {
-	String name;
+	const char * name;
 	node * (*pCreateObject)();
 	CREATE(const char *,node * (*)());
 };
