@@ -101,11 +101,6 @@ void InitOpenGL()
     glfwMakeContextCurrent(global.window);
 
 	// Gamepads as well
-	//global.joyOne = Gamepad(GLFW_JOYSTICK_1);
-	//global.joyTwo = Gamepad(GLFW_JOYSTICK_2);
-	//global.joyThree = Gamepad(GLFW_JOYSTICK_3);
-	//global.joyFour = Gamepad(GLFW_JOYSTICK_4);
-
 	pGamepadOne = new Gamepad(0);//&global.joyOne;
 	pGamepadTwo = new Gamepad(1);//&global.joyTwo;
 	pGamepadThree = new Gamepad(2);//&global.joyThree;

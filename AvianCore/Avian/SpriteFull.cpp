@@ -20,6 +20,7 @@ void Sprite::HandleLastFlipPR()
 void Sprite::DisplaySprite()
 {
 	UpdateAnimation();
+	//if (!visible) return;
 	// layer (what draws on top of what)
 	glUniform1f(0, zOrder / 100.0f );
 
@@ -69,6 +70,15 @@ void Sprite::FrictionFactor()
 
 void Sprite::UpdateTranslation()
 {
+	float frameElapsed = 60 * dt; // assume 60 fps for now
+	float pixelSizeX = 2 / (float)global.width;
+	float pixelSizeY = 2 / (float)global.height;
+
+	translationX = speed * directionX * pixelSizeX * frameElapsed;
+	translationY = speed * directionY * pixelSizeY * frameElapsed;
+
+	mapPositionX += translationX;
+	mapPositionY += translationY;
 
 }
 
@@ -157,6 +167,10 @@ Sprite::Sprite()
 	scaleX = 1.0f;
 	scaleY = 1.0f;
 	animation = 0;
+	speed = 0.0f;
+	directionX = 0;
+	directionY = 0;
+	visible = true;
 }
 
 Sprite::Sprite(Sprite* s)
@@ -207,17 +221,19 @@ Sprite* Sprite::Search(const int i)
 	return nullptr;
 }
 
-void Sprite::CheckSameDisplayList(bool)
+void Sprite::CheckSameDisplayList(bool b)
 {
+	checkSameDisplayList = b;
 }
 
 bool Sprite::CheckSameDisplayList()
 {
-	return false;
+	return checkSameDisplayList;
 }
 
-void Sprite::CheckSameType(bool)
+void Sprite::CheckSameType(bool b)
 {
+	
 }
 
 bool Sprite::CheckSameType()
@@ -263,12 +279,12 @@ unsigned int Sprite::NearestStationNumber(bool)
 
 float Sprite::TranslationX()
 {
-	return 0.0f;
+	return translationX;
 }
 
 float Sprite::TranslationY()
 {
-	return 0.0f;
+	return translationY;
 }
 
 float Sprite::Speed()
@@ -276,36 +292,37 @@ float Sprite::Speed()
 	return 0.0f;
 }
 
-void Sprite::Speed(float)
+void Sprite::Speed(float f)
+{
+	speed = f;
+}
+
+void Sprite::SpeedDec(float dec, float min)
 {
 }
 
-void Sprite::SpeedDec(float, float)
+void Sprite::SpeedInc(float inc, float max)
 {
 }
 
-void Sprite::SpeedInc(float, float)
+bool Sprite::SpeedGreater(float f)
 {
+	return speed > f;
 }
 
-bool Sprite::SpeedGreater(float)
+bool Sprite::SpeedGreaterEqual(float f)
 {
-	return false;
+	return speed >= f;
 }
 
-bool Sprite::SpeedGreaterEqual(float)
+bool Sprite::SpeedLess(float f)
 {
-	return false;
+	return speed < f;
 }
 
-bool Sprite::SpeedLess(float)
+bool Sprite::SpeedLessEqual(float f)
 {
-	return false;
-}
-
-bool Sprite::SpeedLessEqual(float)
-{
-	return false;
+	return speed <= f;
 }
 
 const char* Sprite::Name()
@@ -318,13 +335,14 @@ void Sprite::Name(const char* n)
 	name = n;
 }
 
-void Sprite::Visible(bool)
+void Sprite::Visible(bool b)
 {
+	visible = b;
 }
 
 bool Sprite::Visible()
 {
-	return false;
+	return visible;
 }
 
 void Sprite::Visible(const char* name, bool vis)
@@ -621,6 +639,8 @@ void Sprite::CannedDirection(unsigned int direction)
 
 void Sprite::VectorDirection(float x, float y, unsigned int mag)
 {
+	directionX = x;
+	directionY = y;
 }
 
 void Sprite::VectorAngle(float ang, float gaming)

@@ -13,7 +13,7 @@ void LoadAnimation()
     SpriteList[0].Animations[0].ConnectTo = 0;
     SpriteList[0].Animations[0].Frames = new FrameElem[1];
 
-    SpriteList[0].Animations[0].Frames[0] = FrameElem("Assets/duck.bmp");
+    SpriteList[0].Animations[0].Frames[0].IniFrame("Assets/duck.bmp");
     SpriteList[0].Animations[0].Frames[0].Delay = 6;
     SpriteList[0].Animations[0].Frames[0].Transparency = RGB(255, 255, 255);
 
@@ -23,22 +23,22 @@ void LoadAnimation()
     SpriteList[0].Animations[1].ConnectTo = 0;
     SpriteList[0].Animations[1].Frames = new FrameElem[6];
 
-    SpriteList[0].Animations[1].Frames[0] = FrameElem("Assets/duck.bmp");
+    SpriteList[0].Animations[1].Frames[0].IniFrame("Assets/duck.bmp");
     SpriteList[0].Animations[1].Frames[0].Delay = 6;
     SpriteList[0].Animations[1].Frames[0].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[1] = FrameElem("Assets/duckw2.bmp");
+    SpriteList[0].Animations[1].Frames[1].IniFrame("Assets/duckw2.bmp");
     SpriteList[0].Animations[1].Frames[1].Delay = 6;
     SpriteList[0].Animations[1].Frames[1].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[2] = FrameElem("Assets/duckw3.bmp");
+    SpriteList[0].Animations[1].Frames[2].IniFrame("Assets/duckw3.bmp");
     SpriteList[0].Animations[1].Frames[2].Delay = 6;
     SpriteList[0].Animations[1].Frames[2].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[3] = FrameElem("Assets/duckw4.bmp");
+    SpriteList[0].Animations[1].Frames[3].IniFrame("Assets/duckw4.bmp");
     SpriteList[0].Animations[1].Frames[3].Delay = 6;
     SpriteList[0].Animations[1].Frames[3].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[4] = FrameElem("Assets/duckw5.bmp");
+    SpriteList[0].Animations[1].Frames[4].IniFrame("Assets/duckw5.bmp");
     SpriteList[0].Animations[1].Frames[4].Delay = 6;
     SpriteList[0].Animations[1].Frames[4].Transparency = RGB(255, 255, 255);
-    SpriteList[0].Animations[1].Frames[5] = FrameElem("Assets/duckw6.bmp");
+    SpriteList[0].Animations[1].Frames[5].IniFrame("Assets/duckw6.bmp");
     SpriteList[0].Animations[1].Frames[5].Delay = 6;
     SpriteList[0].Animations[1].Frames[5].Transparency = RGB(255, 255, 255);
     
@@ -54,8 +54,25 @@ void LoadAnimation()
     SpriteList[1].Animations[0].ConnectTo = 0;
     SpriteList[1].Animations[0].Frames = new FrameElem[1];
 
-    SpriteList[1].Animations[0].Frames[0] = FrameElem("Assets/bread.bmp");
+    SpriteList[1].Animations[0].Frames[0].IniFrame("Assets/bread.bmp");
     SpriteList[1].Animations[0].Frames[0].Delay = 50;
     SpriteList[1].Animations[0].Frames[0].Transparency = RGB(255, 255, 255);
+
+}
+
+void DeleteAnimations()
+{
+	/*for (int s = 0; s < MAXACTORS; s++) 
+	{
+		for (int a = 0; a < SpriteList[s].TotalAnimations; a++)
+		{
+			//for (int f = 0; f < SpriteList[s].Animations[a].TotalFrames; f++)
+			//{
+				delete SpriteList[s].Animations[a].Frames;
+			//}
+		}
+	}*/
+	delete[] SpriteList[0].Animations[1].Frames;
+
 
 }

@@ -6,6 +6,8 @@ Game::Game()
 
 Game::~Game()
 {
+	gameNodeList.~Array();
+	LevelNavigation.~Array();
 }
 
 void Game::Name(const char* n)

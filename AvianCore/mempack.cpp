@@ -194,7 +194,7 @@ void MEMPACK_PopState(Mempack* mp)
     // size >> 20 = megabytes
 }
 
-// Crash Team Racing only used it once
+// only used it once
 void MEMPACK_PopToState(Mempack* mp, int state)
 {
     if (state < mp->numBookmarks)

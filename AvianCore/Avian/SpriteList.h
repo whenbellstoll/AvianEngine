@@ -51,6 +51,7 @@ public:
 	//List hFlipCollisionList;
 	//List vFlipCollisionList;
 	//List hvFlipCollisionList;
+	void IniFrame(const char* filename);
 	void hFCollisionList();
 	void vFCollisionList();
 	void hvFCollisionList();
@@ -86,7 +87,7 @@ public:
 	bool loopSFX;
 	bool soundStatus;
 	void * operator new[](size_t);
-	void   operator delete[](void *);
+	//void   operator delete[](void *);
 };
 
 class   SpriteElem

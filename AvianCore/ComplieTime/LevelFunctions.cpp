@@ -19,7 +19,9 @@ void Init_Level_1(GameNode* gn)
     duckInst1->Animation(0);
     duckInst1->Frame(0);
     duckInst1->Delay(6);
-    //Behavior duckb = Behavior();
+	duckInst1->Speed(4.25f);
+	duckInst1->VectorDirection(0, 0);
+	duckInst1->Visible(true);
     duckInst1->behavior = new Behavior();
     duckInst1->behavior->AddFunction(0, true);
     gn->Add(duckInst1);
@@ -40,6 +42,9 @@ void Init_Level_1(GameNode* gn)
         breadInst[i]->Animation(0);
         breadInst[i]->Frame(0);
         breadInst[i]->Delay(50);
+		breadInst[i]->Speed(0);
+		breadInst[i]->VectorDirection(0, 0);
+		breadInst[i]->Visible(true);
         breadInst[i]->behavior = new Behavior();
         gn->Add(breadInst[i]);
     }
@@ -53,13 +58,22 @@ void Init_Level_1(GameNode* gn)
 
 void Exit_Level_1(GameNode* gn)
 {
-    
+	
 }
 
 void End_Level_1(GameNode* gn)
 {
+	for (int i = 0; i < gn->spriteList.NumberOfElements(); i++)
+	{
+		Sprite* s = (Sprite*)gn->spriteList[i];
+		delete s->behavior;
+	}
     gn->mapList.Clear();
     gn->spriteList.Clear();
+	gn->variableList.Clear();
+	gn->soundList.Clear();
+	gn->musicList.Clear();
+	gn->particleSystemList.Clear();
     MEMPACK_Clean(&global.mappboPack);
     MEMPACK_Clean(&global.mapvboPack);
     MEMPACK_Clean(&global.levelPack);
@@ -120,8 +134,17 @@ void Exit_Level_2(GameNode* gn)
 
 void End_Level_2(GameNode* gn)
 {
-    gn->mapList.Clear();
-    gn->spriteList.Clear();
+	for (int i = 0; i < gn->spriteList.NumberOfElements(); i++)
+	{
+		Sprite* s = (Sprite*)gn->spriteList[i];
+		delete s->behavior;
+	}
+	gn->mapList.Clear();
+	gn->spriteList.Clear();
+	gn->variableList.Clear();
+	gn->soundList.Clear();
+	gn->musicList.Clear();
+	gn->particleSystemList.Clear();
     MEMPACK_Clean(&global.mappboPack);
     MEMPACK_Clean(&global.mapvboPack);
     MEMPACK_Clean(&global.levelPack);

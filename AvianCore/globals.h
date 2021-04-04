@@ -46,10 +46,6 @@ struct Global
 	// Input
 	Keyboard keyboard;
 	Mouse mouse;
-	//Gamepad joyOne;
-	//Gamepad joyTwo;
-	//Gamepad joyThree;
-	//Gamepad joyFour;
 
 	int width, height;
 };

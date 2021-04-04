@@ -1,5 +1,6 @@
 ﻿#include "globals.h"
 // Memory Leaks
+//#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 
@@ -12,6 +13,7 @@ struct Global global;
 
 int main()
 {
+	//_crtBreakAlloc = 316;
     printf("Globals: %d bytes\n", sizeof(global));
 
     // these should be the only "malloc" calls
@@ -36,6 +38,7 @@ int main()
     glfwGetWindowSize(global.window, &global.width, &global.height);
 
     LoadAnimation();
+
 
     myGame = new Game();
     GameNode g1 = GameNode();                       //(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
@@ -99,6 +102,10 @@ int main()
 
 		// Gamepads
 		pGamepadOne->Process();
+		pGamepadTwo->Process();
+		pGamepadThree->Process();
+		pGamepadFour->Process();
+
 
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");
@@ -162,8 +169,9 @@ int main()
         // update swapchain
         glfwSwapBuffers(global.window);
     }
-
+	DeleteAnimations();
     myGame->currentLevel->endLevelFunction(myGame->currentLevel);
+	
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
     // erase global resources
@@ -173,8 +181,20 @@ int main()
     // erase level resources
     free(levelpackRamData);
     levelpackRamData = nullptr;
+	
+	g1.~GameNode();
+	g2.~GameNode();
+
+	delete pGamepadOne;
+	delete pGamepadTwo;
+	delete pGamepadThree;
+	delete pGamepadFour;
+	delete myGame;
+	
 
     CleanOpenGL();
+	
+
     _CrtDumpMemoryLeaks();
 
     // end program

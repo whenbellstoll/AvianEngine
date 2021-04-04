@@ -118,7 +118,7 @@ public:
 	void  DisplayMap();
 	// move to private later
 
-	Array<node*> alarmList;
+	//Array<node*> alarmList;
     Map();
 	Map(const Map &);
 	Map(const char*,const char*, MapType,int = 0,int = 0,int = 0,bool = true); 
@@ -129,7 +129,7 @@ public:
 	void FileName(const char*);
 	const char* FileName();
 	void SetMapType(MapType);
-	Array<node*> collisionList; 
+	//Array<node*> collisionList; 
 	unsigned int Height();
     unsigned int Width();
     float WorldPositionX();
@@ -172,7 +172,7 @@ public:
 	void SpacePartitionGridSize(unsigned int);
 	int SpacePartitionGridSize();
 	void AddLocalVariable(unsigned int);
-	Array<Array<Array<node*>>> gridLists;  // access looks like: Array<node *> items = gridLists[x][y];
+	//Array<Array<Array<node*>>> gridLists;  // access looks like: Array<node *> items = gridLists[x][y];
 	
 	//Array<Variable *> mapVariableList;
 	Behavior behavior;
