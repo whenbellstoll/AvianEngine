@@ -42,7 +42,6 @@ FrameElem::FrameElem(const char* filename)
 
 FrameElem::~FrameElem()
 {
-	delete ImageName;
 }
 
 void FrameElem::hFBoundingBox()
@@ -251,12 +250,12 @@ void* AnimationElem::operator new[](size_t st)
 
 }
 
-/*void AnimationElem::operator delete[](void* v)
+void AnimationElem::operator delete[](void* v)
 {
 	AnimationElem* obj = (AnimationElem*)v;
 	delete[] obj->Frames;
     // Delete should be handled with the Mempack
-}*/
+}
 
 // Sprite Element
 SpriteElem::SpriteElem()

@@ -87,7 +87,7 @@ public:
 	bool loopSFX;
 	bool soundStatus;
 	void * operator new[](size_t);
-	//void   operator delete[](void *);
+	void   operator delete[](void *);
 };
 
 class   SpriteElem

@@ -84,9 +84,6 @@
     <ClCompile Include="ComplieTime\LevelFunctions.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
-    <ClCompile Include="Avian\Cursor.cpp">
-      <Filter>Source Files\Avian</Filter>
-    </ClCompile>
     <ClCompile Include="Avian\Mouse.cpp">
       <Filter>Source Files\Avian</Filter>
     </ClCompile>
@@ -165,9 +162,6 @@
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
     <ClInclude Include="ComplieTime\LevelFunctions.h">
-      <Filter>Source Files\Avian</Filter>
-    </ClInclude>
-    <ClInclude Include="Avian\Cursor.h">
       <Filter>Source Files\Avian</Filter>
     </ClInclude>
     <ClInclude Include="Avian\Mouse.h">

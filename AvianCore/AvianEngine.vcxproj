@@ -192,7 +192,6 @@
     <ClCompile Include="Avian\CollisionData.cpp" />
     <ClCompile Include="Avian\Constants.cpp" />
     <ClCompile Include="Avian\ControllerInput.cpp" />
-    <ClCompile Include="Avian\Cursor.cpp" />
     <ClCompile Include="Avian\File.cpp" />
     <ClCompile Include="Avian\Game.cpp" />
     <ClCompile Include="Avian\GameNode.cpp" />
@@ -221,7 +220,6 @@
     <ClInclude Include="Avian\CollisionData.h" />
     <ClInclude Include="Avian\Constants.h" />
     <ClInclude Include="Avian\ControllerInput.h" />
-    <ClInclude Include="Avian\Cursor.h" />
     <ClInclude Include="Avian\File.h" />
     <ClInclude Include="Avian\Game.h" />
     <ClInclude Include="Avian\GameNode.h" />

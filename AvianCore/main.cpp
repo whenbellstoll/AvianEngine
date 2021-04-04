@@ -146,7 +146,7 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-       
+		SpriteList[0];
         myGame->currentLevel->Execute(elapsedTime);
         
         // swap between levels
@@ -169,7 +169,7 @@ int main()
         // update swapchain
         glfwSwapBuffers(global.window);
     }
-	DeleteAnimations();
+	//delete[] SpriteList;
     myGame->currentLevel->endLevelFunction(myGame->currentLevel);
 	
     // erase all allocated data

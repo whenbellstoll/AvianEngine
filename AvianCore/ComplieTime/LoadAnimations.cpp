@@ -72,7 +72,16 @@ void DeleteAnimations()
 			//}
 		}
 	}*/
-	delete[] SpriteList[0].Animations[1].Frames;
-
-
+	//delete[] SpriteList[0].Animations[0].Frames;
+	//delete[] SpriteList[0].Animations[1].Frames;
+	//delete[] SpriteList[1].Animations[0].Frames;
+	//SpriteList[0].Animations[0].~AnimationElem();
+	//SpriteList[0].Animations[1].~AnimationElem();
+	//SpriteList[1].Animations[0].~AnimationElem();
+	//SpriteList[0].Animations = nullptr;
+	delete[] SpriteList[0].Animations;
+	delete[] SpriteList[1].Animations;
+	//SpriteList[0].~SpriteElem();
+	//SpriteList[1].~SpriteElem();
+	delete SpriteList;
 }
