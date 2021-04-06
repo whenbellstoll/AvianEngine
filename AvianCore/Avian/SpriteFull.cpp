@@ -289,7 +289,7 @@ float Sprite::TranslationY()
 
 float Sprite::Speed()
 {
-	return 0.0f;
+	return speed;
 }
 
 void Sprite::Speed(float f)
@@ -637,10 +637,35 @@ void Sprite::CannedDirection(unsigned int direction)
 {
 }
 
-void Sprite::VectorDirection(float x, float y, unsigned int mag)
+void Sprite::VectorDirection(float x, float y, unsigned int approx)
 {
-	directionX = x;
-	directionY = y;
+	// if both variables are zero, magnitude = 0 and we'll get a divide by 0 error
+	if (x == 0 && y == 0)
+	{
+		directionX = x;
+		directionY = y;
+		return;
+	}
+	
+	if (approx)
+	{
+		// we do unit vector approximation (fast unit vector)
+		const float errorCorrection = 1.05374f;
+		x = -x * (x < 0) + x * (x > 0);
+		y = -y * (y < 0) + y * (y > 0);
+		int greater = y * (x < y) + x * (x > y);
+		int lesser = y * (x > y) + x * (x < y);
+		float magnitude = (x * errorCorrection) * (greater > lesser + lesser) + ((x + y) * 0.6666667f * errorCorrection) * !(greater > lesser + lesser);
+		directionX = x / magnitude;
+		directionY = y / magnitude;
+		return;
+	}
+
+	// slow method
+	float magnitude = fastsqrt( x * x + y * y );
+	directionX = x / magnitude;
+	directionY = y / magnitude;
+
 }
 
 void Sprite::VectorAngle(float ang, float gaming)

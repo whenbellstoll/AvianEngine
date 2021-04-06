@@ -71,6 +71,11 @@ int main()
     // timer variables
     clock_t start;
     clock_t end;
+	clock_t startTest;
+	clock_t endTest;
+
+
+
 
     // initialize time
     start = clock();

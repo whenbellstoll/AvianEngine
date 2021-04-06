@@ -62,6 +62,14 @@ extern SpriteElem SpriteList[MAXACTORS];
 
 extern Global global;
 
+// Fast sqrt
+double inline __declspec (naked) __fastcall fastsqrt(double n)
+{
+	_asm fld qword ptr[esp + 4]
+		_asm fsqrt
+	_asm ret 8
+}
+
 // Behavior
 //void** NewVoidPointers(unsigned int);
 
