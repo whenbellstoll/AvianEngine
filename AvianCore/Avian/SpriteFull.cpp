@@ -3,18 +3,23 @@
 // Private Methods
 void Sprite::PegRegistered(int notused)
 {
+	// why
 }
 
 void Sprite::MapPositionForPGX(float)
 {
+	// not sure why this function exists
 }
 
 void Sprite::MapPositionForPGY(float)
 {
+	// not sure why this function exists
 }
+
 
 void Sprite::HandleLastFlipPR()
 {
+	// not sure why this function exists
 }
 
 void Sprite::DisplaySprite()
@@ -60,12 +65,15 @@ void Sprite::UpdateSprite()
 
 void Sprite::reflect(float x, float y)
 {
+	// find the normal of the vector
 
+	// ahhhhhhhhhhhhh
 }
 
 void Sprite::FrictionFactor()
 {
-
+	float fps = 60.0f;
+	speed += ( (1 / fps) * friction * speed ) * (speed > 0 ) + ((1 / fps) * -friction * speed) * ( speed < 0 ) ;
 }
 
 void Sprite::UpdateTranslation()
@@ -101,6 +109,7 @@ void Sprite::UpdateAnimation()
 
 void Sprite::ResetMapCollisionFlag()
 {
+	mapCollision = false;
 }
 
 void Sprite::FlipSet()
@@ -630,11 +639,12 @@ bool Sprite::InViewport()
 
 unsigned int Sprite::CannedDirection()
 {
-	return 0;
+	return canned;
 }
 
 void Sprite::CannedDirection(unsigned int direction)
 {
+	canned = direction;
 }
 
 void Sprite::VectorDirection(float x, float y, unsigned int approx)
@@ -647,24 +657,28 @@ void Sprite::VectorDirection(float x, float y, unsigned int approx)
 		return;
 	}
 	
-	if (approx)
+	if (approx == 0)
 	{
 		// we do unit vector approximation (fast unit vector)
 		const float errorCorrection = 1.05374f;
-		x = -x * (x < 0) + x * (x > 0);
-		y = -y * (y < 0) + y * (y > 0);
-		int greater = y * (x < y) + x * (x > y);
-		int lesser = y * (x > y) + x * (x < y);
-		float magnitude = (x * errorCorrection) * (greater > lesser + lesser) + ((x + y) * 0.6666667f * errorCorrection) * !(greater > lesser + lesser);
+		float absx = -x * (x < 0) + x * (x > 0);
+		float absy = -y * (y < 0) + y * (y > 0);
+		float greater = absy * (absx < absy) + absx * (absx >= absy);
+		float lesser = absy * (absx >= absy) + absx * (absx < absy);
+		float magnitude = (greater * errorCorrection) * (greater > lesser + lesser) + ((greater + lesser) * 0.6666667f * errorCorrection) * (greater <= lesser + lesser);
+
 		directionX = x / magnitude;
 		directionY = y / magnitude;
 		return;
 	}
-
-	// slow method
-	float magnitude = fastsqrt( x * x + y * y );
-	directionX = x / magnitude;
-	directionY = y / magnitude;
+	if (approx == 1)
+	{
+		// slow method
+		float magnitude = fastsqrt(x * x + y * y);
+		directionX = x / magnitude;
+		directionY = y / magnitude;
+	}
+	
 
 }
 

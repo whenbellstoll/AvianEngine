@@ -46,6 +46,7 @@ void MoveSprite(Sprite* This)
         
     }
 	This->VectorDirection(x, y);
+	//printf("\n Collision between Duck and bread has been confirmed. Positions: %f , %f", This->DirectionX(), This->DirectionY() );
 }
 
 //void CollectBread(Sprite* This)
