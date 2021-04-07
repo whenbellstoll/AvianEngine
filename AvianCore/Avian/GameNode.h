@@ -61,14 +61,14 @@ public:
 	void PaletteName(const char *);
 	GameNode* Search(const char *);
 	bool Add(Sprite *);
-	//bool Add(Map *);
+	bool Add(Map *);
     //bool Add(Variable *);
 	//bool Add(Sound *);
 	//bool Add(StreamedSound *);
 	bool AddSFX(const char *,const char *,bool = false,int = 50);
 	bool AddMusic(const char *,const char *,bool = false);
 	bool AddMap(const char *,const char *,Map::MapType);
-	//bool Add(Map &);
+	bool Add(Map &);
 	//bool Add(Variable &);
 	bool Add(Sprite &);
 	void AddLocalVariable(unsigned int);

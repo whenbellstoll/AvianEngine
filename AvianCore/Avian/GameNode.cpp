@@ -77,6 +77,14 @@ bool GameNode::Add(Sprite* s)
 	return true;
 }
 
+bool GameNode::Add(Map* m)
+{
+	if (mapList.NumberOfElements() == mapMaximum)	return false;
+
+	mapList.InsertBack(m);
+	return true;
+}
+
 bool GameNode::AddSFX(const char*, const char*, bool, int)
 {
 	return false;
@@ -101,12 +109,19 @@ bool GameNode::AddMap(const char* name, const char* filename, Map::MapType mT)
 	return true;
 }
 
+bool GameNode::Add(Map& m)
+{
+	if (mapList.NumberOfElements() + 1 > mapMaximum) return false;
+
+
+	mapList.InsertBack(&m);
+	return true;
+}
+
 bool GameNode::Add(Sprite& s)
 {
-	if (spriteList.NumberOfElements() + 1 > spriteMaximum)
-	{
-		return false;
-	}
+	if (spriteList.NumberOfElements() + 1 > spriteMaximum) return false;
+	
 
 	spriteList.InsertBack(&s);
 	return true;
