@@ -4,9 +4,11 @@
 void MoveSprite(Sprite* This)
 {
     float distance = 0.01f;
-    if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT))
+	int x = 0;
+	int y = 0;
+    if (pKeyboard->IsPressed('A') || pKeyboard->IsPressed(AK_LEFT) || pGamepadOne->GetAxis(0) < -0.5f )
     {
-        This->MapPositionX(This->MapPositionX() - distance);
+        x = -1;
         This->Animation(1);
         
         // This code needs to go into FrameElem update if( hFlip )
@@ -16,9 +18,9 @@ void MoveSprite(Sprite* This)
             This->MapPositionX(This->MapPositionX() - (37 * (2.0f / global.width))); // 37 == SpriteList[0].Animation[2].Frames[x].width
         }
     }
-    if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT))
+    if (pKeyboard->IsPressed('D') || pKeyboard->IsPressed(AK_RIGHT) || pGamepadOne->GetAxis(0) > 0.5f )
     {
-        This->MapPositionX(This->MapPositionX() + distance);
+		x = 1;
         This->Animation(1);
         
         if (This->ScaleX() != (-2.0f / global.width))
@@ -27,22 +29,24 @@ void MoveSprite(Sprite* This)
             This->MapPositionX(This->MapPositionX() + (37 * (2.0f / global.width))); // 37 == SpriteList[0].Animation[2].Frames[x].width
         }
     }
-    if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP))
+    if (pKeyboard->IsPressed('W') || pKeyboard->IsPressed(AK_UP) || pGamepadOne->GetAxis(1) > 0.5f)
     {
-        This->MapPositionY(This->MapPositionY() + distance);
+		y = 1;
         
     }
-    if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN))
+    if (pKeyboard->IsPressed('S') || pKeyboard->IsPressed(AK_DOWN) || pGamepadOne->GetAxis(1) < -0.5f )
     {
-        This->MapPositionY(This->MapPositionY() - distance);
+		y = -1;
     }
 
-    if (pKeyboard->Nothing())
+    if (pKeyboard->Nothing() && pGamepadOne->GetAxis(0) < 0.5f && pGamepadOne->GetAxis(0) > -0.5f )
     {
         
         This->Animation(0);
         
     }
+	This->VectorDirection(x, y);
+	//printf("\n Collision between Duck and bread has been confirmed. Positions: %f , %f", This->DirectionX(), This->DirectionY() );
 }
 
 //void CollectBread(Sprite* This)

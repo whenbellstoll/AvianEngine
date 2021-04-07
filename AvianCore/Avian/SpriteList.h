@@ -15,7 +15,8 @@ public:
 	FrameElem();
 	FrameElem(const char * filename);
 	virtual ~FrameElem();
-	String ImageName;
+	const char * ImageName;
+	//String ImageName;
 	unsigned int texture;
 	unsigned int startingVertex;
 	int	Width;
@@ -51,6 +52,7 @@ public:
 	//List hFlipCollisionList;
 	//List vFlipCollisionList;
 	//List hvFlipCollisionList;
+	void IniFrame(const char* filename);
 	void hFCollisionList();
 	void vFCollisionList();
 	void hvFCollisionList();

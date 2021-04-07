@@ -42,7 +42,6 @@ FrameElem::FrameElem(const char* filename)
 
 FrameElem::~FrameElem()
 {
-
 }
 
 void FrameElem::hFBoundingBox()
@@ -160,6 +159,22 @@ void FrameElem::AddCollisionData(CollisionCircle cc)
 
 }
 
+void FrameElem::IniFrame(const char* filename)
+{
+	LoadFrame(filename);
+	// assign all the frame data
+	ImageName = filename;
+	TranslateX = 0.0f;
+	TranslateY = 0.0f;
+	Delay = 1;
+	Transparency = RGB(0, 0, 0);
+	hFlip = false;
+	vFlip = false;
+	zRotation = 0;
+	PegRegistered = false;
+	useTransparency = true;
+}
+
 void FrameElem::hFCollisionList()
 {
 
@@ -207,8 +222,8 @@ void* FrameElem::operator new[](size_t st)
 
 void FrameElem::operator delete[](void* v)
 {
+	
     // Delete should be handled with 
-    return;
 }
 
 
@@ -220,6 +235,8 @@ AnimationElem::AnimationElem()
 
 AnimationElem::~AnimationElem()
 {
+	
+	
 }
 
 void* AnimationElem::operator new[](size_t st)
@@ -235,8 +252,10 @@ void* AnimationElem::operator new[](size_t st)
 
 void AnimationElem::operator delete[](void* v)
 {
+	AnimationElem* obj = (AnimationElem*)v;
+	sizeof(obj);
+	//delete[] obj->Frames;
     // Delete should be handled with the Mempack
-    return;
 }
 
 // Sprite Element
@@ -246,4 +265,5 @@ SpriteElem::SpriteElem()
 
 SpriteElem::~SpriteElem()
 {
+	//delete[] Animations;	
 }

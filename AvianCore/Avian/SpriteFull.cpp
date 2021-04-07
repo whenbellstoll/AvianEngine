@@ -3,23 +3,29 @@
 // Private Methods
 void Sprite::PegRegistered(int notused)
 {
+	// why
 }
 
 void Sprite::MapPositionForPGX(float)
 {
+	// not sure why this function exists
 }
 
 void Sprite::MapPositionForPGY(float)
 {
+	// not sure why this function exists
 }
+
 
 void Sprite::HandleLastFlipPR()
 {
+	// not sure why this function exists
 }
 
 void Sprite::DisplaySprite()
 {
 	UpdateAnimation();
+	//if (!visible) return;
 	// layer (what draws on top of what)
 	glUniform1f(0, zOrder / 100.0f );
 
@@ -45,8 +51,9 @@ void Sprite::DisplaySprite()
 	glDrawArrays(GL_TRIANGLE_STRIP, SpriteList[actorIndex].Animations[animation].Frames[frame].startingVertex, 4);
 }
 
-void Sprite::CheckSpriteCollision(Sprite*)
+void Sprite::CheckSpriteCollision(Sprite* s)
 {
+
 }
 
 void Sprite::UpdateSprite()
@@ -56,16 +63,31 @@ void Sprite::UpdateSprite()
 	behavior->Update((void *)this);
 }
 
-void Sprite::reflect(float, float)
+void Sprite::reflect(float x, float y)
 {
+	// find the normal of the vector
+
+	// ahhhhhhhhhhhhh
 }
 
 void Sprite::FrictionFactor()
 {
+	float fps = 60.0f;
+	speed += ( (1 / fps) * friction * speed ) * (speed > 0 ) + ((1 / fps) * -friction * speed) * ( speed < 0 ) ;
 }
 
 void Sprite::UpdateTranslation()
 {
+	float frameElapsed = 60 * dt; // assume 60 fps for now
+	float pixelSizeX = 2 / (float)global.width;
+	float pixelSizeY = 2 / (float)global.height;
+
+	translationX = speed * directionX * pixelSizeX * frameElapsed;
+	translationY = speed * directionY * pixelSizeY * frameElapsed;
+
+	mapPositionX += translationX;
+	mapPositionY += translationY;
+
 }
 
 void Sprite::UpdateAnimation()
@@ -87,22 +109,27 @@ void Sprite::UpdateAnimation()
 
 void Sprite::ResetMapCollisionFlag()
 {
+	mapCollision = false;
 }
 
 void Sprite::FlipSet()
 {
+
 }
 
 void Sprite::GetTranslation()
 {
+
 }
 
 void Sprite::CannedFactor()
 {
+
 }
 
 void Sprite::HandleAlarms()
 {
+	// not yet
 }
 
 void Sprite::UpdateMovementPattern()
@@ -112,6 +139,7 @@ void Sprite::UpdateMovementPattern()
 void Sprite::GravityFactor()
 {
 }
+
 
 node* Sprite::Clone()
 {
@@ -148,6 +176,10 @@ Sprite::Sprite()
 	scaleX = 1.0f;
 	scaleY = 1.0f;
 	animation = 0;
+	speed = 0.0f;
+	directionX = 0;
+	directionY = 0;
+	visible = true;
 }
 
 Sprite::Sprite(Sprite* s)
@@ -160,26 +192,28 @@ Sprite& Sprite::operator=(const Sprite& s)
 	return *this;
 }
 
-Sprite::Sprite(const Sprite&)
+Sprite::Sprite(const Sprite& s)
 {
+	zOrder = 0;
+	mapPositionX = 0.0f;
+	mapPositionY = 0.0f;
+	scaleX = 1.0f;
+	scaleY = 1.0f;
+	animation = 0;
 }
 
 Sprite::~Sprite()
 {
 }
 
-void Sprite::Unused(bool)
+void Sprite::Unused(bool b)
 {
+	unused = b;
 }
 
 bool Sprite::Unused()
 {
-	return false;
-}
-
-const char* Sprite::ClassName()
-{
-	return "Sprite";
+	return unused;
 }
 
 void Sprite::Use(const char* c)
@@ -196,17 +230,19 @@ Sprite* Sprite::Search(const int i)
 	return nullptr;
 }
 
-void Sprite::CheckSameDisplayList(bool)
+void Sprite::CheckSameDisplayList(bool b)
 {
+	checkSameDisplayList = b;
 }
 
 bool Sprite::CheckSameDisplayList()
 {
-	return false;
+	return checkSameDisplayList;
 }
 
-void Sprite::CheckSameType(bool)
+void Sprite::CheckSameType(bool b)
 {
+	
 }
 
 bool Sprite::CheckSameType()
@@ -252,49 +288,50 @@ unsigned int Sprite::NearestStationNumber(bool)
 
 float Sprite::TranslationX()
 {
-	return 0.0f;
+	return translationX;
 }
 
 float Sprite::TranslationY()
 {
-	return 0.0f;
+	return translationY;
 }
 
 float Sprite::Speed()
 {
-	return 0.0f;
+	return speed;
 }
 
-void Sprite::Speed(float)
+void Sprite::Speed(float f)
+{
+	speed = f;
+}
+
+void Sprite::SpeedDec(float dec, float min)
 {
 }
 
-void Sprite::SpeedDec(float, float)
+void Sprite::SpeedInc(float inc, float max)
 {
 }
 
-void Sprite::SpeedInc(float, float)
+bool Sprite::SpeedGreater(float f)
 {
+	return speed > f;
 }
 
-bool Sprite::SpeedGreater(float)
+bool Sprite::SpeedGreaterEqual(float f)
 {
-	return false;
+	return speed >= f;
 }
 
-bool Sprite::SpeedGreaterEqual(float)
+bool Sprite::SpeedLess(float f)
 {
-	return false;
+	return speed < f;
 }
 
-bool Sprite::SpeedLess(float)
+bool Sprite::SpeedLessEqual(float f)
 {
-	return false;
-}
-
-bool Sprite::SpeedLessEqual(float)
-{
-	return false;
+	return speed <= f;
 }
 
 const char* Sprite::Name()
@@ -307,13 +344,14 @@ void Sprite::Name(const char* n)
 	name = n;
 }
 
-void Sprite::Visible(bool)
+void Sprite::Visible(bool b)
 {
+	visible = b;
 }
 
 bool Sprite::Visible()
 {
-	return false;
+	return visible;
 }
 
 void Sprite::Visible(const char* name, bool vis)
@@ -388,19 +426,19 @@ void Sprite::MapPosition(float x, float y, bool b)
 	}
 }
 
-void Sprite::MapPositionXInc(float, float, bool)
+void Sprite::MapPositionXInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::MapPositionXDec(float, float, bool)
+void Sprite::MapPositionXDec(float dec, float min, bool b)
 {
 }
 
-void Sprite::MapPositionYInc(float, float, bool)
+void Sprite::MapPositionYInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::MapPositionYDec(float, float, bool)
+void Sprite::MapPositionYDec(float dec, float min, bool b)
 {
 }
 
@@ -441,23 +479,24 @@ void Sprite::WorldPositionY(float y, bool b)
 	}
 }
 
-void Sprite::WorldPosition(float, float, bool)
+void Sprite::WorldPosition(float x, float y, bool b)
+{
+
+}
+
+void Sprite::WorldPositionXInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::WorldPositionXInc(float, float, bool)
+void Sprite::WorldPositionXDec(float dec, float min, bool b)
 {
 }
 
-void Sprite::WorldPositionXDec(float, float, bool)
+void Sprite::WorldPositionYInc(float inc, float max, bool b)
 {
 }
 
-void Sprite::WorldPositionYInc(float, float, bool)
-{
-}
-
-void Sprite::WorldPositionYDec(float, float, bool)
+void Sprite::WorldPositionYDec(float dec, float min, bool b)
 {
 }
 
@@ -491,22 +530,24 @@ unsigned int Sprite::ZOrder()
 	return zOrder;
 }
 
-void Sprite::Canned(bool)
+void Sprite::Canned(bool b)
 {
+	canned = b;
 }
 
 bool Sprite::Canned()
 {
-	return false;
+	return canned;
 }
 
 bool Sprite::Pause()
 {
-	return false;
+	return pauseSprite;
 }
 
-void Sprite::Pause(bool)
+void Sprite::Pause(bool b)
 {
+	pauseSprite = b;
 }
 
 void Sprite::Animation(int i)
@@ -539,12 +580,12 @@ void Sprite::Frame(int i)
 
 int Sprite::TotalAnimations()
 {
-	return 0;
+	return SpriteList[actorIndex].TotalAnimations;
 }
 
 int Sprite::TotalFrames()
 {
-	return 0;
+	return SpriteList[actorIndex].Animations[animation].TotalFrames;
 }
 
 int Sprite::Frame()
@@ -581,13 +622,14 @@ int Sprite::ActorIndex()
 	return actorIndex;
 }
 
-//bool Sprite::CollisionWithSprite(const char* n = NULL)
-//{
-	//return false;
-//}
-
-void Sprite::Reflection(bool)
+bool Sprite::CollisionWithSprite(const char* n)
 {
+	return false;
+}
+
+void Sprite::Reflection(bool b)
+{
+	reflection = b;
 }
 
 bool Sprite::InViewport()
@@ -597,15 +639,47 @@ bool Sprite::InViewport()
 
 unsigned int Sprite::CannedDirection()
 {
-	return 0;
+	return canned;
 }
 
 void Sprite::CannedDirection(unsigned int direction)
 {
+	canned = direction;
 }
 
-void Sprite::VectorDirection(float x, float y, unsigned int mag)
+void Sprite::VectorDirection(float x, float y, unsigned int approx)
 {
+	// if both variables are zero, magnitude = 0 and we'll get a divide by 0 error
+	if (x == 0 && y == 0)
+	{
+		directionX = x;
+		directionY = y;
+		return;
+	}
+	
+	if (approx == 0)
+	{
+		// we do unit vector approximation (fast unit vector)
+		const float errorCorrection = 1.05374f;
+		float absx = -x * (x < 0) + x * (x > 0);
+		float absy = -y * (y < 0) + y * (y > 0);
+		float greater = absy * (absx < absy) + absx * (absx >= absy);
+		float lesser = absy * (absx >= absy) + absx * (absx < absy);
+		float magnitude = (greater * errorCorrection) * (greater > lesser + lesser) + ((greater + lesser) * 0.6666667f * errorCorrection) * (greater <= lesser + lesser);
+
+		directionX = x / magnitude;
+		directionY = y / magnitude;
+		return;
+	}
+	if (approx == 1)
+	{
+		// slow method
+		float magnitude = fastsqrt(x * x + y * y);
+		directionX = x / magnitude;
+		directionY = y / magnitude;
+	}
+	
+
 }
 
 void Sprite::VectorAngle(float ang, float gaming)
@@ -617,7 +691,7 @@ float Sprite::VectorAngle()
 	return 0.0f;
 }
 
-void Sprite::VariableNumber(int)
+void Sprite::VariableNumber(int i)
 {
 }
 
@@ -641,48 +715,53 @@ bool Sprite::CollisionWithMap()
 	return false;
 }
 
-void Sprite::CollisionWithMap(bool)
+void Sprite::CollisionWithMap(bool b)
 {
 }
 
-void Sprite::MainCharacter(bool)
+void Sprite::MainCharacter(bool b)
 {
+	mainCharacter = b;
 }
 
 bool Sprite::MainCharacter()
 {
-	return false;
+	return mainCharacter;
 }
 
-void Sprite::CheckCollisionWithMap(bool)
+void Sprite::CheckCollisionWithMap(bool b)
 {
+	mapCollision = b;
 }
 
 bool Sprite::CheckCollisionWithMap()
 {
-	return false;
+	return mapCollision;
 }
 
-void Sprite::DisplayListNumber(int)
+void Sprite::DisplayListNumber(int i)
 {
+	displayListNumber = i;
 }
 
 int Sprite::DisplayListNumber()
 {
-	return 0;
+	return displayListNumber;
 }
 
-void Sprite::DoNotCutDirection(bool)
+void Sprite::DoNotCutDirection(bool b)
 {
+	doNotCutDirection = b;
 }
 
 bool Sprite::DoNotCutDirection()
 {
-	return false;
+	return doNotCutDirection;
 }
 
-void Sprite::BelongToMap(const char*)
+void Sprite::BelongToMap(const char* n)
 {
+	
 }
 
 const char* Sprite::BelongToMap()
@@ -690,22 +769,24 @@ const char* Sprite::BelongToMap()
 	return nullptr;
 }
 
-void Sprite::CannedHDirection(bool)
+void Sprite::CannedHDirection(bool b)
 {
+	cannedHDirection = b;
 }
 
 bool Sprite::CannedHDirection()
 {
-	return false;
+	return cannedHDirection;
 }
 
-void Sprite::CannedVDirection(bool)
+void Sprite::CannedVDirection(bool b)
 {
+	cannedVDirection = b;
 }
 
 bool Sprite::CannedVDirection()
 {
-	return false;
+	return cannedVDirection;
 }
 
 float Sprite::HotSpotX(int)
@@ -791,31 +872,32 @@ int Sprite::ViewportY()
 	return 0;
 }
 
-bool Sprite::CollisionWithMap(int)
+bool Sprite::CollisionWithMap(int i)
 {
 	return false;
 }
 
-bool Sprite::CollisionWithSprite(int)
+bool Sprite::CollisionWithSprite(int i)
 {
 	return false;
 }
 
-bool Sprite::Collision(int)
+bool Sprite::Collision(int i)
 {
 	return false;
 }
 
-void Sprite::ActivateCollisionWithSprite(bool)
+void Sprite::ActivateCollisionWithSprite(bool b)
 {
+	activateCollisionWithSprite = b;
 }
 
 bool Sprite::ActivateCollisionWithSprite()
 {
-	return false;
+	return activateCollisionWithSprite;
 }
 
-void Sprite::Follow(Sprite*, unsigned int, unsigned int, unsigned int)
+void Sprite::Follow(Sprite* s, unsigned int i, unsigned int , unsigned int)
 {
 }
 
@@ -823,7 +905,7 @@ void Sprite::Follow(const String, unsigned int, unsigned int, unsigned int)
 {
 }
 
-float Sprite::Distance(Sprite*)
+float Sprite::Distance(Sprite* s)
 {
 	return 0.0f;
 }
@@ -1155,6 +1237,8 @@ bool Sprite::LookAheadCollision(unsigned int, unsigned int, unsigned int)
 {
 	return false;
 }
+
+DYNCREATEIMP(Sprite);
 
 
 // SpritPTR Locator

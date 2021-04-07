@@ -17,6 +17,17 @@ GameNode::GameNode()
 
 GameNode::~GameNode()
 {
+	for (int i = 0; i < spriteList.NumberOfElements(); i++)
+	{
+		Sprite* s = (Sprite*)spriteList[i];
+		delete s->behavior;
+	}
+	mapList.~Array();
+	spriteList.~Array();
+	variableList.~Array();
+	soundList.~Array();
+	musicList.~Array();
+	particleSystemList.~Array();
 }
 
 void GameNode::Execute(float dt)

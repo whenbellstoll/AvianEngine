@@ -1,4 +1,4 @@
-# How to contribute efficiently
+# Contributing Efficiently
 
 ## Table of contents
 

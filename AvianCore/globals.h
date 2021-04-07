@@ -24,6 +24,9 @@
 #include "Avian/Map.h"
 #include "Avian/GameNode.h"
 #include "Avian/Game.h"
+#include "Avian/Mouse.h"
+#include "Avian/ControllerInput.h"
+
 
 
 
@@ -40,18 +43,32 @@ struct Global
 	Mempack vboPack;
 	Mempack pboPack;
 
+	// Input
 	Keyboard keyboard;
-	//Game * game;
+	Mouse mouse;
 
 	int width, height;
 };
 
 extern Keyboard *  pKeyboard;
-extern Game* myGame;
+extern Mouse * pMouse;
+extern Gamepad * pGamepadOne;
+extern Gamepad * pGamepadTwo;
+extern Gamepad * pGamepadThree;
+extern Gamepad * pGamepadFour;
+extern Game * myGame;
 
 extern SpriteElem SpriteList[MAXACTORS];
 
 extern Global global;
+
+// Fast sqrt
+double inline __declspec (naked) __fastcall fastsqrt(double n) // 
+{
+	_asm fld qword ptr[esp + 4]
+	_asm fsqrt
+	_asm ret 8
+}
 
 // Behavior
 //void** NewVoidPointers(unsigned int);

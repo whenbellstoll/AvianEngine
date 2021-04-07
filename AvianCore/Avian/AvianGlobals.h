@@ -112,6 +112,14 @@ inline int CorrectInteger(float f)
 		return 0;
 }
 
+// Fast sqrt
+double inline __declspec (naked) __fastcall fastsqrt(double n)
+{
+	_asm fld qword ptr[esp + 4]
+	_asm fsqrt
+	_asm ret 8
+}
+
 enum ErrorMessage
 {
 	EM_ALARMNOTFOUND_S,

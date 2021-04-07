@@ -191,12 +191,14 @@
     <ClCompile Include="Avian\Clip.cpp" />
     <ClCompile Include="Avian\CollisionData.cpp" />
     <ClCompile Include="Avian\Constants.cpp" />
+    <ClCompile Include="Avian\ControllerInput.cpp" />
     <ClCompile Include="Avian\File.cpp" />
     <ClCompile Include="Avian\Game.cpp" />
     <ClCompile Include="Avian\GameNode.cpp" />
     <ClCompile Include="Avian\Keyboard.cpp" />
     <ClCompile Include="Avian\List.cpp" />
     <ClCompile Include="Avian\Map.cpp" />
+    <ClCompile Include="Avian\Mouse.cpp" />
     <ClCompile Include="Avian\MyGame.cpp" />
     <ClCompile Include="Avian\Node.cpp" />
     <ClCompile Include="Avian\SpriteFull.cpp" />
@@ -217,6 +219,7 @@
     <ClInclude Include="Avian\Clip.h" />
     <ClInclude Include="Avian\CollisionData.h" />
     <ClInclude Include="Avian\Constants.h" />
+    <ClInclude Include="Avian\ControllerInput.h" />
     <ClInclude Include="Avian\File.h" />
     <ClInclude Include="Avian\Game.h" />
     <ClInclude Include="Avian\GameNode.h" />
@@ -224,6 +227,7 @@
     <ClInclude Include="Avian\Keyboard.h" />
     <ClInclude Include="Avian\List.h" />
     <ClInclude Include="Avian\Map.h" />
+    <ClInclude Include="Avian\Mouse.h" />
     <ClInclude Include="Avian\MyGame.h" />
     <ClInclude Include="Avian\Node.h" />
     <ClInclude Include="Avian\SpriteFull.h" />
@@ -235,6 +239,9 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="InputUpdate.h" />
     <ClInclude Include="mempack.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

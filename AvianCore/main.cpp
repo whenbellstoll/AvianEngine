@@ -1,5 +1,6 @@
 ﻿#include "globals.h"
 // Memory Leaks
+//#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 
@@ -12,6 +13,7 @@ struct Global global;
 
 int main()
 {
+	//_crtBreakAlloc = 316;
     printf("Globals: %d bytes\n", sizeof(global));
 
     // these should be the only "malloc" calls
@@ -36,6 +38,7 @@ int main()
     glfwGetWindowSize(global.window, &global.width, &global.height);
 
     LoadAnimation();
+
 
     myGame = new Game();
     GameNode g1 = GameNode();                       //(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
@@ -68,6 +71,11 @@ int main()
     // timer variables
     clock_t start;
     clock_t end;
+	clock_t startTest;
+	clock_t endTest;
+
+
+
 
     // initialize time
     start = clock();
@@ -90,18 +98,33 @@ int main()
 
         // Update controller "hold" variable
         glfwPollEvents();
-        //glfwGetWindowSize(global.window, &global.width, &global.height);
 
         // Determine Key States
         pKeyboard->ProcessKeys();
 
+		// Determine Mouse State
+		pMouse->Process();
+
+		// Gamepads
+		pGamepadOne->Process();
+		pGamepadTwo->Process();
+		pGamepadThree->Process();
+		pGamepadFour->Process();
+
+
         // Just for a test
         if (pKeyboard->IsTriggered('T')) printf("Tap T\n");
         if (pKeyboard->IsPressed('Y')) printf("Hold Y\n");
-
-
-        // Calculate Rectangle Positions for collision
-        /*Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
+		if (pMouse->IsTriggered(0)) printf("Tap MouseLeft \n");
+		if (pMouse->IsPressed(0)) printf("Hold MouseLeft \n");
+		if (pGamepadOne->IsPressed(0)) printf("This should be A \n");
+		//if (pGamepadOne->Nothing()) printf("Nothing from Gamepad. \n");
+        
+		
+		/*
+		Code that should probably be deleted but won't be because I think it's a good reference for thing I have yet to implement
+		// Calculate Rectangle Positions for collision
+        Rect duckBox = SpriteList[duckInst1->ActorIndex()].Animations[duckInst1->Animation()].Frames[duckInst1->Frame()].BBox;
         Rect breadBox = SpriteList[breadInst[0]->ActorIndex()].Animations[breadInst[0]->Animation()].Frames[breadInst[0]->Frame()].BBox;
         float duckrealSpaceX = (duckInst1->MapPositionX() + 1) * (global.width / 2);
         float duckrealSpaceY = (duckInst1->MapPositionY() - 1) * (global.height / 2) * -1;
@@ -120,14 +143,15 @@ int main()
         if (IntersectRectangles1(duckBox, breadBox))
         {
             printf("\n Collision between Duck and bread has been confirmed. Positions: %i , %i , %i , %i", (int)duckrealSpaceX, (int)duckrealSpaceY, (int)breadrealSpaceX, (int)breadrealSpaceY);
-        }*/
+        }
+		*/
 
         // render
         // ------
         glClearColor(0.2f, 0.3f, 0.3f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-       
+		SpriteList[0];
         myGame->currentLevel->Execute(elapsedTime);
         
         // swap between levels
@@ -150,8 +174,9 @@ int main()
         // update swapchain
         glfwSwapBuffers(global.window);
     }
-
+	//delete[] SpriteList;
     myGame->currentLevel->endLevelFunction(myGame->currentLevel);
+	
     // erase all allocated data
     MEMPACK_Clean(&global.ramPack);
     // erase global resources
@@ -161,8 +186,20 @@ int main()
     // erase level resources
     free(levelpackRamData);
     levelpackRamData = nullptr;
+	
+	g1.~GameNode();
+	g2.~GameNode();
+
+	delete pGamepadOne;
+	delete pGamepadTwo;
+	delete pGamepadThree;
+	delete pGamepadFour;
+	delete myGame;
+	
 
     CleanOpenGL();
+	
+
     _CrtDumpMemoryLeaks();
 
     // end program

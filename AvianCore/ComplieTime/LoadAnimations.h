@@ -1,1 +1,3 @@
 void LoadAnimation();
+
+void DeleteAnimations();
