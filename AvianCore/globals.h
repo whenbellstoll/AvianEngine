@@ -63,12 +63,42 @@ extern SpriteElem SpriteList[MAXACTORS];
 extern Global global;
 
 // Fast sqrt
-double inline __declspec (naked) __fastcall fastsqrt(double n) // 
+double inline __declspec (naked) __fastcall fastsqrtASM(double n) // 
 {
 	_asm fld qword ptr[esp + 4]
 	_asm fsqrt
 	_asm ret 8
 }
+
+float inline fastsqrt(float x)
+{
+	const float xhalf = 0.5f * x;
+
+	union // get bits for floating value
+	{
+		float x;
+		int i;
+	} u;
+	u.x = x;
+	u.i = 0x5f3759df - (u.i >> 1);  // gives initial guess y0
+	return x * u.x * (1.5f - xhalf * u.x * u.x);// Newton step, repeating increases accuracy 
+}
+
+float inline fastinvsqrt(float x)
+{
+	const float xhalf = 0.5f * x;
+
+	union // get bits for floating value
+	{
+		float x;
+		int i;
+	} u;
+	u.x = x;
+	u.i = 0x5f3759df - (u.i >> 1);  // gives initial guess y0
+	return u.x * (1.5f - xhalf * u.x * u.x);// Newton step, repeating increases accuracy 
+}
+
+
 
 // Behavior
 //void** NewVoidPointers(unsigned int);

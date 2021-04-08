@@ -674,9 +674,9 @@ void Sprite::VectorDirection(float x, float y, unsigned int approx)
 	if (approx == 1)
 	{
 		// slow method
-		float magnitude = fastsqrt(x * x + y * y);
-		directionX = x / magnitude;
-		directionY = y / magnitude;
+		float inverseSqrt = fastinvsqrt(x * x + y * y);
+		directionX = x * inverseSqrt;
+		directionY = y * inverseSqrt;
 	}
 	
 
@@ -684,6 +684,7 @@ void Sprite::VectorDirection(float x, float y, unsigned int approx)
 
 void Sprite::VectorAngle(float ang, float gaming)
 {
+
 }
 
 float Sprite::VectorAngle()
@@ -693,11 +694,12 @@ float Sprite::VectorAngle()
 
 void Sprite::VariableNumber(int i)
 {
+	variableNumber = i;
 }
 
 int Sprite::VariableNumber()
 {
-	return 0;
+	return variableNumber;
 }
 
 float Sprite::DirectionX()
