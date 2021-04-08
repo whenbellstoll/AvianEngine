@@ -1,6 +1,7 @@
 #ifndef _VIEWPORT_H_
 #define _VIEWPORT_H_
-   
+
+#include "Node.h"
 struct   DeltaScroll
 {
 	float dx;
@@ -10,9 +11,9 @@ struct   DeltaScroll
 struct   FRECT
 {
 	float top,left,bottom,right;
-	operator RECT()
+	operator FRECT()
 	{
-		RECT r;
+		FRECT r;
 		r.top    = (long)top;
 		r.left   = (long)left;
 		r.right  = (long)right;
@@ -21,7 +22,7 @@ struct   FRECT
 	}
 };
 
-class   ViewPort:public node
+class   ViewPort : public node
 {
 	float worldWidth;
 	float worldHeight;
@@ -66,7 +67,7 @@ public:
 	float WorldRightPos();
 	float WorldBottomPos(); 
 	FRECT WorldRect();
-	RECT  IntWorldRect();
+	FRECT  IntWorldRect();
 	FRECT Rect();
 	const DeltaScroll & Scroll(float dx,float dy);
 	const DeltaScroll & CurrentDeltaScroll();

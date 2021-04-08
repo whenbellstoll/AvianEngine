@@ -9,7 +9,7 @@ GameNode::GameNode()
 	soundCount = 0;
 	musicCount = 0;
 	particleSystemCount = 0;
-	
+	currentFPS = 60.0f;
 	
 	
 	
@@ -73,6 +73,7 @@ const char* GameNode::Name()
 
 void GameNode::PaletteName(const char* n)
 {
+	paletteName = n;
 }
 
 GameNode* GameNode::Search(const char* n)

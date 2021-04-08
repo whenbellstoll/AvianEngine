@@ -203,6 +203,7 @@
     <ClCompile Include="Avian\Node.cpp" />
     <ClCompile Include="Avian\SpriteFull.cpp" />
     <ClCompile Include="Avian\SpriteList.cpp" />
+    <ClCompile Include="Avian\ViewPort.cpp" />
     <ClCompile Include="ComplieTime\GameFunctions.cpp" />
     <ClCompile Include="ComplieTime\LevelFunctions.cpp" />
     <ClCompile Include="ComplieTime\LoadAnimations.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="Avian\Node.h" />
     <ClInclude Include="Avian\SpriteFull.h" />
     <ClInclude Include="Avian\SpriteList.h" />
+    <ClInclude Include="Avian\ViewPort.h" />
     <ClInclude Include="ComplieTime\GameFunctions.h" />
     <ClInclude Include="ComplieTime\LevelFunctions.h" />
     <ClInclude Include="ComplieTime\LoadAnimations.h" />

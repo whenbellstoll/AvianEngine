@@ -63,14 +63,14 @@ extern SpriteElem SpriteList[MAXACTORS];
 extern Global global;
 
 // Fast sqrt
-double inline __declspec (naked) __fastcall fastsqrtASM(double n) // 
+double inline __declspec (naked) __fastcall fastsqrtASM(double n) // this function isn't actually fast! It's only fast in debug mode.
 {
 	_asm fld qword ptr[esp + 4]
 	_asm fsqrt
 	_asm ret 8
 }
 
-float inline fastsqrt(float x)
+float inline fastsqrt(float x) // John Carmack's Q_sqrt function, made to return sqrt instead of inverse sqrt
 {
 	const float xhalf = 0.5f * x;
 
@@ -84,7 +84,7 @@ float inline fastsqrt(float x)
 	return x * u.x * (1.5f - xhalf * u.x * u.x);// Newton step, repeating increases accuracy 
 }
 
-float inline fastinvsqrt(float x)
+float inline fastinvsqrt(float x) // John Carmack's Q_sqrt function in the flesh.
 {
 	const float xhalf = 0.5f * x;
 
@@ -95,7 +95,7 @@ float inline fastinvsqrt(float x)
 	} u;
 	u.x = x;
 	u.i = 0x5f3759df - (u.i >> 1);  // gives initial guess y0
-	return u.x * (1.5f - xhalf * u.x * u.x);// Newton step, repeating increases accuracy 
+	return u.x * (1.5f - xhalf * u.x * u.x); // Newton step, repeating increases accuracy 
 }
 
 

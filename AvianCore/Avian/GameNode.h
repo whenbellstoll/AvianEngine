@@ -40,7 +40,7 @@ public:
 	int musicMaximum = 128;
 	int particleSystemMaximum = 1024;
 	Array<node *> mapList;
-	Array<node*> spriteList;//[kMaxSpriteType];
+	Array<node*> spriteList;
 	Array<node *> variableList;
 	Array<node *> soundList;
 	Array<node *> musicList;
