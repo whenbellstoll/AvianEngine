@@ -6,71 +6,85 @@ ViewPort::ViewPort(float wW, float wH, float worldX, float worldY, float width, 
     worldHeight = wH;
     maxViewPortWorldXPos = worldX;
     maxViewPortWorldYPos = worldY;
-    
+	rect.top = 0;
+	rect.left = 0;
+	rect.right = width;
+	rect.bottom = heigth;
+	viewPort = rect;
+	viewPort1 = rect;
 }
 
 float ViewPort::WorldWidth()
 {
-    return 0.0f;
+    return worldWidth;
 }
 
 float ViewPort::WorldHeight()
 {
-    return 0.0f;
+    return worldHeight;
 }
 
-void ViewPort::WorldWidth(float)
+void ViewPort::WorldWidth(float f)
 {
+	worldWidth = f;
 }
 
-void ViewPort::WorldHeight(float)
+void ViewPort::WorldHeight(float f)
 {
+	worldHeight = f;
 }
 
-void ViewPort::ViewPortWidth(float)
+void ViewPort::ViewPortWidth(float f)
 {
+	rect.right = f;
+
 }
 
-void ViewPort::ViewPortHeight(float)
+void ViewPort::ViewPortHeight(float f)
 {
+	rect.bottom = f;
 }
 
 float ViewPort::Width()
 {
-    return 0.0f;
+    return rect.right;
 }
 
 float ViewPort::Height()
 {
-    return 0.0f;
+    return rect.bottom;
 }
 
 float ViewPort::WorldXPos()
 {
-    return 0.0f;
+    return viewPort.left;
 }
 
 float ViewPort::WorldYPos()
 {
-    return 0.0f;
+    return viewPort.top;
 }
 
 float ViewPort::MaxViewPortWorldXPos()
 {
-    return 0.0f;
+    return maxViewPortWorldXPos;
 }
 
 float ViewPort::MaxViewPortWorldYPos()
 {
-    return 0.0f;
+	return maxViewPortWorldYPos;
 }
 
-void ViewPort::WorldXPos(float)
+void ViewPort::WorldXPos(float f)
 {
+	viewPort.left = f;
+	viewPort.right = viewPort.left + Width();
 }
 
-void ViewPort::WorldYPos(float)
+void ViewPort::WorldYPos(float f)
 {
+	viewPort.top = f;
+	viewPort.bottom = viewPort.top + Height();
 }
 
 float ViewPort::WorldRightPos()
