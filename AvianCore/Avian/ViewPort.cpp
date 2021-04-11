@@ -89,27 +89,27 @@ void ViewPort::WorldYPos(float f)
 
 float ViewPort::WorldRightPos()
 {
-    return 0.0f;
+    return viewPort.right;
 }
 
 float ViewPort::WorldBottomPos()
 {
-    return 0.0f;
+    return viewPort.bottom;
 }
 
 FRECT ViewPort::WorldRect()
 {
-    return FRECT();
+    return viewPort;
 }
 
 FRECT ViewPort::IntWorldRect()
 {
-    return FRECT();
+    return rect;
 }
 
 FRECT ViewPort::Rect()
 {
-    return FRECT();
+    return rect;
 }
 
 const DeltaScroll& ViewPort::Scroll(float dx, float dy)
@@ -124,36 +124,45 @@ const DeltaScroll& ViewPort::CurrentDeltaScroll()
 
 void ViewPort::ViewPortScrollingBB(float viewPortX, float viewPortY, float width, float heigth)
 {
+    viewPortScrollingBB.top = viewPortY;
+    viewPortScrollingBB.left = viewPortX;
+    viewPortScrollingBB.bottom = viewPortY + heigth;
+    viewPortScrollingBB.right = viewPortX + width;
+
+
 }
 
 float ViewPort::BBWidth()
 {
-    return 0.0f;
+    return viewPortScrollingBB.right - viewPortScrollingBB.left;
 }
 
 float ViewPort::BBHeigth()
 {
-    return 0.0f;
+    return viewPortScrollingBB.bottom - viewPortScrollingBB.top;
 }
 
 float ViewPort::BBWorldXPos()
 {
-    return 0.0f;
+    return viewPort.left + viewPortScrollingBB.left;
+
 }
 
 float ViewPort::BBWorldYPos()
 {
-    return 0.0f;
+    return viewPort.top + viewPortScrollingBB.top;
+
 }
 
 float ViewPort::BBWorldRightPos()
 {
-    return 0.0f;
+    return viewPort.left + viewPortScrollingBB.right;
+
 }
 
 float ViewPort::BBWorldBottomPos()
 {
-    return 0.0f;
+    return viewPort.top + viewPortScrollingBB.bottom;
 }
 
 FRECT ViewPort::BBWorldRect()
@@ -163,22 +172,22 @@ FRECT ViewPort::BBWorldRect()
 
 float ViewPort::BBViewPortXPos()
 {
-    return 0.0f;
+    return viewPortScrollingBB.left;
 }
 
 float ViewPort::BBViewPortYPos()
 {
-    return 0.0f;
+    return viewPortScrollingBB.top;
 }
 
 float ViewPort::BBViewPortRightPos()
 {
-    return 0.0f;
+    return viewPortScrollingBB.right;
 }
 
 float ViewPort::BBViewPortBottomPos()
 {
-    return 0.0f;
+    return viewPortScrollingBB.bottom;
 }
 
 FRECT ViewPort::BBViewPortRect()
@@ -188,41 +197,45 @@ FRECT ViewPort::BBViewPortRect()
 
 float ViewPort::MaxInflateBBRight()
 {
-    return 0.0f;
+    return maxInflateBBRight;
 }
 
 float ViewPort::MaxInflateBBLeft()
 {
-    return 0.0f;
+    return maxInflateBBLeft;
 }
 
 float ViewPort::MaxInflateBBTop()
 {
-    return 0.0f;
+    return maxInflateBBTop;
 }
 
 float ViewPort::MaxInflateBBBottom()
 {
-    return 0.0f;
+    return maxInflateBBBottom;
 }
 
-void ViewPort::MaxInflateBBRight(float)
+void ViewPort::MaxInflateBBRight(float f)
 {
+    maxInflateBBRight = f;
 }
 
-void ViewPort::MaxInflateBBLeft(float)
+void ViewPort::MaxInflateBBLeft(float f)
 {
+    maxInflateBBLeft = f;
 }
 
-void ViewPort::MaxInflateBBTop(float)
+void ViewPort::MaxInflateBBTop(float f)
 {
+    maxInflateBBTop = f;
 }
 
-void ViewPort::MaxInflateBBBottom(float)
+void ViewPort::MaxInflateBBBottom(float f)
 {
+    maxInflateBBBottom = f;
 }
 
-float ViewPort::InflateBBRight(float)
+float ViewPort::InflateBBRight(float f)
 {
     return 0.0f;
 }
@@ -255,7 +268,7 @@ void ViewPort::DisplayBB()
 {
 }
 
-DeltaScroll ViewPort::Offset(float x, float y, bool)
+DeltaScroll ViewPort::Offset(float x, float y, bool b)
 {
     return DeltaScroll();
 }
