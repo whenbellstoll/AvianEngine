@@ -4,6 +4,7 @@
 #include "List.h"
 #include "SpriteFull.h"
 #include "Map.h"
+#include "ViewPort.h"
 
 class ParticleSystem;
 class   GameNode:public node
@@ -47,7 +48,7 @@ public:
 	Array<node *> particleSystemList;
 	//void UpdateParticleSystem(Map *);
 	//bool Add(ParticleSystem *);
-    //ViewPort viewPort;
+    ViewPort viewPort;
 	void (*gameNodeLevelFunction)(GameNode*);
 	void (*gameNodeActorsFunction)(GameNode *);
 	void (*transitionFunction)(GameNode *);

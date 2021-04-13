@@ -115,11 +115,15 @@ FRECT ViewPort::Rect()
 const DeltaScroll& ViewPort::Scroll(float dx, float dy)
 {
     // TODO: insert return statement here
+	DeltaScroll ds;
+	ds.dx = dx;
+	ds.dy = dy;
+	return ds;
 }
 
 const DeltaScroll& ViewPort::CurrentDeltaScroll()
 {
-    // TODO: insert return statement here
+	return deltaScroll;
 }
 
 void ViewPort::ViewPortScrollingBB(float viewPortX, float viewPortY, float width, float heigth)
