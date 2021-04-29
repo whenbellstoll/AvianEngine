@@ -2,7 +2,7 @@
 
 avianMain::avianMain() : wxFrame(nullptr, wxID_ANY, "AvianEditor", wxPoint(100, 100), wxSize(1280, 720) )
 {
-	gameTree = new wxTreeCtrl(this, wxID_ANY, wxPoint(16, 48), wxSize(376, 224), wxTR_HIDE_ROOT + wxTR_HAS_BUTTONS, wxDefaultValidator, _T("PROJECTTREE")); //new wxTreeCtrl(this, wxID_ANY);//, wxPoint(5, 5), wxSize(300, 700));
+	gameTree = new wxTreeCtrl(this, wxID_ANY, wxPoint(148, 48), wxSize(376, 224), wxTR_HIDE_ROOT + wxTR_HAS_BUTTONS, wxDefaultValidator, _T("PROJECTTREE")); // new wxTreeCtrl(this, wxID_ANY);//, wxPoint(5, 5), wxSize(300, 700));
 	root = gameTree->AddRoot(_T("Root"), 0);	gameAssets = gameTree->AppendItem(root, _T("Game Assets"), 0);	game = gameTree->AppendItem(root, _T("Game"), 0);	Actors = gameTree->AppendItem(gameAssets, _T("Actors"), 0);	Behavior = gameTree->AppendItem(gameAssets, _T("Behavior"), 0);	gameTree->AppendItem(Behavior, _T("State Machines"), 1);	gameTree->AppendItem(Behavior, _T("Object Functions"), 1);	MovementPatterns = gameTree->AppendItem(gameAssets, _T("Movement Patterns"), 0);
 	MyFunctions = gameTree->AppendItem(gameAssets, _T("My Functions"), 0);
 	ExternalLibraries = gameTree->AppendItem(gameAssets, _T("External Libraries"), 0);
@@ -16,10 +16,10 @@ avianMain::avianMain() : wxFrame(nullptr, wxID_ANY, "AvianEditor", wxPoint(100, 
 	gameTree->AppendItem(level, _T("Text Objects"), 1);
 	gameTree->AppendItem(level, _T("Variables"), 1);
 
+	my_imageliste = new wxImageList(16, 16);	my_imageliste->Add(wxArtProvider::GetBitmap(wxART_FOLDER, wxART_OTHER, wxSize(16, 16)));	my_imageliste->Add(wxArtProvider::GetBitmap(wxART_REPORT_VIEW, wxART_OTHER, wxSize(16, 16)));
 
 
-
-	gameTree->ExpandAll();
+	//gameTree->ExpandAll();
 }
 
 avianMain::~avianMain()
