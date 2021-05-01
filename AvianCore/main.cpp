@@ -42,7 +42,8 @@ int main()
 
     myGame = new Game();
     GameNode g1 = GameNode();                       //(GameNode*)MEMPACK_AllocMem(&global.ramPack, sizeof(GameNode), "Level 1");
-    g1.spriteList.Clear();
+	g1.viewPort = ViewPort(global.width, global.height, 40, 40, global.width, global.height);
+	g1.spriteList.Clear();
     g1.spriteList.Resize(10);
     g1.mapList.Clear();
     g1.mapList.Resize(10);
@@ -57,6 +58,7 @@ int main()
     (*myGame->currentLevel->gameNodeLevelFunction)(myGame->currentLevel);
 
     GameNode g2 = GameNode();
+	g2.viewPort = ViewPort(global.width, global.height, 40, 40, global.width, global.height);
     g2.spriteList.Clear();
     g2.spriteList.Resize(10);
     g2.mapList.Clear();

@@ -192,14 +192,13 @@ void Game::ViewPortPosition(unsigned int ui, unsigned int uii, bool b)
 
 unsigned int Game::ViewPortPositionX()
 {
-	GameNode* gn = Search(levelNumber);
-	return 0; //gn->viewPort.WorldXPos();
+	return (int)myGame->currentLevel->viewPort.WorldXPos();
+	
 }
 
 unsigned int Game::ViewPortPositionY()
 {
-	GameNode* gn = Search(levelNumber);
-	return 0;//gn->viewPort.WorldXPos();
+	return (int)myGame->currentLevel->viewPort.WorldYPos();
 }
 
 void Game::StartRecording()

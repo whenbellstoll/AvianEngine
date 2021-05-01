@@ -32,6 +32,9 @@ GameNode::~GameNode()
 
 void GameNode::Execute(float dt)
 {
+	// test
+	viewPort.WorldXPos(viewPort.WorldXPos() - 0.1);
+
 	// Update objects
 	// Maps
 	for (int i = 0; i < mapList.NumberOfElements(); i++)

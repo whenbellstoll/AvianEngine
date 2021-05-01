@@ -1,4 +1,4 @@
-#include "ViewPort.h"
+#include "../globals.h"
 
 ViewPort::ViewPort(float wW, float wH, float worldX, float worldY, float width, float heigth)
 {
@@ -79,6 +79,8 @@ void ViewPort::WorldXPos(float f)
 {
 	viewPort.left = f;
 	viewPort.right = viewPort.left + Width();
+	
+	glViewport(viewPort.left, viewPort.top, global.width, global.height);
 }
 
 void ViewPort::WorldYPos(float f)
@@ -115,11 +117,13 @@ FRECT ViewPort::Rect()
 const DeltaScroll& ViewPort::Scroll(float dx, float dy)
 {
     // TODO: insert return statement here
+	return DeltaScroll();
 }
 
 const DeltaScroll& ViewPort::CurrentDeltaScroll()
 {
     // TODO: insert return statement here
+	return DeltaScroll();
 }
 
 void ViewPort::ViewPortScrollingBB(float viewPortX, float viewPortY, float width, float heigth)
