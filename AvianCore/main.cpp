@@ -78,7 +78,6 @@ int main()
 
 
 
-
     // initialize time
     start = clock();
 
