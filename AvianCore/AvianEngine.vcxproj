@@ -207,7 +207,6 @@
     <ClCompile Include="ComplieTime\GameFunctions.cpp" />
     <ClCompile Include="ComplieTime\LevelFunctions.cpp" />
     <ClCompile Include="ComplieTime\LoadAnimations.cpp" />
-    <ClCompile Include="globals.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="InputUpdate.cpp" />
     <ClCompile Include="main.cpp" />
