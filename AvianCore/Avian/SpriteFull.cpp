@@ -24,6 +24,8 @@ void Sprite::HandleLastFlipPR()
 
 void Sprite::DisplaySprite()
 {
+	if (!visible) return;
+
 	UpdateAnimation();
 	//if (!visible) return;
 	// layer (what draws on top of what)
@@ -51,8 +53,25 @@ void Sprite::DisplaySprite()
 	glDrawArrays(GL_TRIANGLE_STRIP, SpriteList[actorIndex].Animations[animation].Frames[frame].startingVertex, 4);
 }
 
-void Sprite::CheckSpriteCollision(Sprite* s)
+bool Sprite::CheckSpriteCollision(Sprite* s)
 {
+	Rect thisBox = SpriteList[ ActorIndex()].Animations[Animation()].Frames[Frame()].BBox;
+	Rect targetBox = SpriteList[s->ActorIndex()].Animations[s->Animation()].Frames[s->Frame()].BBox;
+	float realSpaceX = (MapPositionX() + 1) * (global.width / 2);
+	float realSpaceY = (MapPositionY() - 1) * (global.height / 2) * -1;
+	thisBox.left = realSpaceX;
+	thisBox.right = realSpaceX + (SpriteList[ActorIndex()].Animations[Animation()].Frames[Frame()].Width ); //* (scaleX / (2 / (float)global.width) ) );
+	thisBox.top = realSpaceY;
+	thisBox.bottom = realSpaceY + (SpriteList[ActorIndex()].Animations[Animation()].Frames[Frame()].Height ); //* (scaleY / (2 / (float)global.height) ) );
+
+	realSpaceX = (s->MapPositionX() + 1) * (global.width / 2);
+	realSpaceY = (s->MapPositionY() - 1) * (global.height / 2) * -1;
+	targetBox.left = realSpaceX;
+	targetBox.right = realSpaceX + (SpriteList[s->ActorIndex()].Animations[s->Animation()].Frames[s->Frame()].Width); //* (s->ScaleX() / (2 / (float)global.width) ) );
+	targetBox.top = realSpaceY;
+	targetBox.bottom = realSpaceY + (SpriteList[s->ActorIndex()].Animations[s->Animation()].Frames[s->Frame()].Height); // * (s->ScaleY() / (2 / (float)global.height) ) );
+
+	return(IntersectRectangles1(thisBox, targetBox));
 
 }
 

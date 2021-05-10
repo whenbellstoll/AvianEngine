@@ -78,8 +78,9 @@ private:
 	bool ghostCollisionWithMap;
 	// This method will be private and called from GameLoop, but it is public for demo: void DisplaySprite ();
 	//void CheckMapCollision(Map *);
-	void CheckSpriteCollision(Sprite *);
 	
+	
+
 	bool unused;
 	bool checkSameDisplayList;
 	bool mapCollision;
@@ -201,6 +202,9 @@ public:
 
 	void CheckSameType(bool);
 	bool CheckSameType(void);
+
+	// void CheckSpriteCollision(Sprite*) should be private
+	bool CheckSpriteCollision(Sprite*);
 
 	void CheckCollisionWithSprite(bool);
 	bool CheckCollisionWithSprite();

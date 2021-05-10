@@ -46,6 +46,7 @@ void Init_Level_1(GameNode* gn)
 		breadInst[i]->VectorDirection(0, 0);
 		breadInst[i]->Visible(true);
         breadInst[i]->behavior = new Behavior();
+        breadInst[i]->behavior->AddFunction(1, true);
         gn->Add(breadInst[i]);
     }
 
@@ -95,6 +96,7 @@ void Init_Level_2(GameNode* gn)
     duckInst1->Animation(0);
     duckInst1->Frame(0);
     duckInst1->Delay(6);
+    duckInst1->Visible(true);
     //Behavior duckb = Behavior();
     duckInst1->behavior = new Behavior();
     duckInst1->behavior->AddFunction(0, true);
@@ -116,6 +118,7 @@ void Init_Level_2(GameNode* gn)
         breadInst[i]->Animation(0);
         breadInst[i]->Frame(0);
         breadInst[i]->Delay(50);
+        breadInst[i]->Visible(true);
         breadInst[i]->behavior = new Behavior();
         gn->Add(breadInst[i]);
     }
