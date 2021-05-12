@@ -85,7 +85,7 @@ void InitOpenGL()
 
     // glfw window creation
     // --------------------
-    global.window = glfwCreateWindow(800, 480, "Avian Engine", NULL, NULL);
+    global.window = glfwCreateWindow(640, 480, "Avian Engine", NULL, NULL);
     if (global.window == NULL)
     {
         printf("Failed to create GLFW window\n");

@@ -49,4 +49,19 @@ void MoveSprite(Sprite* This)
 	//printf("\n Collision between Duck and bread has been confirmed. Positions: %f , %f", This->DirectionX(), This->DirectionY() );
 }
 
+void BreadCollisionWithSprite(Sprite* This)
+{
+    for (int i = 0; i < myGame->currentLevel->spriteList.NumberOfElements(); i++)
+    {
+        Sprite* s = (Sprite*)myGame->currentLevel->spriteList[i];
+        if (s->ActorIndex() == 0)
+        {
+            if (This->CheckSpriteCollision(s))
+            {
+                This->Visible(false);
+            }
+        }
+    }
+}
+
 //void CollectBread(Sprite* This)

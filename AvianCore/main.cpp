@@ -25,12 +25,12 @@ int main()
     // initialize mempack for RAM
     MEMPACK_Init(&global.ramPack, mempackRamData, ramSize, "ram");
     
-    maxFIndex = 0;
+    maxFIndex = 1;
     // Allocate Memory for Function Array
-    FArray = (void**)MEMPACK_AllocMem(&global.ramPack, sizeof(void*), "Function Array");
+    FArray = (void**)MEMPACK_AllocMem(&global.ramPack, sizeof(void*) * 2, "Function Array");
     // Add our behavior from GameFunctions.h to FArray
     FArray[0] = (void *)MoveSprite;
-    
+    FArray[1] = (void*)BreadCollisionWithSprite;
 
     // create a window, create context,
     // create GPU Mempacks, etc
