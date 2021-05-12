@@ -100,7 +100,7 @@
       <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\External Libraries\GLFW\lib-vc2015;$(SolutionDir)\..\External Libraries\GLEW\lib\Release\Win32;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\External Libraries\GLFW\lib-vc2015;$(SolutionDir)\..\External Libraries\GLEW\lib\Release\Win32;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;$(SolutionDir)\..\External Libraries\libogg;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -146,7 +146,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\External Libraries\GLFW\lib-vc2015;$(SolutionDir)\..\External Libraries\GLEW\lib\Release\Win32;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\External Libraries\GLFW\lib-vc2015;$(SolutionDir)\..\External Libraries\GLEW\lib\Release\Win32;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;$(SolutionDir)\..\External Libraries\libogg;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -201,6 +201,7 @@
     <ClCompile Include="Avian\Mouse.cpp" />
     <ClCompile Include="Avian\MyGame.cpp" />
     <ClCompile Include="Avian\Node.cpp" />
+    <ClCompile Include="Avian\SoundBase.cpp" />
     <ClCompile Include="Avian\SpriteFull.cpp" />
     <ClCompile Include="Avian\SpriteList.cpp" />
     <ClCompile Include="Avian\Transform.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="Avian\Mouse.h" />
     <ClInclude Include="Avian\MyGame.h" />
     <ClInclude Include="Avian\Node.h" />
+    <ClInclude Include="Avian\SoundBase.h" />
     <ClInclude Include="Avian\SpriteFull.h" />
     <ClInclude Include="Avian\SpriteList.h" />
     <ClInclude Include="Avian\Transform.h" />
