@@ -96,12 +96,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\External Libraries\glm;$(SolutionDir)\..\External Libraries\GLFW\include;$(SolutionDir)\..\External Libraries\GLEW\include;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\External Libraries\glm;$(SolutionDir)\..\External Libraries\libogg\include;$(SolutionDir)\..\External Libraries\GLFW\include;$(SolutionDir)\..\External Libraries\GLEW\include;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\External Libraries\GLFW\lib-vc2015;$(SolutionDir)\..\External Libraries\GLEW\lib\Release\Win32;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;$(SolutionDir)\..\External Libraries\libogg;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;libogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -140,14 +140,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\External Libraries\glm;$(SolutionDir)\..\External Libraries\GLFW\include;$(SolutionDir)\..\External Libraries\GLEW\include;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\External Libraries\glm;$(SolutionDir)\..\External Libraries\libogg\include;$(SolutionDir)\..\External Libraries\GLFW\include;$(SolutionDir)\..\External Libraries\GLEW\include;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\External Libraries\GLFW\lib-vc2015;$(SolutionDir)\..\External Libraries\GLEW\lib\Release\Win32;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;$(SolutionDir)\..\External Libraries\libogg;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;libogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
