@@ -1,5 +1,5 @@
 Include: (C++ -> General -> Additional Directories)
-$(SolutionDir)\..\External Libraries\glm;$(SolutionDir)\..\External Libraries\GLFW\include;$(SolutionDir)\..\External Libraries\GLEW\include;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalIncludeDirectories)
+$(SolutionDir)\..\External Libraries\libogg\include;$(SolutionDir)\..\External Libraries\glm;$(SolutionDir)\..\External Libraries\GLFW\include;$(SolutionDir)\..\External Libraries\GLEW\include;$(SolutionDir)\..\External Libraries\FreeImage\Dist\x32;%(AdditionalIncludeDirectories)
 
 Preprocessors: (C++ -> Preprocessor -> Definitions)
 _MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)

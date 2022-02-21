@@ -1,0 +1,54 @@
+﻿ControllerInput.obj : error LNK2019: unresolved external symbol glfwJoystickPresent referenced in function "public: void __cdecl Gamepad::SetPresent(void)" (?SetPresent@Gamepad@@QEAAXXZ)
+ControllerInput.obj : error LNK2019: unresolved external symbol glfwGetJoystickAxes referenced in function "public: bool __cdecl Gamepad::GetState(void)" (?GetState@Gamepad@@QEAA_NXZ)
+ControllerInput.obj : error LNK2019: unresolved external symbol glfwGetJoystickButtons referenced in function "public: bool __cdecl Gamepad::GetState(void)" (?GetState@Gamepad@@QEAA_NXZ)
+Game.obj : error LNK2019: unresolved external symbol glfwSetWindowTitle referenced in function "public: void __cdecl Game::Title(char const *)" (?Title@Game@@QEAAXPEBD@Z)
+Map.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function "private: void __cdecl Map::LoadMap(void)" (?LoadMap@Map@@AEAAXXZ)
+SpriteList.obj : error LNK2001: unresolved external symbol glfwTerminate
+graphics.obj : error LNK2001: unresolved external symbol glfwTerminate
+Map.obj : error LNK2019: unresolved external symbol __imp___glewBufferSubData referenced in function "private: void __cdecl Map::LoadMap(void)" (?LoadMap@Map@@AEAAXXZ)
+SpriteList.obj : error LNK2001: unresolved external symbol __imp___glewBufferSubData
+Map.obj : error LNK2019: unresolved external symbol __imp___glewGetUniformLocation referenced in function "public: void __cdecl Map::DisplayMap(void)" (?DisplayMap@Map@@QEAAXXZ)
+SpriteFull.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+Map.obj : error LNK2019: unresolved external symbol __imp___glewUniform1f referenced in function "public: void __cdecl Map::DisplayMap(void)" (?DisplayMap@Map@@QEAAXXZ)
+SpriteFull.obj : error LNK2001: unresolved external symbol __imp___glewUniform1f
+graphics.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwInit referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwSetFramebufferSizeCallback referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwSetMouseButtonCallback referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwSetCursorPosCallback referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewBindBuffer referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewBufferData referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewDeleteBuffers referenced in function "void __cdecl CleanOpenGL(void)" (?CleanOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewGenBuffers referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewAttachShader referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewCompileShader referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewCreateProgram referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewCreateShader referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewDeleteProgram referenced in function "void __cdecl CheckProgram(unsigned int)" (?CheckProgram@@YAXI@Z)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewDeleteShader referenced in function "void __cdecl CheckShader(unsigned int)" (?CheckShader@@YAXI@Z)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewEnableVertexAttribArray referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewGetProgramInfoLog referenced in function "void __cdecl CheckProgram(unsigned int)" (?CheckProgram@@YAXI@Z)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewGetProgramiv referenced in function "void __cdecl CheckProgram(unsigned int)" (?CheckProgram@@YAXI@Z)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewGetShaderInfoLog referenced in function "void __cdecl CheckShader(unsigned int)" (?CheckShader@@YAXI@Z)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewGetShaderiv referenced in function "void __cdecl CheckShader(unsigned int)" (?CheckShader@@YAXI@Z)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewLinkProgram referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewShaderSource referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewUseProgram referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewVertexAttribPointer referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewBindVertexArray referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewDeleteVertexArrays referenced in function "void __cdecl CleanOpenGL(void)" (?CleanOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp___glewGenVertexArrays referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+graphics.obj : error LNK2019: unresolved external symbol __imp_glewExperimental referenced in function "void __cdecl InitOpenGL(void)" (?InitOpenGL@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwGetWindowSize referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function main
+C:\Game Projects\Avian\AvianEngine\AvianCore\\..\External Libraries\GLFW\lib-vc2015\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Game Projects\Avian\AvianEngine\AvianCore\\..\External Libraries\GLEW\lib\Release\Win32\glew32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Game Projects\Avian\AvianEngine\AvianCore\\..\External Libraries\FreeImage\Dist\x32\FreeImage.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Game Projects\Avian\AvianEngine\AvianCore\x64\Debug\AvianEngine.exe : fatal error LNK1120: 45 unresolved externals

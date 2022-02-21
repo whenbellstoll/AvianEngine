@@ -64,12 +64,12 @@ extern SpriteElem SpriteList[MAXACTORS];
 extern Global global;
 
 // Fast sqrt
-double inline __declspec (naked) __fastcall fastsqrtASM(double n) // this function isn't actually fast! It's only fast in debug mode.
+/*double inline __declspec (naked) __fastcall fastsqrtASM(double n) // this function isn't actually fast! It's only fast in debug mode.
 {
 	_asm fld qword ptr[esp + 4]
 	_asm fsqrt
 	_asm ret 8
-}
+}*/
 
 float inline fastsqrt(float x) // John Carmack's Q_sqrt function, made to return sqrt instead of inverse sqrt
 {
