@@ -1,5 +1,5 @@
 # ViewPort
-The ViewPort acts as the camera of a particular GameNode. It is defined by a rectangle and cannot be placed out of bounds. By default there is only one viewport per GameNode.
+The ViewPort acts as the camera of a particular GameNode. It is defined by a rectangle and cannot be placed out of bounds. By default there is only one ViewPort per GameNode. ViewPorts can also be used as render targets for mind boggling effects, but this is not an intended use case.
 
 ## Fields:
 | Type    | Name      | Description |
@@ -17,17 +17,17 @@ The ViewPort acts as the camera of a particular GameNode. It is defined by a rec
 |	float | maxInflateBBLeft |  |
 |	float | maxInflateBBTop |  |
 |	float | maxInflateBBBottom |  |
-|	float	| dSBBR |  |
-|	float | dSBBL |  |
-|	float | dSBBT |  |
-|	float | dSBBB |  |
-| DeltaScroll | deltaScroll |  |
-| DeltaScroll | deltaScrollClone |  |
+|	float	| dSBBR | Delta of the right side of the Bounding Box |
+|	float | dSBBL | Delta of the left side of the Bounding Box |
+|	float | dSBBT | Delta of the top of the Bounding Box |
+|	float | dSBBB | Delta of the bottom of the Bounding Box |
+| DeltaScroll | deltaScroll | The Delta of the current update, the vector the viewport is expected to move on this update |
+| DeltaScroll | deltaScrollClone | The Delta of the previous update, the vector the viewport may have moved last update |
 
 ## Constuctors
 | Type | Arguments | Signature |
 | :--- | :-------: | --------: |
-| Default | All optional parameters, wW is the WorldWidth, wH is the WorldHeight, worldX is the ViewPort x position, worldY is the ViewPort y position, width is how many pixels wide the viewport is, height is how many pixels tall the viewport is | ViewPort(float wW = 640,float wH = 480,float worldX = 0,float worldY = 0,float width = 640,float heigth = 480) |
+| Default | All Optional Parameters: wW is the WorldWidth, wH is the WorldHeight, worldX is the ViewPort x position, worldY is the ViewPort y position, width is how many pixels wide the viewport is, height is how many pixels tall the viewport is | ViewPort(float wW = 1280,float wH = 720,float worldX = 0,float worldY = 0,float width = 1280,float heigth = 720) |
 
 
 ## Functions:
@@ -90,4 +90,5 @@ The ViewPort acts as the camera of a particular GameNode. It is defined by a rec
 
 ## See Also:
 [Sprites](Sprite.md)
+
 [GameLoop](Game.md#gameloop)
