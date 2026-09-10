@@ -139,7 +139,7 @@ void Behavior::Clear()
 
 unsigned int Behavior::Count()
 {
-	return 0;
+	return (unsigned int)Bnodes.size();
 }
 
 // Not implementing the timer yet

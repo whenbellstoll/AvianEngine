@@ -181,9 +181,10 @@ void Map::DisplayMap()
     // layer (what draws on top of what)
     glUniform1f(0, 0.99999f);//(zOrder / 100.0f) + 1); // always + 1 so that sprites always draw on top of maps.
 
-    // position
-    glUniform1f(1, -1);//worldPositionX);
-    glUniform1f(2, -1);//worldPositionY);
+    // position (convert the map's world position, in pixels, to normalized device coordinates.
+    // -1 is the screen origin (bottom-left); adding the scaled world offset lets the map scroll.)
+    glUniform1f(1, -1 + worldPositionX * (2.0f / global.width));
+    glUniform1f(2, -1 + worldPositionY * (2.0f / global.height));
 
     // scale
     glUniform1f(3, 2 / (float)global.width );
@@ -275,27 +276,27 @@ void Map::SetMapType(MapType mt)
 
 unsigned int Map::Height()
 {
-	return 0;
+	return height;
 }
 
 unsigned int Map::Width()
 {
-	return 0;
+	return width;
 }
 
 float Map::WorldPositionX()
 {
-	return 0.0f;
+	return worldPositionX;
 }
 
 float Map::WorldPositionY()
 {
-	return 0.0f;
+	return worldPositionY;
 }
 
 bool Map::IsMasterMap()
 {
-	return false;
+	return isMasterMap;
 }
 
 void Map::TransparencyColor(COLORREF)
@@ -361,22 +362,24 @@ bool Map::Visible()
 	return visible;
 }
 
-void Map::ScrollRatioX(float)
+void Map::ScrollRatioX(float f)
 {
+	scrollingRatioX = f;
 }
 
-void Map::ScrollRatioY(float)
+void Map::ScrollRatioY(float f)
 {
+	scrollingRatioY = f;
 }
 
 float Map::ScrollRatioX()
 {
-	return 0.0f;
+	return scrollingRatioX;
 }
 
 float Map::ScrollRatioY()
 {
-	return 0.0f;
+	return scrollingRatioY;
 }
 
 int Map::ZOrder()
@@ -384,28 +387,38 @@ int Map::ZOrder()
 	return zOrder;
 }
 
-void Map::WorldPositionXInc(float, float)
+void Map::WorldPositionXInc(float inc, float max)
 {
+	worldPositionX += inc;
+	if (worldPositionX > max) worldPositionX = max;
 }
 
-void Map::WorldPositionXDec(float, float)
+void Map::WorldPositionXDec(float dec, float min)
 {
+	worldPositionX -= dec;
+	if (worldPositionX < min) worldPositionX = min;
 }
 
-void Map::WorldPositionYInc(float, float)
+void Map::WorldPositionYInc(float inc, float max)
 {
+	worldPositionY += inc;
+	if (worldPositionY > max) worldPositionY = max;
 }
 
-void Map::WorldPositionYDec(float, float)
+void Map::WorldPositionYDec(float dec, float min)
 {
+	worldPositionY -= dec;
+	if (worldPositionY < min) worldPositionY = min;
 }
 
-void Map::WorldPositionX(float)
+void Map::WorldPositionX(float x)
 {
+	worldPositionX = x;
 }
 
-void Map::WorldPositionY(float)
+void Map::WorldPositionY(float y)
 {
+	worldPositionY = y;
 }
 
 void Map::ShowMapCollision(bool)

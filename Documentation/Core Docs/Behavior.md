@@ -74,6 +74,7 @@ The behavior class is fundamental to the modularity of the engine. It provides t
 | GetCurrentState(unsigned int) | Returns the current state of an added State Machine | int | Index of current State | Index of StateMachine |
 | Clear() | Removes all Bnodes from Behavior | void | None | None |
 | Count() | The count of the Bnodes vector | unsigned int | How many Bnode are attached to the Behavior | None |
+| _Implementation note_ | `Count()` previously always returned `0`; it now returns `Bnodes.size()`. `AddStateMachine`, `AddTimer`, and the StateMachine/Timer query and status functions are still stubs pending the StateMachine/Timer implementations. |
 | ResetTimer(unsigned int i, unsigned int delay, TimerMode mode = TM_Infinite ) | Explicitly reset a timer | void | None | Index of the Timer. How many Frames / GameLoops the delay should be. Mode of the Timer (Fire Once or Infinite) |
 | TimeRemaining(unsigned int) | Get how many frames / gameloops remain on a timer | unsigned int | The number of frames / game loops left before the timer expires | Index of Timer |
 | Update(void * ) | Update the Bnodes | void | None | Function pointer of the first active Bnode |
