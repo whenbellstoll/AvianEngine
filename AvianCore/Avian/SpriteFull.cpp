@@ -165,9 +165,26 @@ node* Sprite::Clone()
 	return nullptr;
 }
 
-bool Sprite::TempCheckCollisionWithMap(float, float, float, float)
+bool Sprite::TempCheckCollisionWithMap(float mapLeft, float mapTop, float mapRight, float mapBottom)
 {
-	return false;
+	Rect thisBox = SpriteList[ActorIndex()].Animations[Animation()].Frames[Frame()].BBox;
+	float realSpaceX = (MapPositionX() + 1) * (global.width / 2);
+	float realSpaceY = (MapPositionY() - 1) * (global.height / 2) * -1;
+	thisBox.left = realSpaceX;
+	thisBox.right = realSpaceX + SpriteList[ActorIndex()].Animations[Animation()].Frames[Frame()].Width;
+	thisBox.top = realSpaceY;
+	thisBox.bottom = realSpaceY + SpriteList[ActorIndex()].Animations[Animation()].Frames[Frame()].Height;
+
+	Rect mapBox;
+	mapBox.left = (long)mapLeft;
+	mapBox.top = (long)mapTop;
+	mapBox.right = (long)mapRight;
+	mapBox.bottom = (long)mapBottom;
+
+	// A sprite is considered "colliding with the map" once it crosses the map's edges,
+	// since the sprite bounding box is fully contained by the map when there is no collision.
+	return !(thisBox.left >= mapBox.left && thisBox.right <= mapBox.right &&
+		thisBox.top >= mapBox.top && thisBox.bottom <= mapBox.bottom);
 }
 
 bool Sprite::TempCheckCollisionWithMap(float, float, float, float, int)
@@ -199,6 +216,7 @@ Sprite::Sprite()
 	directionX = 0;
 	directionY = 0;
 	visible = true;
+	collidedSprites = Array<String>();
 }
 
 Sprite::Sprite(Sprite* s)
@@ -269,13 +287,14 @@ bool Sprite::CheckSameType()
 	return false;
 }
 
-void Sprite::CheckCollisionWithSprite(bool)
+void Sprite::CheckCollisionWithSprite(bool b)
 {
+	spriteCollision = b;
 }
 
 bool Sprite::CheckCollisionWithSprite()
 {
-	return false;
+	return spriteCollision;
 }
 
 void Sprite::GhostCollisionWithSprite(bool)
@@ -447,18 +466,30 @@ void Sprite::MapPosition(float x, float y, bool b)
 
 void Sprite::MapPositionXInc(float inc, float max, bool b)
 {
+	if (b) return;
+	mapPositionX += inc;
+	if (mapPositionX > max) mapPositionX = max;
 }
 
 void Sprite::MapPositionXDec(float dec, float min, bool b)
 {
+	if (b) return;
+	mapPositionX -= dec;
+	if (mapPositionX < min) mapPositionX = min;
 }
 
 void Sprite::MapPositionYInc(float inc, float max, bool b)
 {
+	if (b) return;
+	mapPositionY += inc;
+	if (mapPositionY > max) mapPositionY = max;
 }
 
 void Sprite::MapPositionYDec(float dec, float min, bool b)
 {
+	if (b) return;
+	mapPositionY -= dec;
+	if (mapPositionY < min) mapPositionY = min;
 }
 
 float Sprite::LeftPosition()
@@ -643,6 +674,15 @@ int Sprite::ActorIndex()
 
 bool Sprite::CollisionWithSprite(const char* n)
 {
+	if (n == NULL)
+	{
+		return collidedSprites.NumberOfElements() > 0;
+	}
+
+	for (unsigned int i = 0; i < collidedSprites.NumberOfElements(); i++)
+	{
+		if (collidedSprites[i] == n) return true;
+	}
 	return false;
 }
 
@@ -733,11 +773,12 @@ float Sprite::DirectionY()
 
 bool Sprite::CollisionWithMap()
 {
-	return false;
+	return mapCollisionFlag;
 }
 
 void Sprite::CollisionWithMap(bool b)
 {
+	mapCollisionFlag = b;
 }
 
 void Sprite::MainCharacter(bool b)
@@ -1035,12 +1076,12 @@ int Sprite::FrameCenterY()
 
 unsigned int Sprite::Width()
 {
-	return 0;
+	return SpriteList[actorIndex].Animations[animation].Frames[frame].Width;
 }
 
 unsigned int Sprite::Height()
 {
-	return 0;
+	return SpriteList[actorIndex].Animations[animation].Frames[frame].Height;
 }
 
 bool Sprite::InWorld()
