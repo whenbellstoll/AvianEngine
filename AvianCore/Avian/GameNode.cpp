@@ -49,6 +49,49 @@ void GameNode::Execute(float dt)
 		s->dt = dt;
 		s->UpdateSprite();
 	}
+
+	// Collisions
+	if (mapList.NumberOfElements() > 0)
+	{
+		Map* worldMap = (Map*)mapList[0];
+		float mapLeft = worldMap->WorldPositionX();
+		float mapTop = worldMap->WorldPositionY();
+		float mapRight = mapLeft + worldMap->Width();
+		float mapBottom = mapTop + worldMap->Height();
+
+		for (int i = 0; i < spriteList.NumberOfElements(); i++)
+		{
+			Sprite* s = (Sprite*)spriteList[i];
+			if (!s->CheckCollisionWithMap()) continue;
+
+			bool collided = s->TempCheckCollisionWithMap(mapLeft, mapTop, mapRight, mapBottom);
+			s->CollisionWithMap(collided);
+		}
+	}
+
+	for (int i = 0; i < spriteList.NumberOfElements(); i++)
+	{
+		Sprite* s = (Sprite*)spriteList[i];
+		s->collidedSprites.Clear();
+	}
+	for (int i = 0; i < spriteList.NumberOfElements(); i++)
+	{
+		Sprite* s1 = (Sprite*)spriteList[i];
+		if (!s1->CheckCollisionWithSprite()) continue;
+
+		for (int j = i + 1; j < spriteList.NumberOfElements(); j++)
+		{
+			Sprite* s2 = (Sprite*)spriteList[j];
+			if (!s2->CheckCollisionWithSprite()) continue;
+
+			if (s1->CheckSpriteCollision(s2))
+			{
+				s1->collidedSprites.InsertBack(s2->Name());
+				s2->collidedSprites.InsertBack(s1->Name());
+			}
+		}
+	}
+
 	// sound effects
 	// music
 	// particleSystems
@@ -116,9 +159,12 @@ bool GameNode::AddMap(const char* name, const char* filename, Map::MapType mT)
 
 	// Allocate Map and Set Variables
 	Map* m = (Map*)MEMPACK_AllocMem(&global.levelPack, sizeof(Map), "AddMapGameNode");
+	::new (m) Map();
 	m->Name(name);
 	m->FileName(filename);
 	m->SetMapType(mT);
+	m->WorldPositionX(0);
+	m->WorldPositionY(0);
 	mapList.InsertBack(m);
 
 	return true;

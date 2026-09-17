@@ -1,5 +1,6 @@
 #include "LevelFunctions.h"
 #include "../globals.h"
+#include <new>
 
 void Init_Level_1(GameNode* gn)
 {
@@ -8,8 +9,10 @@ void Init_Level_1(GameNode* gn)
     printf("Allocating instances\n");
 
     Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.levelPack, sizeof(Sprite), "duckInst");
+    ::new (duckInst1) Sprite();
 
     // draw duck on top (small depth)
+    duckInst1->Name("Duck");
     duckInst1->ZOrder(1);
     duckInst1->MapPositionX(-0.5f);
     duckInst1->MapPositionY(0.5f);
@@ -31,8 +34,10 @@ void Init_Level_1(GameNode* gn)
     for (int i = 0; i < 5; i++)
     {
         breadInst[i] = (Sprite*)MEMPACK_AllocMem(&global.levelPack, sizeof(Sprite), "breadInst");
+        ::new (breadInst[i]) Sprite();
 
         // draw breads on bottom (larger depth)
+        breadInst[i]->Name("bread");
         breadInst[i]->ZOrder(2);
         breadInst[i]->MapPositionX(0.5f);
         breadInst[i]->MapPositionY(-0.5f + 0.2f * i);
@@ -85,6 +90,7 @@ void Init_Level_2(GameNode* gn)
     printf("Allocating instances\n");
 
     Sprite* duckInst1 = (Sprite*)MEMPACK_AllocMem(&global.levelPack, sizeof(Sprite), "duckInst");
+    ::new (duckInst1) Sprite();
 
     // draw duck on top (small depth)
     duckInst1->ZOrder(1);
@@ -107,6 +113,7 @@ void Init_Level_2(GameNode* gn)
     for (int i = 0; i < 5; i++)
     {
         breadInst[i] = (Sprite*)MEMPACK_AllocMem(&global.levelPack, sizeof(Sprite), "breadInst");
+        ::new (breadInst[i]) Sprite();
 
         // draw breads on bottom (larger depth)
         breadInst[i]->ZOrder(2);
