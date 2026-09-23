@@ -46,12 +46,12 @@ public:
 	void vFBoundingBox();
 	void hvFBoundingBox();
 	void LoadFrame(const char* filename);
-    //List collisionList;
+	// Collision data storage - animated frame shapes
+	Array<CollisionData*> collisionData;
 	void AddCollisionData(CollisionSegment);
 	void AddCollisionData(CollisionCircle);
-	//List hFlipCollisionList;
-	//List vFlipCollisionList;
-	//List hvFlipCollisionList;
+	Array<CollisionData*>& GetCollisionData();
+	unsigned int CollisionDataCount();
 	void IniFrame(const char* filename);
 	void hFCollisionList();
 	void vFCollisionList();

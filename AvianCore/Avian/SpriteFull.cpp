@@ -82,6 +82,22 @@ void Sprite::UpdateSprite()
 	behavior->Update((void *)this);
 }
 
+void Sprite::UpdateOwnerCollisionData()
+{
+	// Clear previous collision data
+	ownerCollisionData.Clear();
+
+	// Get current animation frame
+	FrameElem& currentFrame = SpriteList[actorIndex].Animations[animation].Frames[frame];
+
+	// Copy all collision shapes from the current frame
+	Array<CollisionData*>& frameCollisions = currentFrame.GetCollisionData();
+	for (int i = 0; i < frameCollisions.NumberOfElements(); i++)
+	{
+		ownerCollisionData.InsertBack(frameCollisions[i]);
+	}
+}
+
 void Sprite::reflect(float x, float y)
 {
 	// find the normal of the vector
@@ -216,6 +232,7 @@ Sprite::Sprite()
 	directionX = 0;
 	directionY = 0;
 	visible = true;
+	mapPointer = nullptr;
 	collidedSprites = Array<String>();
 }
 
@@ -821,14 +838,25 @@ bool Sprite::DoNotCutDirection()
 	return doNotCutDirection;
 }
 
+void Sprite::BelongToMapPtr(Map* m)
+{
+	mapPointer = m;
+}
+
+Map* Sprite::BelongToMapPtr()
+{
+	return mapPointer;
+}
+
 void Sprite::BelongToMap(const char* n)
 {
-	
+
 }
 
 const char* Sprite::BelongToMap()
 {
-	return nullptr;
+	if (mapPointer == nullptr) return nullptr;
+	return mapPointer->Name();
 }
 
 void Sprite::CannedHDirection(bool b)

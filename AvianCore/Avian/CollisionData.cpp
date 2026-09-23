@@ -355,6 +355,7 @@ CollisionCircle::CollisionCircle(float x, float y, float r, int i, unsigned char
 	MinT = 1.5f;
 	NorX = 200;
 	NorY = 200;
+
 }
 
 CollisionCircle::CollisionCircle(const CollisionCircle& c)

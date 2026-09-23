@@ -151,12 +151,26 @@ void FrameElem::LoadFrame(const char* filename)
 
 void FrameElem::AddCollisionData(CollisionSegment cs)
 {
-
+	// Create a new CollisionSegment on the heap and store pointer
+	CollisionSegment* pSegment = new CollisionSegment(cs);
+	collisionData.InsertBack((CollisionData*)pSegment);
 }
 
 void FrameElem::AddCollisionData(CollisionCircle cc)
 {
+	// Create a new CollisionCircle on the heap and store pointer
+	CollisionCircle* pCircle = new CollisionCircle(cc);
+	collisionData.InsertBack((CollisionData*)pCircle);
+}
 
+Array<CollisionData*>& FrameElem::GetCollisionData()
+{
+	return collisionData;
+}
+
+unsigned int FrameElem::CollisionDataCount()
+{
+	return collisionData.NumberOfElements();
 }
 
 void FrameElem::IniFrame(const char* filename)

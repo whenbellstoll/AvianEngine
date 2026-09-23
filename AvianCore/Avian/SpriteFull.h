@@ -6,6 +6,8 @@
 #include "CollisionData.h"
 #include "SpriteList.h"
 #include "Behavior.h"
+#include "Map.h"
+
 class Alarm;
 class MovementPattern;
 
@@ -14,7 +16,7 @@ class   Sprite:public node
 private:
 	int id;
 	
-	//Map *mapPointer;
+	Map *mapPointer;
 	//String name;
 	const char* name;
 	float mapPositionX;
@@ -77,7 +79,7 @@ private:
 	bool ghostCollisionWithSprite;
 	bool ghostCollisionWithMap;
 	// This method will be private and called from GameLoop, but it is public for demo: void DisplaySprite ();
-	//void CheckMapCollision(Map *);
+	void CheckMapCollision(Map *);
 	
 	
 
@@ -200,6 +202,9 @@ public:
 	void UpdateSprite();
 	// This will be private later
 
+	// Load collision data from current animation frame into ownerCollisionData
+	void UpdateOwnerCollisionData();
+
 	void CheckSameType(bool);
 	bool CheckSameType(void);
 
@@ -231,8 +236,8 @@ public:
 	void Visible(const char *name,bool vis);
 	void DeleteFlag(bool);
 	bool DeleteFlag();
-	//void BelongToMapPtr(Map *);
-	//Map *BelongToMapPtr();
+	void BelongToMapPtr(Map *);
+	Map *BelongToMapPtr();
 	void Id(int);
 	int Id();
 	void MapPositionX(float f,bool  b= false);

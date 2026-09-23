@@ -107,6 +107,7 @@ private:
 	void ShowMapCollision(COLORREF =RGB(0,0,0));
 	bool showMapCollision;
 	int spacePartitionGridSize;
+	Array<CollisionData*> collisionData;
 	bool unused;
 	static void ClearVariableMapList();
 	void InitCollision();
@@ -172,8 +173,12 @@ public:
 	void SpacePartitionGridSize(unsigned int);
 	int SpacePartitionGridSize();
 	void AddLocalVariable(unsigned int);
-	//Array<Array<Array<node*>>> gridLists;  // access looks like: Array<node *> items = gridLists[x][y];
-	
+	Array<Array<Array<node*>>> gridLists;  // access looks like: Array<node *> items = gridLists[x][y];
+	void GetCollisionDataInBounds(float, float, float, float, Array<CollisionData*>&);
+	void GetGridCellForPosition(float, float , int& , int& );
+	void GetGridCellsForBounds(float, float, float, float, Array<int>&, Array<int>&);
+	void GridCoordsFromWorld(float, float, int&, int&);
+	void GetGridCellsForBounds(float, float, float, float, int&, int& , int& , int& );
 	//Array<Variable *> mapVariableList;
 	Behavior behavior;
 	void Unused(bool);

@@ -237,6 +237,7 @@ Map::Map(const char* na, const char* file, MapType mt, int x, int y, int spacePa
     speedY = 0;
     zOrder = 1;
     LoadMap(); // loads the bitmap declared in fileName
+    InitGrid(); // initialize spatial partition grid for collision optimization
 }
 
 Map::~Map()
@@ -449,12 +450,18 @@ int Map::AlarmCount(void)
 	return 0;
 }
 
-void Map::AddCollisionData(CollisionSegment)
+void Map::AddCollisionData(CollisionSegment cs)
 {
+	// Create a new CollisionSegment on the heap and store pointer
+	CollisionSegment* pSegment = new CollisionSegment(cs);
+	collisionData.InsertBack((CollisionData*)pSegment);
 }
 
-void Map::AddCollisionData(CollisionCircle)
+void Map::AddCollisionData(CollisionCircle cc)
 {
+	// Create a new CollisionCircle on the heap and store pointer
+	CollisionCircle* pCircle = new CollisionCircle(cc);
+	collisionData.InsertBack((CollisionData*)pCircle);
 }
 
 void Map::RemoveCollisionData(unsigned int, unsigned int)
@@ -463,19 +470,109 @@ void Map::RemoveCollisionData(unsigned int, unsigned int)
 
 void Map::InitGrid()
 {
+	// Initialize partition grid with conservative cell size for MVP
+	// Cell size = 2x typical sprite size for safety; adjust gridRows/gridColumns accordingly
+	if (spacePartitionGridSize <= 0)
+	{
+		spacePartitionGridSize = 64;  // default cell size in pixels
+	}
+
+	gridRows = (height + spacePartitionGridSize - 1) / spacePartitionGridSize;
+	gridColumns = (width + spacePartitionGridSize - 1) / spacePartitionGridSize;
+
+	// Resize 2D grid to hold sprite lists
+	gridLists.Resize(gridColumns);
+	for (int i = 0; i < gridColumns; i++)
+	{
+		gridLists[i].Resize(gridRows);
+	}
 }
 
-void Map::SpacePartitionGridSize(unsigned int)
+void Map::SpacePartitionGridSize(unsigned int size)
 {
+	spacePartitionGridSize = size;
 }
 
 int Map::SpacePartitionGridSize()
 {
-	return 0;
+	return spacePartitionGridSize;
 }
 
 void Map::AddLocalVariable(unsigned int)
 {
+}
+
+void Map::GridCoordsFromWorld(float worldX, float worldY, int& gridX, int& gridY)
+{
+	// Convert world coordinates to grid cell indices
+	// Clamp to valid grid range
+	gridX = (int)(worldX / spacePartitionGridSize);
+	gridY = (int)(worldY / spacePartitionGridSize);
+
+	if (gridX < 0) gridX = 0;
+	if (gridY < 0) gridY = 0;
+	if (gridX >= gridColumns) gridX = gridColumns - 1;
+	if (gridY >= gridRows) gridY = gridRows - 1;
+}
+
+void Map::GetGridCellsForBounds(float left, float top, float right, float bottom,
+								 int& minX, int& maxX, int& minY, int& maxY)
+{
+	// Get the range of grid cells occupied by a bounding box
+	GridCoordsFromWorld(left, top, minX, minY);
+	GridCoordsFromWorld(right, bottom, maxX, maxY);
+
+	// Ensure valid range
+	if (minX > maxX) { int t = minX; minX = maxX; maxX = t; }
+	if (minY > maxY) { int t = minY; minY = maxY; maxY = t; }
+}
+
+void Map::GetGridCellForPosition(float worldX, float worldY, int& outGridX, int& outGridY)
+{
+	// Convert world position to grid cell coordinates
+	outGridX = (int)(worldX / spacePartitionGridSize);
+	outGridY = (int)(worldY / spacePartitionGridSize);
+
+	// Clamp to grid bounds
+	if (outGridX < 0) outGridX = 0;
+	if (outGridX >= gridColumns) outGridX = gridColumns - 1;
+	if (outGridY < 0) outGridY = 0;
+	if (outGridY >= gridRows) outGridY = gridRows - 1;
+}
+
+void Map::GetGridCellsForBounds(float x, float y, float width, float height, Array<int>& outGridXs, Array<int>& outGridYs)
+{
+	outGridXs.Clear();
+	outGridYs.Clear();
+
+	// Get min/max grid cells for the bounding box
+	int minGridX, minGridY, maxGridX, maxGridY;
+
+	GetGridCellForPosition(x, y, minGridX, minGridY);
+	GetGridCellForPosition(x + width, y + height, maxGridX, maxGridY);
+
+	// Collect all grid cell indices that overlap the bounds
+	for (int gx = minGridX; gx <= maxGridX; gx++)
+	{
+		for (int gy = minGridY; gy <= maxGridY; gy++)
+		{
+			outGridXs.InsertBack(gx);
+			outGridYs.InsertBack(gy);
+		}
+	}
+}
+
+void Map::GetCollisionDataInBounds(float x, float y, float width, float height, Array<CollisionData*>& outCollisionData)
+{
+	outCollisionData.Clear();
+
+	// For MVP, return all map collision data
+	// The partition grid infrastructure is in place for future optimization
+	// but for now we simply return all shapes the map has
+	for (int i = 0; i < collisionData.NumberOfElements(); i++)
+	{
+		outCollisionData.InsertBack(collisionData[i]);
+	}
 }
 
 void Map::Unused(bool)
