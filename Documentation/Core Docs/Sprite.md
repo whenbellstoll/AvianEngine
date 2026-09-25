@@ -8,6 +8,7 @@ This document currently focuses on the collision- and position-related surface a
 | Type    | Name      | Description |
 | :------------- | :----------: | -----------: |
 | float | mapPositionX, mapPositionY | Position in normalized device coordinates (-1..1), matching the vertex shader's `posX`/`posY` uniforms |
+| Map* | mapPointer | Back-reference to the Map this sprite is assigned to (set by `GameNode::Add()` via `BelongToMapPtr()`) |
 | bool | mapCollision | Toggle: should `GameNode::Execute` test this sprite against the map boundary each frame? Set via `CheckCollisionWithMap(bool)` |
 | bool | mapCollisionFlag | Result: did this sprite collide with the map last frame? Set by `GameNode::Execute`, read via `CollisionWithMap()` |
 | bool | spriteCollision | Toggle: should this sprite be tested against other sprites? Set via `CheckCollisionWithSprite(bool)` |
@@ -22,13 +23,15 @@ This document currently focuses on the collision- and position-related surface a
 | CheckCollisionWithSprite(bool) / CheckCollisionWithSprite() | Enables/disables per-frame sprite-vs-sprite collision checking for this sprite | void / bool | None / current toggle | Enabled flag |
 | CollisionWithSprite(const char* n = NULL) | Whether this sprite collided with anything (n == NULL) or a specific named sprite, last frame | bool | Result | Sprite name or NULL |
 | TempCheckCollisionWithMap(left, top, right, bottom) | Real AABB test between this sprite and a rectangle (used by `GameNode` with the world map's bounds); returns true once the sprite crosses outside the rectangle | bool | Whether the sprite is outside the given bounds | Rectangle bounds (pixels) |
+| BelongToMapPtr(Map*) / BelongToMapPtr() | Assigns/reads the Map back-reference for this sprite (called by `GameNode::Add()` automatically) | void / Map* | None / map pointer | Map pointer or none |
+| BelongToMap(const char*) / BelongToMap() | Stub for string-based map name lookup; currently `BelongToMap()` returns the assigned map's name via `mapPointer->Name()` | void / const char* | None / map name | Name or none |
 | Width() / Height() | Real pixel size of the current animation frame | unsigned int | Frame width/height | None |
 | MapPositionXInc/Dec, MapPositionYInc/Dec | Moves the sprite's NDC position by an amount, clamped to a min/max | void | None | Amount, clamp bound, ignore-flag |
 
 ### Open items / not yet implemented
 - `TempCheckCollisionWithMap(float,float,float,float,int)` (the 5-argument overload) and `TempCheckCollisionWithSprite` are still stubs; only the collision paths GameNode actually uses were implemented.
-- Sprite has no `Map*` back-reference (`BelongToMapPtr` is commented out in the header), so real per-Map (rather than single "world map") collision, and any wall/slope-accurate collision via `CollisionSegment`/`CollisionCircle`, is not possible yet without restoring that reference or otherwise associating a Sprite with a specific Map.
-- Movement patterns, path state machines, gravity, flipping, alarms, and the commented-out network block are declared but unimplemented (see the corresponding `.md` files, most of which are still empty templates).
+- Fine-grained per-Map collision and wall/slope-accurate collision via `CollisionSegment`/`CollisionCircle` are possible now that `mapPointer` is restored, but not yet integrated into the game loop (see [CollisionData.md](CollisionData.md) for wiring status).
+- Movement patterns, path state machines, gravity, flipping, alarms, and the commented-out network block are declared but unimplemented.
 
 ## See Also
 - [GameNode](GameNode.md)

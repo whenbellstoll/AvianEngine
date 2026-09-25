@@ -58,6 +58,12 @@ void BreadCollisionWithSprite(Sprite* This)
         {
             if (This->CheckSpriteCollision(s))
             {
+                if (This->Visible())
+                {
+                    printf("Bread Collision With ");
+                    printf(s->Name());
+                    printf("\n");
+                }
                 This->Visible(false);
             }
         }

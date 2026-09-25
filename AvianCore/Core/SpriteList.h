@@ -1,6 +1,10 @@
 #ifndef _SPRITELIST_H_
 #define _SPRITELIST_H_
 
+#include "Constants.h"
+#include "List.h"
+#include "Array.h"
+#include "CollisionData.h"
 class Sound;
 
 struct FImp;
@@ -10,38 +14,46 @@ class   FrameElem
 {
 public:
 	FrameElem();
+	FrameElem(const char * filename);
 	virtual ~FrameElem();
-	String BitmapName;
+	const char * ImageName;
+	//String ImageName;
+	unsigned int texture;
+	unsigned int startingVertex;
 	int	Width;
 	int	Height;
 	COLORREF Transparency;
 	float TranslateX;
 	float TranslateY;
-	unsigned int Delay;
+	int Delay;
 	FImp * pFImp;
 	bool hFlip;
 	bool vFlip;
 	int zRotation;
-	POINT HotSpot[MAXHOTSPOTS];
-	POINT hFHotSpot[MAXHOTSPOTS];
-	POINT vFHotSpot[MAXHOTSPOTS];
-	POINT hvFHotSpot[MAXHOTSPOTS];
+	/* Hot Spot
+	Point HotSpot[MAXHOTSPOTS];
+	Point hFHotSpot[MAXHOTSPOTS];
+	Point vFHotSpot[MAXHOTSPOTS];
+	Point hvFHotSpot[MAXHOTSPOTS];
 	void hFHotSpotArray();
 	void vFHotSpotArray();
 	void hvFHotSpotArray();
-	RECT BBox;
-	RECT hFBBox;
-	RECT vFBBox;
-	RECT hvFBBox;
+	*/
+	Rect BBox;
+	Rect hFBBox;
+	Rect vFBBox;
+	Rect hvFBBox;
 	void hFBoundingBox();
 	void vFBoundingBox();
 	void hvFBoundingBox();
-    List collisionList;
+	void LoadFrame(const char* filename);
+	// Collision data storage - animated frame shapes
+	Array<CollisionData*> collisionData;
 	void AddCollisionData(CollisionSegment);
 	void AddCollisionData(CollisionCircle);
-	List hFlipCollisionList;
-	List vFlipCollisionList;
-	List hvFlipCollisionList;
+	Array<CollisionData*>& GetCollisionData();
+	unsigned int CollisionDataCount();
+	void IniFrame(const char* filename);
 	void hFCollisionList();
 	void vFCollisionList();
 	void hvFCollisionList();
